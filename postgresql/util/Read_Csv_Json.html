@@ -3,7 +3,7 @@
 <head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CRUD_PostgreSQL</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>Read_Csv_Json</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 
 
@@ -14256,10 +14256,172 @@ a.anchor-link {
     </script>
     <!-- End of mathjax configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Lectura-de-un-CSV-a-un-DataFrame">Lectura de un CSV a un DataFrame<a class="anchor-link" href="#Lectura-de-un-CSV-a-un-DataFrame">¶</a></h1>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><a href="http://bit.ly/2mEQRxE">http://bit.ly/2mEQRxE</a></p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span><span class="o">=</span><span class="s2">"http://datos.madrid.es/egob/catalogo/212411-16-madrid-avisa.csv"</span>
+<span class="n">data</span><span class="o">=</span><span class="n">StringIO</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">";"</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s2">"ISO-8859-1"</span><span class="p">)</span>
+
+<span class="c1"># Take a sample</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>&lt;class 'pandas.core.frame.DataFrame'&gt;
+Int64Index: 1000 entries, 320114 to 33894
+Data columns (total 24 columns):
+ #   Column                Non-Null Count  Dtype  
+---  ------                --------------  -----  
+ 0   TIPO_INCIDENCIA_ID    1000 non-null   int64  
+ 1   TIPO_INCIDENCIA       1000 non-null   object 
+ 2   CANAL_DE_ENTRADA_ID   163 non-null    float64
+ 3   CANAL_DE_ENTRADA      1000 non-null   object 
+ 4   FECHA_DE_RECEPCION    1000 non-null   object 
+ 5   HORA_DE_RECEPCION     1000 non-null   object 
+ 6   SECCION_ID            1000 non-null   int64  
+ 7   SECCION               1000 non-null   object 
+ 8   ANOMALIA_ID           1000 non-null   int64  
+ 9   ANOMALIA              1000 non-null   object 
+ 10  TIPO_DE_VIAL_ID       1000 non-null   int64  
+ 11  TIPO_DE_VIAL          1000 non-null   object 
+ 12  NOMBRE_DE_VIAL        1000 non-null   object 
+ 13  NUMERO                1000 non-null   int64  
+ 14  CALIFICADOR           1000 non-null   object 
+ 15  DISTRITO_ID           1000 non-null   int64  
+ 16  DISTRITO              1000 non-null   object 
+ 17  BARRIO_ID             1000 non-null   int64  
+ 18  BARRIO                1000 non-null   object 
+ 19  CODIGO_POSTAL         1000 non-null   int64  
+ 20  COORDENADA_OFICIAL_X  1000 non-null   int64  
+ 21  COORDENADA_OFICIAL_Y  1000 non-null   int64  
+ 22  COORDENADA_REAL_X     1000 non-null   int64  
+ 23  COORDENADA_REAL_Y     1000 non-null   int64  
+dtypes: float64(1), int64(12), object(11)
+memory usage: 195.3+ KB
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Creacción-de-una-base-de-datos-en-Postgres">Creacción de una base de datos en Postgres<a class="anchor-link" href="#Creacci%C3%B3n-de-una-base-de-datos-en-Postgres">¶</a></h1>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">alias</span> dropdb docker exec -i postgres_container dropdb -U postgres 
+<span class="o">%</span><span class="k">alias</span> createdb docker exec -i postgres_container createdb -U postgres 
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dropdb</span> <span class="n">avisa</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">createdb</span> <span class="n">avisa</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> sql
@@ -14273,200 +14435,10 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">alias</span> dropdb docker exec -i postgres_container dropdb -U postgres 
-<span class="o">%</span><span class="k">alias</span> createdb docker exec -i postgres_container createdb -U postgres 
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Creación-de-la-base-de-datos-'demo'">Creación de la base de datos 'demo'<a class="anchor-link" href="#Creaci%C3%B3n-de-la-base-de-datos-'demo'">¶</a></h1>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dropdb</span> <span class="n">demo</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">createdb</span> <span class="n">demo</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Conexión-con-la-BBDD-demo">Conexión con la BBDD demo<a class="anchor-link" href="#Conexi%C3%B3n-con-la-BBDD-demo">¶</a></h2>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">sql</span> postgresql://postgres:postgres@localhost/demo
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Creación-de-tablas">Creación de tablas<a class="anchor-link" href="#Creaci%C3%B3n-de-tablas">¶</a></h1>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">sql</span> 
-<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">users</span> <span class="p">(</span>
-    <span class="n">user_id</span>     <span class="nb">bigint</span> <span class="k">not</span> <span class="k">null</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
-    <span class="n">name</span>        <span class="nb">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
-    <span class="n">create_at</span>   <span class="k">timestamp</span> <span class="k">null</span><span class="p">,</span>
-    <span class="n">friends_count</span>   <span class="nb">int</span> <span class="k">null</span>
-<span class="p">);</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre> * postgresql://postgres:***@localhost/demo
-Done.
-</pre>
-</div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>[]</pre>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">sql</span> 
-<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">user_hashtags</span> <span class="p">(</span>
-    <span class="n">user_id</span>     <span class="nb">bigint</span> <span class="k">not</span> <span class="k">null</span> <span class="k">REFERENCES</span> <span class="n">users</span><span class="p">(</span><span class="n">user_id</span><span class="p">),</span>
-    <span class="n">hashtag</span>     <span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
-    <span class="k">CONSTRAINT</span> <span class="n">pk_user_hashtag</span> <span class="k">UNIQUE</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">hashtag</span><span class="p">)</span>
-<span class="p">);</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre> * postgresql://postgres:***@localhost/demo
-Done.
-</pre>
-</div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[7]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>[]</pre>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Inserción-de-datos">Inserción de datos<a class="anchor-link" href="#Inserci%C3%B3n-de-datos">¶</a></h2>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">users</span> <span class="p">(</span><span class="n">USER_ID</span><span class="p">,</span> <span class="n">NAME</span><span class="p">,</span> <span class="n">CREATE_AT</span><span class="p">,</span> <span class="n">FRIENDS_COUNT</span><span class="p">)</span>
-<span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">'Ken Knowles'</span><span class="p">,</span> <span class="s1">'2015-11-08'</span><span class="p">,</span> <span class="mi">320</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">sql</span> postgresql://postgres:postgres@localhost/avisa
 </pre></div>
 
      </div>
@@ -14474,55 +14446,19 @@ Done.
 </div>
 </div>
 
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre> * postgresql://postgres:***@localhost/demo
-1 rows affected.
-</pre>
 </div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Exportación-de-un-Dataframe-a-una-tabla-en-Postgres">Exportación de un Dataframe a una tabla en Postgres<a class="anchor-link" href="#Exportaci%C3%B3n-de-un-Dataframe-a-una-tabla-en-Postgres">¶</a></h1>
 </div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[8]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>[]</pre>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">sql</span> INSERT INTO users (USER_ID, NAME) VALUES (2, 'Usuario')
-
-<span class="o">%</span><span class="k">sql</span> INSERT INTO user_hashtags (USER_ID, HASHTAG) VALUES (1, 'sql')
-
-<span class="o">%</span><span class="k">sql</span> INSERT INTO user_hashtags (USER_ID, HASHTAG) VALUES (2, 'postgresql')
-
-<span class="o">%</span><span class="k">sql</span> INSERT INTO user_hashtags (USER_ID, HASHTAG) VALUES (2, 'sql')
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s1">'postgresql://postgres:postgres@localhost:5432/avisa'</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s1">'incidencias'</span><span class="p">,</span> <span class="n">engine</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14530,53 +14466,6 @@ Done.
 </div>
 </div>
 
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre> * postgresql://postgres:***@localhost/demo
-1 rows affected.
- * postgresql://postgres:***@localhost/demo
-1 rows affected.
- * postgresql://postgres:***@localhost/demo
-1 rows affected.
- * postgresql://postgres:***@localhost/demo
-1 rows affected.
-</pre>
-</div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>[]</pre>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Actualización-de-datos">Actualización de datos<a class="anchor-link" href="#Actualizaci%C3%B3n-de-datos">¶</a></h2>
-</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
@@ -14584,9 +14473,8 @@ Done.
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">sql</span> 
-<span class="k">UPDATE</span> <span class="n">users</span> 
-<span class="k">SET</span> <span class="n">FRIENDS_COUNT</span> <span class="o">=</span> <span class="mi">20</span>
-<span class="k">WHERE</span> <span class="n">USER_ID</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="k">select</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<span class="k">from</span> <span class="n">incidencias</span>
 </pre></div>
 
      </div>
@@ -14606,7 +14494,7 @@ Done.
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre> * postgresql://postgres:***@localhost/demo
+<pre> * postgresql://postgres:***@localhost/avisa
 1 rows affected.
 </pre>
 </div>
@@ -14619,9 +14507,15 @@ Done.
 
 
 
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>[]</pre>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<table>
+    <tr>
+        <th>count</th>
+    </tr>
+    <tr>
+        <td>1000</td>
+    </tr>
+</table>
 </div>
 
 </div>
@@ -14630,21 +14524,13 @@ Done.
 
 </div>
 
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Borrado-de-datos">Borrado de datos<a class="anchor-link" href="#Borrado-de-datos">¶</a></h2>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">sql</span> 
-<span class="k">DELETE</span> <span class="k">FROM</span> <span class="n">user_hashtags</span>
-<span class="k">WHERE</span> <span class="n">user_id</span> <span class="o">=</span> <span class="mi">2</span>
-    <span class="k">AND</span> <span class="n">hashtag</span> <span class="o">=</span> <span class="s1">'postgresql'</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">([</span><span class="s2">"TIPO_INCIDENCIA_ID"</span><span class="p">,</span> <span class="s2">"TIPO_INCIDENCIA"</span><span class="p">])</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s1">'tipo_incidencias'</span><span class="p">,</span> <span class="n">engine</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14652,57 +14538,15 @@ Done.
 </div>
 </div>
 
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre> * postgresql://postgres:***@localhost/demo
-1 rows affected.
-</pre>
-</div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>[]</pre>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Lectura-de-datos">Lectura de datos<a class="anchor-link" href="#Lectura-de-datos">¶</a></h2>
-</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
-<span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">friends_count</span>
-<span class="k">FROM</span> <span class="n">USERS</span>
-<span class="k">where</span> <span class="n">user_id</span> <span class="o">=</span> <span class="mi">1</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">sql</span> 
+<span class="k">select</span> <span class="o">*</span>
+<span class="k">from</span> <span class="n">tipo_incidencias</span>
 </pre></div>
 
      </div>
@@ -14722,8 +14566,8 @@ Done.
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre> * postgresql://postgres:***@localhost/demo
-1 rows affected.
+<pre> * postgresql://postgres:***@localhost/avisa
+3 rows affected.
 </pre>
 </div>
 </div>
@@ -14738,12 +14582,24 @@ Done.
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
     <tr>
-        <th>name</th>
-        <th>friends_count</th>
+        <th>index</th>
+        <th>TIPO_INCIDENCIA_ID</th>
+        <th>TIPO_INCIDENCIA</th>
     </tr>
     <tr>
-        <td>Ken Knowles</td>
-        <td>320</td>
+        <td>320114</td>
+        <td>0</td>
+        <td>AVISO</td>
+    </tr>
+    <tr>
+        <td>463355</td>
+        <td>1</td>
+        <td>Peticion</td>
+    </tr>
+    <tr>
+        <td>463592</td>
+        <td>2</td>
+        <td>No conforme con resolucion</td>
     </tr>
 </table>
 </div>
@@ -14754,16 +14610,22 @@ Done.
 
 </div>
 
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Exportación-de-un-DataFrame-a-un-JSON">Exportación de un DataFrame a un JSON<a class="anchor-link" href="#Exportaci%C3%B3n-de-un-DataFrame-a-un-JSON">¶</a></h1>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
-<span class="k">SELECT</span> <span class="k">sum</span><span class="p">(</span><span class="n">u</span><span class="p">.</span><span class="n">friends_count</span><span class="p">)</span>
-<span class="k">FROM</span> <span class="n">USERS</span> <span class="n">u</span> <span class="k">JOIN</span> <span class="n">USER_HASHTAGS</span> <span class="n">h</span> <span class="k">ON</span> <span class="p">(</span><span class="n">u</span><span class="p">.</span><span class="n">user_id</span> <span class="o">=</span> <span class="n">h</span><span class="p">.</span><span class="n">user_id</span><span class="p">)</span>
-<span class="k">WHERE</span> <span class="n">h</span><span class="p">.</span><span class="n">hashtag</span> <span class="o">=</span> <span class="s1">'sql'</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">json_string</span> <span class="o">=</span> <span class="n">df</span> \
+                <span class="o">.</span><span class="n">filter</span><span class="p">([</span><span class="s2">"TIPO_INCIDENCIA_ID"</span><span class="p">,</span> <span class="s2">"TIPO_INCIDENCIA"</span><span class="p">])</span> \
+                <span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span> \
+                <span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">orient</span> <span class="o">=</span> <span class="s1">'records'</span><span class="p">)</span>
+<span class="n">json_string</span>
 </pre></div>
 
      </div>
@@ -14779,32 +14641,13 @@ Done.
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre> * postgresql://postgres:***@localhost/demo
-1 rows affected.
-</pre>
-</div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[13]:</div>
 
 
 
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<table>
-    <tr>
-        <th>sum</th>
-    </tr>
-    <tr>
-        <td>340</td>
-    </tr>
-</table>
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>'[{"TIPO_INCIDENCIA_ID":0,"TIPO_INCIDENCIA":"AVISO"},{"TIPO_INCIDENCIA_ID":1,"TIPO_INCIDENCIA":"Peticion"},{"TIPO_INCIDENCIA_ID":2,"TIPO_INCIDENCIA":"No conforme con resolucion"}]'</pre>
 </div>
 
 </div>
@@ -14819,10 +14662,50 @@ Done.
 <div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
-<span class="k">SELECT</span> <span class="n">hashtag</span><span class="p">,</span> <span class="k">sum</span><span class="p">(</span><span class="n">u</span><span class="p">.</span><span class="n">friends_count</span><span class="p">)</span>
-<span class="k">FROM</span> <span class="n">USERS</span> <span class="n">u</span> <span class="k">JOIN</span> <span class="n">USER_HASHTAGS</span> <span class="n">h</span> <span class="k">ON</span> <span class="p">(</span><span class="n">u</span><span class="p">.</span><span class="n">user_id</span> <span class="o">=</span> <span class="n">h</span><span class="p">.</span><span class="n">user_id</span><span class="p">)</span>
-<span class="k">GROUP</span> <span class="k">BY</span> <span class="mi">1</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">json_list</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">json_string</span><span class="p">)</span>
+<span class="n">json_list</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[14]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>[{'TIPO_INCIDENCIA_ID': 0, 'TIPO_INCIDENCIA': 'AVISO'},
+ {'TIPO_INCIDENCIA_ID': 1, 'TIPO_INCIDENCIA': 'Peticion'},
+ {'TIPO_INCIDENCIA_ID': 2, 'TIPO_INCIDENCIA': 'No conforme con resolucion'}]</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">json</span> <span class="ow">in</span> <span class="n">json_list</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14842,30 +14725,291 @@ Done.
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre> * postgresql://postgres:***@localhost/demo
-1 rows affected.
+<pre>{'TIPO_INCIDENCIA_ID': 0, 'TIPO_INCIDENCIA': 'AVISO'}
+{'TIPO_INCIDENCIA_ID': 1, 'TIPO_INCIDENCIA': 'Peticion'}
+{'TIPO_INCIDENCIA_ID': 2, 'TIPO_INCIDENCIA': 'No conforme con resolucion'}
 </pre>
 </div>
 </div>
 
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Importacion-de-un-JSON-a-un-DataFrame">Importacion de un JSON a un DataFrame<a class="anchor-link" href="#Importacion-de-un-JSON-a-un-DataFrame">¶</a></h1>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="n">json_string</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[14]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[16]:</div>
 
 
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<table>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>TIPO_INCIDENCIA_ID</th>
+      <th>TIPO_INCIDENCIA</th>
+    </tr>
+  </thead>
+  <tbody>
     <tr>
-        <th>hashtag</th>
-        <th>sum</th>
+      <th>0</th>
+      <td>0</td>
+      <td>AVISO</td>
     </tr>
     <tr>
-        <td>sql</td>
-        <td>340</td>
+      <th>1</th>
+      <td>1</td>
+      <td>Peticion</td>
     </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>No conforme con resolucion</td>
+    </tr>
+  </tbody>
 </table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="s1">'https://api.github.com/repos/pydata/pandas/issues?per_page=5'</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[17]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>url</th>
+      <th>repository_url</th>
+      <th>labels_url</th>
+      <th>comments_url</th>
+      <th>events_url</th>
+      <th>html_url</th>
+      <th>id</th>
+      <th>node_id</th>
+      <th>number</th>
+      <th>title</th>
+      <th>...</th>
+      <th>milestone</th>
+      <th>comments</th>
+      <th>created_at</th>
+      <th>updated_at</th>
+      <th>closed_at</th>
+      <th>author_association</th>
+      <th>active_lock_reason</th>
+      <th>body</th>
+      <th>performed_via_github_app</th>
+      <th>pull_request</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
+      <td>https://api.github.com/repos/pandas-dev/pandas</td>
+      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
+      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
+      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
+      <td>https://github.com/pandas-dev/pandas/issues/38607</td>
+      <td>771986993</td>
+      <td>MDU6SXNzdWU3NzE5ODY5OTM=</td>
+      <td>38607</td>
+      <td>REGR: astype(str) of object array with byte ob...</td>
+      <td>...</td>
+      <td>{'url': 'https://api.github.com/repos/pandas-d...</td>
+      <td>0</td>
+      <td>2020-12-21 08:55:23+00:00</td>
+      <td>2020-12-21 08:55:23+00:00</td>
+      <td>NaT</td>
+      <td>MEMBER</td>
+      <td>NaN</td>
+      <td>On released version, we see this behaviour:\r\...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
+      <td>https://api.github.com/repos/pandas-dev/pandas</td>
+      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
+      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
+      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
+      <td>https://github.com/pandas-dev/pandas/pull/38606</td>
+      <td>771859346</td>
+      <td>MDExOlB1bGxSZXF1ZXN0NTQzMjM2MjUz</td>
+      <td>38606</td>
+      <td>BUG: fixed string series conversion back to ti...</td>
+      <td>...</td>
+      <td>None</td>
+      <td>0</td>
+      <td>2020-12-21 05:39:36+00:00</td>
+      <td>2020-12-21 07:13:42+00:00</td>
+      <td>NaT</td>
+      <td>CONTRIBUTOR</td>
+      <td>NaN</td>
+      <td>- [x] closes #38509\r\n- [x] tests added / pas...</td>
+      <td>NaN</td>
+      <td>{'url': 'https://api.github.com/repos/pandas-d...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
+      <td>https://api.github.com/repos/pandas-dev/pandas</td>
+      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
+      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
+      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
+      <td>https://github.com/pandas-dev/pandas/pull/38605</td>
+      <td>771821345</td>
+      <td>MDExOlB1bGxSZXF1ZXN0NTQzMjA2OTEy</td>
+      <td>38605</td>
+      <td>REF: simplify CategoricalIndex.__new__</td>
+      <td>...</td>
+      <td>None</td>
+      <td>0</td>
+      <td>2020-12-21 04:15:14+00:00</td>
+      <td>2020-12-21 04:15:14+00:00</td>
+      <td>NaT</td>
+      <td>MEMBER</td>
+      <td>NaN</td>
+      <td>Part of a larger goal of making `Index.__new__...</td>
+      <td>NaN</td>
+      <td>{'url': 'https://api.github.com/repos/pandas-d...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
+      <td>https://api.github.com/repos/pandas-dev/pandas</td>
+      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
+      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
+      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
+      <td>https://github.com/pandas-dev/pandas/issues/38604</td>
+      <td>771798731</td>
+      <td>MDU6SXNzdWU3NzE3OTg3MzE=</td>
+      <td>38604</td>
+      <td>BUG: surprising non-error when assigning a mul...</td>
+      <td>...</td>
+      <td>None</td>
+      <td>0</td>
+      <td>2020-12-21 03:07:03+00:00</td>
+      <td>2020-12-21 03:07:03+00:00</td>
+      <td>NaT</td>
+      <td>CONTRIBUTOR</td>
+      <td>NaN</td>
+      <td>- [x] I have checked that this issue has not a...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
+      <td>https://api.github.com/repos/pandas-dev/pandas</td>
+      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
+      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
+      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
+      <td>https://github.com/pandas-dev/pandas/pull/38603</td>
+      <td>771796472</td>
+      <td>MDExOlB1bGxSZXF1ZXN0NTQzMTg4NTE2</td>
+      <td>38603</td>
+      <td>Backport PR #38598 on branch 1.2.x (BUG: Tempo...</td>
+      <td>...</td>
+      <td>{'url': 'https://api.github.com/repos/pandas-d...</td>
+      <td>0</td>
+      <td>2020-12-21 02:59:51+00:00</td>
+      <td>2020-12-21 02:59:52+00:00</td>
+      <td>NaT</td>
+      <td>NONE</td>
+      <td>NaN</td>
+      <td>Backport PR #38598: BUG: Temporarily pin the v...</td>
+      <td>NaN</td>
+      <td>{'url': 'https://api.github.com/repos/pandas-d...</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 26 columns</p>
+</div>
 </div>
 
 </div>
