@@ -14291,7 +14291,7 @@ a.anchor-link {
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
@@ -14303,6 +14303,27 @@ a.anchor-link {
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>dropdb: error: database removal failed: ERROR:  database "dvdrental" does not exist
+</pre>
+</div>
+</div>
+
+</div>
+
 </div>
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14411,138 +14432,142 @@ a.anchor-link {
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <tr>
-        <th>customer_id</th>
-        <th>store_id</th>
-        <th>first_name</th>
-        <th>last_name</th>
-        <th>email</th>
-        <th>address_id</th>
-        <th>activebool</th>
-        <th>create_date</th>
-        <th>last_update</th>
-        <th>active</th>
-    </tr>
-    <tr>
-        <td>524</td>
-        <td>1</td>
-        <td>Jared</td>
-        <td>Ely</td>
-        <td>jared.ely@sakilacustomer.org</td>
-        <td>530</td>
-        <td>True</td>
-        <td>2006-02-14</td>
-        <td>2013-05-26 14:49:45.738000</td>
-        <td>1</td>
-    </tr>
-    <tr>
-        <td>1</td>
-        <td>1</td>
-        <td>Mary</td>
-        <td>Smith</td>
-        <td>mary.smith@sakilacustomer.org</td>
-        <td>5</td>
-        <td>True</td>
-        <td>2006-02-14</td>
-        <td>2013-05-26 14:49:45.738000</td>
-        <td>1</td>
-    </tr>
-    <tr>
-        <td>2</td>
-        <td>1</td>
-        <td>Patricia</td>
-        <td>Johnson</td>
-        <td>patricia.johnson@sakilacustomer.org</td>
-        <td>6</td>
-        <td>True</td>
-        <td>2006-02-14</td>
-        <td>2013-05-26 14:49:45.738000</td>
-        <td>1</td>
-    </tr>
-    <tr>
-        <td>3</td>
-        <td>1</td>
-        <td>Linda</td>
-        <td>Williams</td>
-        <td>linda.williams@sakilacustomer.org</td>
-        <td>7</td>
-        <td>True</td>
-        <td>2006-02-14</td>
-        <td>2013-05-26 14:49:45.738000</td>
-        <td>1</td>
-    </tr>
-    <tr>
-        <td>4</td>
-        <td>2</td>
-        <td>Barbara</td>
-        <td>Jones</td>
-        <td>barbara.jones@sakilacustomer.org</td>
-        <td>8</td>
-        <td>True</td>
-        <td>2006-02-14</td>
-        <td>2013-05-26 14:49:45.738000</td>
-        <td>1</td>
-    </tr>
-    <tr>
-        <td>5</td>
-        <td>1</td>
-        <td>Elizabeth</td>
-        <td>Brown</td>
-        <td>elizabeth.brown@sakilacustomer.org</td>
-        <td>9</td>
-        <td>True</td>
-        <td>2006-02-14</td>
-        <td>2013-05-26 14:49:45.738000</td>
-        <td>1</td>
-    </tr>
-    <tr>
-        <td>6</td>
-        <td>2</td>
-        <td>Jennifer</td>
-        <td>Davis</td>
-        <td>jennifer.davis@sakilacustomer.org</td>
-        <td>10</td>
-        <td>True</td>
-        <td>2006-02-14</td>
-        <td>2013-05-26 14:49:45.738000</td>
-        <td>1</td>
-    </tr>
-    <tr>
-        <td>7</td>
-        <td>1</td>
-        <td>Maria</td>
-        <td>Miller</td>
-        <td>maria.miller@sakilacustomer.org</td>
-        <td>11</td>
-        <td>True</td>
-        <td>2006-02-14</td>
-        <td>2013-05-26 14:49:45.738000</td>
-        <td>1</td>
-    </tr>
-    <tr>
-        <td>8</td>
-        <td>2</td>
-        <td>Susan</td>
-        <td>Wilson</td>
-        <td>susan.wilson@sakilacustomer.org</td>
-        <td>12</td>
-        <td>True</td>
-        <td>2006-02-14</td>
-        <td>2013-05-26 14:49:45.738000</td>
-        <td>1</td>
-    </tr>
-    <tr>
-        <td>9</td>
-        <td>2</td>
-        <td>Margaret</td>
-        <td>Moore</td>
-        <td>margaret.moore@sakilacustomer.org</td>
-        <td>13</td>
-        <td>True</td>
-        <td>2006-02-14</td>
-        <td>2013-05-26 14:49:45.738000</td>
-        <td>1</td>
-    </tr>
+    <thead>
+        <tr>
+            <th>customer_id</th>
+            <th>store_id</th>
+            <th>first_name</th>
+            <th>last_name</th>
+            <th>email</th>
+            <th>address_id</th>
+            <th>activebool</th>
+            <th>create_date</th>
+            <th>last_update</th>
+            <th>active</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>524</td>
+            <td>1</td>
+            <td>Jared</td>
+            <td>Ely</td>
+            <td>jared.ely@sakilacustomer.org</td>
+            <td>530</td>
+            <td>True</td>
+            <td>2006-02-14</td>
+            <td>2013-05-26 14:49:45.738000</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>Mary</td>
+            <td>Smith</td>
+            <td>mary.smith@sakilacustomer.org</td>
+            <td>5</td>
+            <td>True</td>
+            <td>2006-02-14</td>
+            <td>2013-05-26 14:49:45.738000</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>1</td>
+            <td>Patricia</td>
+            <td>Johnson</td>
+            <td>patricia.johnson@sakilacustomer.org</td>
+            <td>6</td>
+            <td>True</td>
+            <td>2006-02-14</td>
+            <td>2013-05-26 14:49:45.738000</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>1</td>
+            <td>Linda</td>
+            <td>Williams</td>
+            <td>linda.williams@sakilacustomer.org</td>
+            <td>7</td>
+            <td>True</td>
+            <td>2006-02-14</td>
+            <td>2013-05-26 14:49:45.738000</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>2</td>
+            <td>Barbara</td>
+            <td>Jones</td>
+            <td>barbara.jones@sakilacustomer.org</td>
+            <td>8</td>
+            <td>True</td>
+            <td>2006-02-14</td>
+            <td>2013-05-26 14:49:45.738000</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>1</td>
+            <td>Elizabeth</td>
+            <td>Brown</td>
+            <td>elizabeth.brown@sakilacustomer.org</td>
+            <td>9</td>
+            <td>True</td>
+            <td>2006-02-14</td>
+            <td>2013-05-26 14:49:45.738000</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>2</td>
+            <td>Jennifer</td>
+            <td>Davis</td>
+            <td>jennifer.davis@sakilacustomer.org</td>
+            <td>10</td>
+            <td>True</td>
+            <td>2006-02-14</td>
+            <td>2013-05-26 14:49:45.738000</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>1</td>
+            <td>Maria</td>
+            <td>Miller</td>
+            <td>maria.miller@sakilacustomer.org</td>
+            <td>11</td>
+            <td>True</td>
+            <td>2006-02-14</td>
+            <td>2013-05-26 14:49:45.738000</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>2</td>
+            <td>Susan</td>
+            <td>Wilson</td>
+            <td>susan.wilson@sakilacustomer.org</td>
+            <td>12</td>
+            <td>True</td>
+            <td>2006-02-14</td>
+            <td>2013-05-26 14:49:45.738000</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>2</td>
+            <td>Margaret</td>
+            <td>Moore</td>
+            <td>margaret.moore@sakilacustomer.org</td>
+            <td>13</td>
+            <td>True</td>
+            <td>2006-02-14</td>
+            <td>2013-05-26 14:49:45.738000</td>
+            <td>1</td>
+        </tr>
+    </tbody>
 </table>
 </div>
 

@@ -14290,7 +14290,7 @@ a.anchor-link {
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Creación-de-la-base-de-datos-'demo'">Creación de la base de datos 'demo'<a class="anchor-link" href="#Creaci%C3%B3n-de-la-base-de-datos-'demo'">¶</a></h1>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
@@ -14302,6 +14302,27 @@ a.anchor-link {
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>dropdb: error: database removal failed: ERROR:  database "demo" does not exist
+</pre>
+</div>
+</div>
+
+</div>
+
 </div>
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14737,14 +14758,18 @@ Done.
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <tr>
-        <th>name</th>
-        <th>friends_count</th>
-    </tr>
-    <tr>
-        <td>Ken Knowles</td>
-        <td>320</td>
-    </tr>
+    <thead>
+        <tr>
+            <th>name</th>
+            <th>friends_count</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Ken Knowles</td>
+            <td>320</td>
+        </tr>
+    </tbody>
 </table>
 </div>
 
@@ -14798,12 +14823,16 @@ Done.
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <tr>
-        <th>sum</th>
-    </tr>
-    <tr>
-        <td>340</td>
-    </tr>
+    <thead>
+        <tr>
+            <th>sum</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>340</td>
+        </tr>
+    </tbody>
 </table>
 </div>
 
@@ -14857,14 +14886,18 @@ Done.
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <tr>
-        <th>hashtag</th>
-        <th>sum</th>
-    </tr>
-    <tr>
-        <td>sql</td>
-        <td>340</td>
-    </tr>
+    <thead>
+        <tr>
+            <th>hashtag</th>
+            <th>sum</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>sql</td>
+            <td>340</td>
+        </tr>
+    </tbody>
 </table>
 </div>
 
