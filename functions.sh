@@ -8,7 +8,7 @@ function execute_notebook {
     HOME_OUTPUT=`join_by / "${ARRAY[@]:0:$LEN}"`
     HOME_OUTPUT="./html/${HOME_OUTPUT:1}"
     
-    jupyter nbconvert --ExecutePreprocessor.timeout=-1 --execute --output-dir=$HOME_OUTPUT --to HTML "$NOTEBOOK"
+    jupyter nbconvert --ExecutePreprocessor.timeout=-1 --execute --output-dir=$HOME_OUTPUT --to html_embed "$NOTEBOOK"
     if [ $? -eq 0 ]; then
         jupyter nbconvert --clear-output --inplace "$NOTEBOOK"
     fi

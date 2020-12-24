@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta charset="utf-8" />
+<head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>CRUD_PostgreSQL</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
@@ -14259,7 +14259,7 @@ a.anchor-link {
 <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> sql
@@ -14273,7 +14273,7 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">alias</span> dropdb docker exec -i postgres_container dropdb -U postgres 
@@ -14288,12 +14288,12 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Creaci&#243;n-de-la-base-de-datos-'demo'">Creaci&#243;n de la base de datos 'demo'<a class="anchor-link" href="#Creaci&#243;n-de-la-base-de-datos-'demo'">&#182;</a></h1>
+<h1 id="Creación-de-la-base-de-datos-'demo'">Creación de la base de datos 'demo'<a class="anchor-link" href="#Creaci%C3%B3n-de-la-base-de-datos-'demo'">¶</a></h1>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">dropdb</span> <span class="n">demo</span>
@@ -14307,7 +14307,7 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">createdb</span> <span class="n">demo</span>
@@ -14321,12 +14321,12 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Conexi&#243;n-con-la-BBDD-demo">Conexi&#243;n con la BBDD demo<a class="anchor-link" href="#Conexi&#243;n-con-la-BBDD-demo">&#182;</a></h2>
+<h2 id="Conexión-con-la-BBDD-demo">Conexión con la BBDD demo<a class="anchor-link" href="#Conexi%C3%B3n-con-la-BBDD-demo">¶</a></h2>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">sql</span> postgresql://postgres:postgres@localhost/demo
@@ -14340,12 +14340,12 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Creaci&#243;n-de-tablas">Creaci&#243;n de tablas<a class="anchor-link" href="#Creaci&#243;n-de-tablas">&#182;</a></h1>
+<h1 id="Creación-de-tablas">Creación de tablas<a class="anchor-link" href="#Creaci%C3%B3n-de-tablas">¶</a></h1>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">sql</span> 
@@ -14401,7 +14401,7 @@ Done.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">sql</span> 
@@ -14456,17 +14456,17 @@ Done.
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Inserci&#243;n-de-datos">Inserci&#243;n de datos<a class="anchor-link" href="#Inserci&#243;n-de-datos">&#182;</a></h2>
+<h2 id="Inserción-de-datos">Inserción de datos<a class="anchor-link" href="#Inserci%C3%B3n-de-datos">¶</a></h2>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
 <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">users</span> <span class="p">(</span><span class="n">USER_ID</span><span class="p">,</span> <span class="n">NAME</span><span class="p">,</span> <span class="n">CREATE_AT</span><span class="p">,</span> <span class="n">FRIENDS_COUNT</span><span class="p">)</span>
-<span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Ken Knowles&#39;</span><span class="p">,</span> <span class="s1">&#39;2015-11-08&#39;</span><span class="p">,</span> <span class="mi">320</span><span class="p">)</span>
+<span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">'Ken Knowles'</span><span class="p">,</span> <span class="s1">'2015-11-08'</span><span class="p">,</span> <span class="mi">320</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14513,16 +14513,16 @@ Done.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">sql</span> INSERT INTO users (USER_ID, NAME) VALUES (2, &#39;Usuario&#39;)
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">sql</span> INSERT INTO users (USER_ID, NAME) VALUES (2, 'Usuario')
 
-<span class="o">%</span><span class="k">sql</span> INSERT INTO user_hashtags (USER_ID, HASHTAG) VALUES (1, &#39;sql&#39;)
+<span class="o">%</span><span class="k">sql</span> INSERT INTO user_hashtags (USER_ID, HASHTAG) VALUES (1, 'sql')
 
-<span class="o">%</span><span class="k">sql</span> INSERT INTO user_hashtags (USER_ID, HASHTAG) VALUES (2, &#39;postgresql&#39;)
+<span class="o">%</span><span class="k">sql</span> INSERT INTO user_hashtags (USER_ID, HASHTAG) VALUES (2, 'postgresql')
 
-<span class="o">%</span><span class="k">sql</span> INSERT INTO user_hashtags (USER_ID, HASHTAG) VALUES (2, &#39;sql&#39;)
+<span class="o">%</span><span class="k">sql</span> INSERT INTO user_hashtags (USER_ID, HASHTAG) VALUES (2, 'sql')
 </pre></div>
 
      </div>
@@ -14575,12 +14575,12 @@ Done.
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Actualizaci&#243;n-de-datos">Actualizaci&#243;n de datos<a class="anchor-link" href="#Actualizaci&#243;n-de-datos">&#182;</a></h2>
+<h2 id="Actualización-de-datos">Actualización de datos<a class="anchor-link" href="#Actualizaci%C3%B3n-de-datos">¶</a></h2>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">sql</span> 
@@ -14633,18 +14633,18 @@ Done.
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Borrado-de-datos">Borrado de datos<a class="anchor-link" href="#Borrado-de-datos">&#182;</a></h2>
+<h2 id="Borrado-de-datos">Borrado de datos<a class="anchor-link" href="#Borrado-de-datos">¶</a></h2>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">sql</span> 
 <span class="k">DELETE</span> <span class="k">FROM</span> <span class="n">user_hashtags</span>
 <span class="k">WHERE</span> <span class="n">user_id</span> <span class="o">=</span> <span class="mi">2</span>
-    <span class="k">AND</span> <span class="n">hashtag</span> <span class="o">=</span> <span class="s1">&#39;postgresql&#39;</span>
+    <span class="k">AND</span> <span class="n">hashtag</span> <span class="o">=</span> <span class="s1">'postgresql'</span>
 </pre></div>
 
      </div>
@@ -14691,12 +14691,12 @@ Done.
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Lectura-de-datos">Lectura de datos<a class="anchor-link" href="#Lectura-de-datos">&#182;</a></h2>
+<h2 id="Lectura-de-datos">Lectura de datos<a class="anchor-link" href="#Lectura-de-datos">¶</a></h2>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
@@ -14757,13 +14757,13 @@ Done.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
 <span class="k">SELECT</span> <span class="k">sum</span><span class="p">(</span><span class="n">u</span><span class="p">.</span><span class="n">friends_count</span><span class="p">)</span>
 <span class="k">FROM</span> <span class="n">USERS</span> <span class="n">u</span> <span class="k">JOIN</span> <span class="n">USER_HASHTAGS</span> <span class="n">h</span> <span class="k">ON</span> <span class="p">(</span><span class="n">u</span><span class="p">.</span><span class="n">user_id</span> <span class="o">=</span> <span class="n">h</span><span class="p">.</span><span class="n">user_id</span><span class="p">)</span>
-<span class="k">WHERE</span> <span class="n">h</span><span class="p">.</span><span class="n">hashtag</span> <span class="o">=</span> <span class="s1">&#39;sql&#39;</span>
+<span class="k">WHERE</span> <span class="n">h</span><span class="p">.</span><span class="n">hashtag</span> <span class="o">=</span> <span class="s1">'sql'</span>
 </pre></div>
 
      </div>
@@ -14816,7 +14816,7 @@ Done.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
@@ -14877,7 +14877,7 @@ Done.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span> 

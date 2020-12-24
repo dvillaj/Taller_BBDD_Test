@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta charset="utf-8" />
+<head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Tarjetas Black</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
@@ -14259,17 +14259,17 @@ a.anchor-link {
 
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="PostgreSQL">PostgreSQL<a class="anchor-link" href="#PostgreSQL">&#182;</a></h1>
+<h1 id="PostgreSQL">PostgreSQL<a class="anchor-link" href="#PostgreSQL">¶</a></h1>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Borrado-de-datos">Borrado de datos<a class="anchor-link" href="#Borrado-de-datos">&#182;</a></h2>
+<h2 id="Borrado-de-datos">Borrado de datos<a class="anchor-link" href="#Borrado-de-datos">¶</a></h2>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">alias</span> dropdb docker exec -i postgres_container dropdb -U postgres 
@@ -14284,7 +14284,7 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">dropdb</span> <span class="n">black</span>
@@ -14298,7 +14298,7 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">createdb</span> <span class="n">black</span>
@@ -14312,7 +14312,7 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> sql
@@ -14326,7 +14326,7 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">sql</span> postgresql://postgres:postgres@localhost/black
@@ -14340,7 +14340,7 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Carga-de-datos-en-Pandas">Carga de datos en Pandas<a class="anchor-link" href="#Carga-de-datos-en-Pandas">&#182;</a></h1>
+<h1 id="Carga-de-datos-en-Pandas">Carga de datos en Pandas<a class="anchor-link" href="#Carga-de-datos-en-Pandas">¶</a></h1>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
@@ -14351,7 +14351,7 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -14365,11 +14365,11 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_mov</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">&quot;../../data/black.xlsx&quot;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span> <span class="s2">&quot;Movimientos&quot;</span><span class="p">)</span>
-<span class="n">df_miembros</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">&quot;../../data/black.xlsx&quot;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span> <span class="s2">&quot;Miembros&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_mov</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">"../../data/black.xlsx"</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span> <span class="s2">"Movimientos"</span><span class="p">)</span>
+<span class="n">df_miembros</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">"../../data/black.xlsx"</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span> <span class="s2">"Miembros"</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14386,7 +14386,7 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_mov</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
@@ -14508,10 +14508,10 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">df_mov</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;fecha&#39;</span><span class="p">,</span> <span class="s1">&#39;id_miembro&#39;</span><span class="p">,</span> <span class="s1">&#39;hora&#39;</span><span class="p">,</span> <span class="s1">&#39;minuto&#39;</span><span class="p">,</span> <span class="s1">&#39;comercio&#39;</span><span class="p">,</span> <span class="s1">&#39;importe&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">df_mov</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">'fecha'</span><span class="p">,</span> <span class="s1">'id_miembro'</span><span class="p">,</span> <span class="s1">'hora'</span><span class="p">,</span> <span class="s1">'minuto'</span><span class="p">,</span> <span class="s1">'comercio'</span><span class="p">,</span> <span class="s1">'importe'</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -14545,10 +14545,10 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_mov</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;id_miembro == 77 and hora == 11 and minuto == 40&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_mov</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">'id_miembro == 77 and hora == 11 and minuto == 40'</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14629,7 +14629,7 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Creacci&#243;n-de-tablas">Creacci&#243;n de tablas<a class="anchor-link" href="#Creacci&#243;n-de-tablas">&#182;</a></h2>
+<h2 id="Creacción-de-tablas">Creacción de tablas<a class="anchor-link" href="#Creacci%C3%B3n-de-tablas">¶</a></h2>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
@@ -14638,7 +14638,7 @@ a.anchor-link {
 Las 2 tablas están relacionadas por el campo id_miembro (se llama igual en ambas tablas)</p>
 <p>Adicionalmente se va a utilizar una secuencia que nos va a permitir tener una PK única para la tabla de movimientos</p>
 <p><br><br></p>
-<p><img src="images/Modelo_PostgreSQL.png" width="400" height="300"></p>
+<p><img src="data:image/png;base64,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" width="400" height="300"></p>
 <p><br><br></p>
 
 </div>
@@ -14651,7 +14651,7 @@ Las 2 tablas están relacionadas por el campo id_miembro (se llama igual en amba
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">sql</span> DROP TABLE movimientos
@@ -14677,17 +14677,17 @@ Las 2 tablas están relacionadas por el campo id_miembro (se llama igual en amba
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre> * postgresql://postgres:***@localhost/black
-(psycopg2.errors.UndefinedTable) table &#34;movimientos&#34; does not exist
+(psycopg2.errors.UndefinedTable) table "movimientos" does not exist
 
 [SQL: DROP TABLE movimientos]
 (Background on this error at: http://sqlalche.me/e/13/f405)
  * postgresql://postgres:***@localhost/black
-(psycopg2.errors.UndefinedTable) table &#34;miembros&#34; does not exist
+(psycopg2.errors.UndefinedTable) table "miembros" does not exist
 
 [SQL: DROP TABLE miembros]
 (Background on this error at: http://sqlalche.me/e/13/f405)
  * postgresql://postgres:***@localhost/black
-(psycopg2.errors.UndefinedTable) sequence &#34;seq_mov_id&#34; does not exist
+(psycopg2.errors.UndefinedTable) sequence "seq_mov_id" does not exist
 
 [SQL: DROP SEQUENCE seq_mov_id;]
 (Background on this error at: http://sqlalche.me/e/13/f405)
@@ -14702,7 +14702,7 @@ Las 2 tablas están relacionadas por el campo id_miembro (se llama igual en amba
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">sql</span> CREATE SEQUENCE seq_mov_id;
@@ -14752,7 +14752,7 @@ Done.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">sql</span> 
@@ -14809,12 +14809,12 @@ Done.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">sql</span> 
 <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">movimientos</span> <span class="p">(</span>
-    <span class="n">id_movimiento</span>   <span class="nb">int</span> <span class="k">not</span> <span class="k">null</span> <span class="k">default</span> <span class="n">nextval</span><span class="p">(</span><span class="s1">&#39;seq_mov_id&#39;</span><span class="p">),</span>
+    <span class="n">id_movimiento</span>   <span class="nb">int</span> <span class="k">not</span> <span class="k">null</span> <span class="k">default</span> <span class="n">nextval</span><span class="p">(</span><span class="s1">'seq_mov_id'</span><span class="p">),</span>
     <span class="n">fecha</span>           <span class="nb">date</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
     <span class="n">hora</span>            <span class="nb">int</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
     <span class="n">minuto</span>          <span class="nb">int</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
@@ -14871,7 +14871,7 @@ Done.
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Exportaci&#243;n-de-los-datos-a-PostgreSQL">Exportaci&#243;n de los datos a PostgreSQL<a class="anchor-link" href="#Exportaci&#243;n-de-los-datos-a-PostgreSQL">&#182;</a></h2>
+<h2 id="Exportación-de-los-datos-a-PostgreSQL">Exportación de los datos a PostgreSQL<a class="anchor-link" href="#Exportaci%C3%B3n-de-los-datos-a-PostgreSQL">¶</a></h2>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
@@ -14883,7 +14883,7 @@ Done.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
@@ -14897,10 +14897,10 @@ Done.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s1">&#39;postgresql://postgres:postgres@localhost:5432/black&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s1">'postgresql://postgres:postgres@localhost:5432/black'</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14911,7 +14911,7 @@ Done.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_miembros</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -15044,10 +15044,10 @@ Done.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_miembros</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s1">&#39;miembros&#39;</span><span class="p">,</span> <span class="n">engine</span><span class="p">,</span> <span class="n">if_exists</span> <span class="o">=</span> <span class="s1">&#39;append&#39;</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_miembros</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s1">'miembros'</span><span class="p">,</span> <span class="n">engine</span><span class="p">,</span> <span class="n">if_exists</span> <span class="o">=</span> <span class="s1">'append'</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15058,10 +15058,10 @@ Done.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_mov</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s1">&#39;movimientos&#39;</span><span class="p">,</span> <span class="n">engine</span><span class="p">,</span> <span class="n">if_exists</span> <span class="o">=</span> <span class="s1">&#39;append&#39;</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_mov</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s1">'movimientos'</span><span class="p">,</span> <span class="n">engine</span><span class="p">,</span> <span class="n">if_exists</span> <span class="o">=</span> <span class="s1">'append'</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15079,7 +15079,7 @@ Done.
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Consultando-informaci&#243;n">Consultando informaci&#243;n<a class="anchor-link" href="#Consultando-informaci&#243;n">&#182;</a></h1>
+<h1 id="Consultando-información">Consultando información<a class="anchor-link" href="#Consultando-informaci%C3%B3n">¶</a></h1>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
@@ -15090,7 +15090,7 @@ Done.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
@@ -15148,7 +15148,7 @@ Done.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [21]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
@@ -15206,7 +15206,7 @@ Done.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
@@ -15265,7 +15265,7 @@ Done.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [23]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
@@ -15440,19 +15440,19 @@ Done.
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Los-10-movimientos-mas-caros-por-actividad">Los 10 movimientos mas caros por actividad<a class="anchor-link" href="#Los-10-movimientos-mas-caros-por-actividad">&#182;</a></h3>
+<h3 id="Los-10-movimientos-mas-caros-por-actividad">Los 10 movimientos mas caros por actividad<a class="anchor-link" href="#Los-10-movimientos-mas-caros-por-actividad">¶</a></h3>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [24]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">sql</span> 
 <span class="k">select</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">fecha</span><span class="p">,</span> <span class="n">actividad_completa</span><span class="p">,</span> <span class="n">importe</span>
 <span class="k">from</span> <span class="n">movimientos</span> <span class="n">mov</span>
     <span class="k">inner</span> <span class="k">join</span> <span class="n">miembros</span> <span class="n">mi</span> <span class="k">on</span> <span class="p">(</span><span class="n">mov</span><span class="p">.</span><span class="n">id_miembro</span> <span class="o">=</span> <span class="n">mi</span><span class="p">.</span><span class="n">id_miembro</span><span class="p">)</span>
-<span class="k">where</span> <span class="n">actividad</span> <span class="o">=</span> <span class="s1">&#39;HOGAR&#39;</span>
+<span class="k">where</span> <span class="n">actividad</span> <span class="o">=</span> <span class="s1">'HOGAR'</span>
 <span class="k">order</span> <span class="k">by</span> <span class="n">importe</span> <span class="k">desc</span>
 <span class="k">limit</span> <span class="mi">10</span>
 </pre></div>
@@ -15567,12 +15567,12 @@ Done.
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Los-10-movimientos-mas-caros">Los 10 movimientos mas caros<a class="anchor-link" href="#Los-10-movimientos-mas-caros">&#182;</a></h3>
+<h3 id="Los-10-movimientos-mas-caros">Los 10 movimientos mas caros<a class="anchor-link" href="#Los-10-movimientos-mas-caros">¶</a></h3>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[25]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [25]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">sql</span> 
@@ -15693,19 +15693,19 @@ Done.
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Los-movimientos-de-una-persona-concreta-(ordenados-por-importe)">Los movimientos de una persona concreta (ordenados por importe)<a class="anchor-link" href="#Los-movimientos-de-una-persona-concreta-(ordenados-por-importe)">&#182;</a></h3>
+<h3 id="Los-movimientos-de-una-persona-concreta-(ordenados-por-importe)">Los movimientos de una persona concreta (ordenados por importe)<a class="anchor-link" href="#Los-movimientos-de-una-persona-concreta-(ordenados-por-importe)">¶</a></h3>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[26]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [26]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">sql</span> 
 <span class="k">select</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">fecha</span><span class="p">,</span> <span class="n">actividad_completa</span><span class="p">,</span> <span class="n">importe</span>
 <span class="k">from</span> <span class="n">movimientos</span> <span class="n">mov</span>
     <span class="k">inner</span> <span class="k">join</span> <span class="n">miembros</span> <span class="n">mi</span> <span class="k">on</span> <span class="p">(</span><span class="n">mov</span><span class="p">.</span><span class="n">id_miembro</span> <span class="o">=</span> <span class="n">mi</span><span class="p">.</span><span class="n">id_miembro</span><span class="p">)</span>
-<span class="k">where</span> <span class="n">nombre</span> <span class="o">=</span> <span class="s1">&#39;Mariano Pérez Claver&#39;</span>
+<span class="k">where</span> <span class="n">nombre</span> <span class="o">=</span> <span class="s1">'Mariano Pérez Claver'</span>
 <span class="k">order</span> <span class="k">by</span> <span class="n">importe</span> <span class="k">desc</span>
 <span class="k">limit</span> <span class="mi">10</span>
 </pre></div>
@@ -15820,12 +15820,12 @@ Done.
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Las-10-personas-que-mas-han-gastado">Las 10 personas que mas han gastado<a class="anchor-link" href="#Las-10-personas-que-mas-han-gastado">&#182;</a></h3>
+<h3 id="Las-10-personas-que-mas-han-gastado">Las 10 personas que mas han gastado<a class="anchor-link" href="#Las-10-personas-que-mas-han-gastado">¶</a></h3>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[27]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">sql</span> 
@@ -15925,19 +15925,19 @@ Done.
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Importes-de-una-persona-agrupados-por-actividad">Importes de una persona agrupados por actividad<a class="anchor-link" href="#Importes-de-una-persona-agrupados-por-actividad">&#182;</a></h3>
+<h3 id="Importes-de-una-persona-agrupados-por-actividad">Importes de una persona agrupados por actividad<a class="anchor-link" href="#Importes-de-una-persona-agrupados-por-actividad">¶</a></h3>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[28]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [28]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
 <span class="k">select</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">actividad</span><span class="p">,</span> <span class="k">sum</span><span class="p">(</span><span class="n">importe</span><span class="p">)</span> <span class="k">as</span> <span class="n">importe</span>
 <span class="k">from</span> <span class="n">movimientos</span> <span class="n">mov</span>
     <span class="k">inner</span> <span class="k">join</span> <span class="n">miembros</span> <span class="n">mi</span> <span class="k">on</span> <span class="p">(</span><span class="n">mov</span><span class="p">.</span><span class="n">id_miembro</span> <span class="o">=</span> <span class="n">mi</span><span class="p">.</span><span class="n">id_miembro</span><span class="p">)</span>
-<span class="k">where</span> <span class="n">nombre</span> <span class="o">=</span> <span class="s1">&#39;Mariano Pérez Claver&#39;</span>
+<span class="k">where</span> <span class="n">nombre</span> <span class="o">=</span> <span class="s1">'Mariano Pérez Claver'</span>
 <span class="k">group</span> <span class="k">by</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span>
 <span class="k">order</span> <span class="k">by</span> <span class="mi">3</span> <span class="k">desc</span>
 </pre></div>
@@ -16081,12 +16081,12 @@ Done.
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="&#191;Qui&#233;n-se-gasta-m&#225;s,-los-concejales-o-los-directivos?">&#191;Qui&#233;n se gasta m&#225;s, los concejales o los directivos?<a class="anchor-link" href="#&#191;Qui&#233;n-se-gasta-m&#225;s,-los-concejales-o-los-directivos?">&#182;</a></h3>
+<h3 id="¿Quién-se-gasta-más,-los-concejales-o-los-directivos?">¿Quién se gasta más, los concejales o los directivos?<a class="anchor-link" href="#%C2%BFQui%C3%A9n-se-gasta-m%C3%A1s,-los-concejales-o-los-directivos?">¶</a></h3>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[29]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [29]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
@@ -16153,12 +16153,12 @@ Done.
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="&#191;Qu&#233;-organizaci&#243;n-se-gasta-m&#225;s?">&#191;Qu&#233; organizaci&#243;n se gasta m&#225;s?<a class="anchor-link" href="#&#191;Qu&#233;-organizaci&#243;n-se-gasta-m&#225;s?">&#182;</a></h3>
+<h3 id="¿Qué-organización-se-gasta-más?">¿Qué organización se gasta más?<a class="anchor-link" href="#%C2%BFQu%C3%A9-organizaci%C3%B3n-se-gasta-m%C3%A1s?">¶</a></h3>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[30]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [30]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
@@ -16258,12 +16258,12 @@ Done.
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="&#191;Qu&#233;-comercio-es-m&#225;s-popular-entre-los-miembros?">&#191;Qu&#233; comercio es m&#225;s popular entre los miembros?<a class="anchor-link" href="#&#191;Qu&#233;-comercio-es-m&#225;s-popular-entre-los-miembros?">&#182;</a></h3>
+<h3 id="¿Qué-comercio-es-más-popular-entre-los-miembros?">¿Qué comercio es más popular entre los miembros?<a class="anchor-link" href="#%C2%BFQu%C3%A9-comercio-es-m%C3%A1s-popular-entre-los-miembros?">¶</a></h3>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[31]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [31]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
@@ -16344,7 +16344,7 @@ Done.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span> 
