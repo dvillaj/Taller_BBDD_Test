@@ -14316,7 +14316,7 @@ a.anchor-link {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>dropdb: error: database removal failed: ERROR:  database "demo" does not exist
+<pre>Error: No such container: postgres_container
 </pre>
 </div>
 </div>
@@ -14325,7 +14325,7 @@ a.anchor-link {
 
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
@@ -14339,12 +14339,33 @@ a.anchor-link {
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Error: No such container: postgres_container
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Conexión-con-la-BBDD-demo">Conexión con la BBDD demo<a class="anchor-link" href="#Conexi%C3%B3n-con-la-BBDD-demo">¶</a></h2>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
@@ -14356,6 +14377,34 @@ a.anchor-link {
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>(psycopg2.OperationalError) could not connect to server: Connection refused
+	Is the server running on host "localhost" (127.0.0.1) and accepting
+	TCP/IP connections on port 5432?
+
+(Background on this error at: http://sqlalche.me/e/13/e3q8)
+Connection info needed in SQLAlchemy format, example:
+               postgresql://username:password@hostname/dbname
+               or an existing connection: dict_keys([])
+</pre>
+</div>
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -14395,24 +14444,12 @@ a.anchor-link {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre> * postgresql://postgres:***@localhost/demo
-Done.
+<pre>Environment variable $DATABASE_URL not set, and no connect string given.
+Connection info needed in SQLAlchemy format, example:
+               postgresql://username:password@hostname/dbname
+               or an existing connection: dict_keys([])
 </pre>
 </div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>[]</pre>
-</div>
-
 </div>
 
 </div>
@@ -14450,24 +14487,12 @@ Done.
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre> * postgresql://postgres:***@localhost/demo
-Done.
+<pre>Environment variable $DATABASE_URL not set, and no connect string given.
+Connection info needed in SQLAlchemy format, example:
+               postgresql://username:password@hostname/dbname
+               or an existing connection: dict_keys([])
 </pre>
 </div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[7]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>[]</pre>
-</div>
-
 </div>
 
 </div>
@@ -14507,24 +14532,12 @@ Done.
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre> * postgresql://postgres:***@localhost/demo
-1 rows affected.
+<pre>Environment variable $DATABASE_URL not set, and no connect string given.
+Connection info needed in SQLAlchemy format, example:
+               postgresql://username:password@hostname/dbname
+               or an existing connection: dict_keys([])
 </pre>
 </div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[8]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>[]</pre>
-</div>
-
 </div>
 
 </div>
@@ -14563,30 +14576,24 @@ Done.
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre> * postgresql://postgres:***@localhost/demo
-1 rows affected.
- * postgresql://postgres:***@localhost/demo
-1 rows affected.
- * postgresql://postgres:***@localhost/demo
-1 rows affected.
- * postgresql://postgres:***@localhost/demo
-1 rows affected.
+<pre>Environment variable $DATABASE_URL not set, and no connect string given.
+Connection info needed in SQLAlchemy format, example:
+               postgresql://username:password@hostname/dbname
+               or an existing connection: dict_keys([])
+Environment variable $DATABASE_URL not set, and no connect string given.
+Connection info needed in SQLAlchemy format, example:
+               postgresql://username:password@hostname/dbname
+               or an existing connection: dict_keys([])
+Environment variable $DATABASE_URL not set, and no connect string given.
+Connection info needed in SQLAlchemy format, example:
+               postgresql://username:password@hostname/dbname
+               or an existing connection: dict_keys([])
+Environment variable $DATABASE_URL not set, and no connect string given.
+Connection info needed in SQLAlchemy format, example:
+               postgresql://username:password@hostname/dbname
+               or an existing connection: dict_keys([])
 </pre>
 </div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>[]</pre>
-</div>
-
 </div>
 
 </div>
@@ -14627,24 +14634,12 @@ Done.
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre> * postgresql://postgres:***@localhost/demo
-1 rows affected.
+<pre>Environment variable $DATABASE_URL not set, and no connect string given.
+Connection info needed in SQLAlchemy format, example:
+               postgresql://username:password@hostname/dbname
+               or an existing connection: dict_keys([])
 </pre>
 </div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[10]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>[]</pre>
-</div>
-
 </div>
 
 </div>
@@ -14685,24 +14680,12 @@ Done.
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre> * postgresql://postgres:***@localhost/demo
-1 rows affected.
+<pre>Environment variable $DATABASE_URL not set, and no connect string given.
+Connection info needed in SQLAlchemy format, example:
+               postgresql://username:password@hostname/dbname
+               or an existing connection: dict_keys([])
 </pre>
 </div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>[]</pre>
-</div>
-
 </div>
 
 </div>
@@ -14743,36 +14726,12 @@ Done.
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre> * postgresql://postgres:***@localhost/demo
-1 rows affected.
+<pre>Environment variable $DATABASE_URL not set, and no connect string given.
+Connection info needed in SQLAlchemy format, example:
+               postgresql://username:password@hostname/dbname
+               or an existing connection: dict_keys([])
 </pre>
 </div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[12]:</div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<table>
-    <thead>
-        <tr>
-            <th>name</th>
-            <th>friends_count</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Ken Knowles</td>
-            <td>320</td>
-        </tr>
-    </tbody>
-</table>
-</div>
-
 </div>
 
 </div>
@@ -14808,34 +14767,12 @@ Done.
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre> * postgresql://postgres:***@localhost/demo
-1 rows affected.
+<pre>Environment variable $DATABASE_URL not set, and no connect string given.
+Connection info needed in SQLAlchemy format, example:
+               postgresql://username:password@hostname/dbname
+               or an existing connection: dict_keys([])
 </pre>
 </div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[13]:</div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<table>
-    <thead>
-        <tr>
-            <th>sum</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>340</td>
-        </tr>
-    </tbody>
-</table>
-</div>
-
 </div>
 
 </div>
@@ -14871,36 +14808,12 @@ Done.
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre> * postgresql://postgres:***@localhost/demo
-1 rows affected.
+<pre>Environment variable $DATABASE_URL not set, and no connect string given.
+Connection info needed in SQLAlchemy format, example:
+               postgresql://username:password@hostname/dbname
+               or an existing connection: dict_keys([])
 </pre>
 </div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[14]:</div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<table>
-    <thead>
-        <tr>
-            <th>hashtag</th>
-            <th>sum</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>sql</td>
-            <td>340</td>
-        </tr>
-    </tbody>
-</table>
-</div>
-
 </div>
 
 </div>

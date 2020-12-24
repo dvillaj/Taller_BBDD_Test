@@ -14318,13 +14318,13 @@ a.anchor-link {
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>&lt;class 'pandas.core.frame.DataFrame'&gt;
-Int64Index: 1000 entries, 441216 to 120321
+Int64Index: 1000 entries, 449391 to 102990
 Data columns (total 24 columns):
  #   Column                Non-Null Count  Dtype  
 ---  ------                --------------  -----  
  0   TIPO_INCIDENCIA_ID    1000 non-null   int64  
  1   TIPO_INCIDENCIA       1000 non-null   object 
- 2   CANAL_DE_ENTRADA_ID   158 non-null    float64
+ 2   CANAL_DE_ENTRADA_ID   171 non-null    float64
  3   CANAL_DE_ENTRADA      1000 non-null   object 
  4   FECHA_DE_RECEPCION    1000 non-null   object 
  5   HORA_DE_RECEPCION     1000 non-null   object 
@@ -14592,7 +14592,7 @@ memory usage: 195.3+ KB
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre> * postgresql://postgres:***@localhost/avisa
-3 rows affected.
+2 rows affected.
 </pre>
 </div>
 </div>
@@ -14615,17 +14615,12 @@ memory usage: 195.3+ KB
     </thead>
     <tbody>
         <tr>
-            <td>441216</td>
+            <td>449391</td>
             <td>0</td>
             <td>AVISO</td>
         </tr>
         <tr>
-            <td>56747</td>
-            <td>2</td>
-            <td>No conforme con resolucion</td>
-        </tr>
-        <tr>
-            <td>110724</td>
+            <td>390297</td>
             <td>1</td>
             <td>Peticion</td>
         </tr>
@@ -14676,7 +14671,7 @@ memory usage: 195.3+ KB
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>'[{"TIPO_INCIDENCIA_ID":0,"TIPO_INCIDENCIA":"AVISO"},{"TIPO_INCIDENCIA_ID":2,"TIPO_INCIDENCIA":"No conforme con resolucion"},{"TIPO_INCIDENCIA_ID":1,"TIPO_INCIDENCIA":"Peticion"}]'</pre>
+<pre>'[{"TIPO_INCIDENCIA_ID":0,"TIPO_INCIDENCIA":"AVISO"},{"TIPO_INCIDENCIA_ID":1,"TIPO_INCIDENCIA":"Peticion"}]'</pre>
 </div>
 
 </div>
@@ -14717,7 +14712,6 @@ memory usage: 195.3+ KB
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
 <pre>[{'TIPO_INCIDENCIA_ID': 0, 'TIPO_INCIDENCIA': 'AVISO'},
- {'TIPO_INCIDENCIA_ID': 2, 'TIPO_INCIDENCIA': 'No conforme con resolucion'},
  {'TIPO_INCIDENCIA_ID': 1, 'TIPO_INCIDENCIA': 'Peticion'}]</pre>
 </div>
 
@@ -14755,7 +14749,6 @@ memory usage: 195.3+ KB
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>{'TIPO_INCIDENCIA_ID': 0, 'TIPO_INCIDENCIA': 'AVISO'}
-{'TIPO_INCIDENCIA_ID': 2, 'TIPO_INCIDENCIA': 'No conforme con resolucion'}
 {'TIPO_INCIDENCIA_ID': 1, 'TIPO_INCIDENCIA': 'Peticion'}
 </pre>
 </div>
@@ -14827,11 +14820,6 @@ memory usage: 195.3+ KB
     </tr>
     <tr>
       <th>1</th>
-      <td>2</td>
-      <td>No conforme con resolucion</td>
-    </tr>
-    <tr>
-      <th>2</th>
       <td>1</td>
       <td>Peticion</td>
     </tr>
@@ -14928,7 +14916,7 @@ memory usage: 195.3+ KB
       <td>38677</td>
       <td>CLN: simplify Block.putmask</td>
       <td>...</td>
-      <td>NaN</td>
+      <td>None</td>
       <td>0</td>
       <td>2020-12-24 05:01:01+00:00</td>
       <td>2020-12-24 05:01:01+00:00</td>
@@ -14952,7 +14940,7 @@ memory usage: 195.3+ KB
       <td>38676</td>
       <td>REF: share Index.difference</td>
       <td>...</td>
-      <td>NaN</td>
+      <td>None</td>
       <td>0</td>
       <td>2020-12-24 04:16:44+00:00</td>
       <td>2020-12-24 04:16:44+00:00</td>
@@ -14976,7 +14964,7 @@ memory usage: 195.3+ KB
       <td>38674</td>
       <td>REF: dispatch TDBlock._can_hold_element to Tim...</td>
       <td>...</td>
-      <td>NaN</td>
+      <td>None</td>
       <td>0</td>
       <td>2020-12-24 03:07:09+00:00</td>
       <td>2020-12-24 04:12:34+00:00</td>
@@ -15000,7 +14988,7 @@ memory usage: 195.3+ KB
       <td>38673</td>
       <td>TST: arithmetic test parametrization/cleanup</td>
       <td>...</td>
-      <td>NaN</td>
+      <td>None</td>
       <td>0</td>
       <td>2020-12-24 03:06:05+00:00</td>
       <td>2020-12-24 03:06:05+00:00</td>
@@ -15024,10 +15012,10 @@ memory usage: 195.3+ KB
       <td>38672</td>
       <td>BUG: SeriesGroupBy.value_counts is inconsisten...</td>
       <td>...</td>
-      <td>NaN</td>
+      <td>{'url': 'https://api.github.com/repos/pandas-d...</td>
       <td>0</td>
       <td>2020-12-24 02:27:43+00:00</td>
-      <td>2020-12-24 02:29:31+00:00</td>
+      <td>2020-12-24 10:25:46+00:00</td>
       <td>NaT</td>
       <td>NONE</td>
       <td>NaN</td>
