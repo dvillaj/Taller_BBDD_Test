@@ -3,7 +3,7 @@
 <head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Read_Csv_Json</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>Cassandra-Materialized Views</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 
 
@@ -14259,12 +14259,23 @@ a.anchor-link {
 
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Lectura-de-un-CSV-a-un-DataFrame">Lectura de un CSV a un DataFrame<a class="anchor-link" href="#Lectura-de-un-CSV-a-un-DataFrame">¶</a></h1>
+<h1 id="Vistas-materializadas-en-Cassandra">Vistas materializadas en Cassandra<a class="anchor-link" href="#Vistas-materializadas-en-Cassandra">¶</a></h1>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a href="http://bit.ly/2mEQRxE">http://bit.ly/2mEQRxE</a></p>
+<p><a href="https://www.datastax.com/dev/blog/new-in-cassandra-3-0-materialized-views">https://www.datastax.com/dev/blog/new-in-cassandra-3-0-materialized-views</a></p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>As an example of how materialized views can be used, suppose we want to track the high scores for players of several games. We have a number of queries that we would like to be able to answer:</p>
+<ul>
+<li>Given a game, who has the highest score, and what is it?</li>
+<li>Given a game and a day, who had the highest score, and what was it?</li>
+<li>Given a game and a month, who had the highest score, and what was it?</li>
+</ul>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14273,17 +14284,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-
-<span class="n">url</span><span class="o">=</span><span class="s2">"http://datos.madrid.es/egob/catalogo/212411-16-madrid-avisa.csv"</span>
-<span class="n">data</span><span class="o">=</span><span class="n">StringIO</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">";"</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s2">"ISO-8859-1"</span><span class="p">)</span>
-
-<span class="c1"># Take a sample</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> cql
 </pre></div>
 
      </div>
@@ -14297,7 +14298,84 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">cql</span>
+DROP KEYSPACE demo 
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[2]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>'No results.'</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">cql</span>
+CREATE KEYSPACE demo 
+WITH replication = {'class': 'SimpleStrategy', 'replication_factor' : 1};
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[3]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>'No results.'</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">keyspace</span> demo
 </pre></div>
 
      </div>
@@ -14317,37 +14395,7 @@ a.anchor-link {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>&lt;class 'pandas.core.frame.DataFrame'&gt;
-Int64Index: 1000 entries, 448688 to 326909
-Data columns (total 24 columns):
- #   Column                Non-Null Count  Dtype  
----  ------                --------------  -----  
- 0   TIPO_INCIDENCIA_ID    1000 non-null   int64  
- 1   TIPO_INCIDENCIA       1000 non-null   object 
- 2   CANAL_DE_ENTRADA_ID   183 non-null    float64
- 3   CANAL_DE_ENTRADA      1000 non-null   object 
- 4   FECHA_DE_RECEPCION    1000 non-null   object 
- 5   HORA_DE_RECEPCION     1000 non-null   object 
- 6   SECCION_ID            1000 non-null   int64  
- 7   SECCION               1000 non-null   object 
- 8   ANOMALIA_ID           1000 non-null   int64  
- 9   ANOMALIA              1000 non-null   object 
- 10  TIPO_DE_VIAL_ID       1000 non-null   int64  
- 11  TIPO_DE_VIAL          1000 non-null   object 
- 12  NOMBRE_DE_VIAL        1000 non-null   object 
- 13  NUMERO                1000 non-null   int64  
- 14  CALIFICADOR           1000 non-null   object 
- 15  DISTRITO_ID           1000 non-null   int64  
- 16  DISTRITO              1000 non-null   object 
- 17  BARRIO_ID             1000 non-null   int64  
- 18  BARRIO                1000 non-null   object 
- 19  CODIGO_POSTAL         1000 non-null   int64  
- 20  COORDENADA_OFICIAL_X  1000 non-null   int64  
- 21  COORDENADA_OFICIAL_Y  1000 non-null   int64  
- 22  COORDENADA_REAL_X     1000 non-null   int64  
- 23  COORDENADA_REAL_Y     1000 non-null   int64  
-dtypes: float64(1), int64(12), object(11)
-memory usage: 195.3+ KB
+<pre>Using keyspace demo
 </pre>
 </div>
 </div>
@@ -14356,47 +14404,29 @@ memory usage: 195.3+ KB
 
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Creacción-de-una-base-de-datos-en-Postgres">Creacción de una base de datos en Postgres<a class="anchor-link" href="#Creacci%C3%B3n-de-una-base-de-datos-en-Postgres">¶</a></h1>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">alias</span> dropdb docker exec -i postgres_container dropdb -U postgres 
-<span class="o">%</span><span class="k">alias</span> createdb docker exec -i postgres_container createdb -U postgres 
-</pre></div>
+<p>Materialized views maintain a correspondence of one CQL row each in the base and the view, so we need to ensure that each CQL row which is required for the views will be reflected in the base table’s primary keys. For the first query, we will need the game, the player, and their highest score. For the second, we will need the game, the player, their high score, as well the day, the month, and the year of that high score. For the final query, we need everything from the second except the day. The second query will be the most restrictive, so it determines the primary key we will use. A user can update their high score over the course of day, so we only need to track the highest score for a particular day.</p>
 
-     </div>
 </div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dropdb</span> <span class="n">avisa</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">cql</span>
+CREATE TABLE scores
+(
+  user TEXT,
+  game TEXT,
+  year INT,
+  month INT,
+  day INT,
+  score INT,
+  PRIMARY KEY (user, game, year, month, day)
+)
 </pre></div>
 
      </div>
@@ -14404,61 +14434,48 @@ memory usage: 195.3+ KB
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">createdb</span> <span class="n">avisa</span>
-</pre></div>
+<div class="jp-Cell-outputWrapper">
 
-     </div>
-</div>
-</div>
-</div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> sql
-</pre></div>
+<div class="jp-OutputArea jp-Cell-outputArea">
 
-     </div>
-</div>
-</div>
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[5]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>'No results.'</pre>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">sql</span> postgresql://postgres:postgres@localhost/avisa
-</pre></div>
+</div>
 
-     </div>
 </div>
-</div>
+
 </div>
 
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Exportación-de-un-Dataframe-a-una-tabla-en-Postgres">Exportación de un Dataframe a una tabla en Postgres<a class="anchor-link" href="#Exportaci%C3%B3n-de-un-Dataframe-a-una-tabla-en-Postgres">¶</a></h1>
+<p>Next, we’ll create the view which presents the all time high scores. To create the materialized view, we provide a simple select statement and the primary key to use for this view. Specifying the CLUSTERING ORDER BY allows us to reverse sort the high score so we can get the highest score by simply selecting the first item in the partition.</p>
+
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s1">'postgresql://postgres:postgres@localhost:5432/avisa'</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s1">'incidencias'</span><span class="p">,</span> <span class="n">engine</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">cql</span>
+CREATE MATERIALIZED VIEW alltimehigh AS
+   SELECT user FROM scores
+   WHERE game IS NOT NULL AND score IS NOT NULL AND user IS NOT NULL AND year IS NOT NULL AND month IS NOT NULL AND day IS NOT NULL
+   PRIMARY KEY (game, score, user, year, month, day)
+   WITH CLUSTERING ORDER BY (score desc)
+        
 </pre></div>
 
      </div>
@@ -14466,15 +14483,182 @@ memory usage: 195.3+ KB
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>'No results.'</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>To query the daily high scores, we create a materialized view that groups the game title and date together so a single partition contains the values for that date. We do the same for the monthly high scores.</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">cql</span>
+CREATE MATERIALIZED VIEW dailyhigh AS
+       SELECT user FROM scores
+       WHERE game IS NOT NULL AND year IS NOT NULL AND month IS NOT NULL AND day IS NOT NULL AND score IS NOT NULL AND user IS NOT NULL
+       PRIMARY KEY ((game, year, month, day), score, user)
+       WITH CLUSTERING ORDER BY (score DESC)
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[7]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>'No results.'</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">cql</span>
+CREATE MATERIALIZED VIEW monthlyhigh AS
+       SELECT user FROM scores
+       WHERE game IS NOT NULL AND year IS NOT NULL AND month IS NOT NULL AND score IS NOT NULL AND user IS NOT NULL AND day IS NOT NULL
+       PRIMARY KEY ((game, year, month), score, user, day)
+       WITH CLUSTERING ORDER BY (score DESC)
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[8]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>'No results.'</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>We prime our materialized views with some data. We just insert the data into the scores table, and Cassandra will populate the materialized views accordingly.</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">cql</span> INSERT INTO scores (user, game, year, month, day, score) VALUES ('pcmanus', 'Coup', 2015, 05, 01, 4000)
+<span class="o">%</span><span class="k">cql</span> INSERT INTO scores (user, game, year, month, day, score) VALUES ('jbellis', 'Coup', 2015, 05, 03, 1750)
+<span class="o">%</span><span class="k">cql</span> INSERT INTO scores (user, game, year, month, day, score) VALUES ('yukim', 'Coup', 2015, 05, 03, 2250)
+<span class="o">%</span><span class="k">cql</span> INSERT INTO scores (user, game, year, month, day, score) VALUES ('tjake', 'Coup', 2015, 05, 03, 500)
+<span class="o">%</span><span class="k">cql</span> INSERT INTO scores (user, game, year, month, day, score) VALUES ('jmckenzie', 'Coup', 2015, 06, 01, 2000)
+<span class="o">%</span><span class="k">cql</span> INSERT INTO scores (user, game, year, month, day, score) VALUES ('iamaleksey', 'Coup', 2015, 06, 01, 2500)
+<span class="o">%</span><span class="k">cql</span> INSERT INTO scores (user, game, year, month, day, score) VALUES ('tjake', 'Coup', 2015, 06, 02, 1000)
+<span class="o">%</span><span class="k">cql</span> INSERT INTO scores (user, game, year, month, day, score) VALUES ('pcmanus', 'Coup', 2015, 06, 02, 2000)
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>'No results.'</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>We can now search for users who have scored the highest ever on our games:</p>
+
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">sql</span> 
-<span class="k">select</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
-<span class="k">from</span> <span class="n">incidencias</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">cql</span> SELECT user, score FROM alltimehigh WHERE game = 'Coup' LIMIT 1
 </pre></div>
 
      </div>
@@ -14486,19 +14670,6 @@ memory usage: 195.3+ KB
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre> * postgresql://postgres:***@localhost/avisa
-1 rows affected.
-</pre>
-</div>
-</div>
 
 <div class="jp-OutputArea-child">
 
@@ -14511,12 +14682,14 @@ memory usage: 195.3+ KB
 <table>
     <thead>
         <tr>
-            <th>count</th>
+            <th>user</th>
+            <th>score</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>1000</td>
+            <td>pcmanus</td>
+            <td>4000</td>
         </tr>
     </tbody>
 </table>
@@ -14528,29 +14701,19 @@ memory usage: 195.3+ KB
 
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>And the daily high score:</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">([</span><span class="s2">"TIPO_INCIDENCIA_ID"</span><span class="p">,</span> <span class="s2">"TIPO_INCIDENCIA"</span><span class="p">])</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s1">'tipo_incidencias'</span><span class="p">,</span> <span class="n">engine</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">sql</span> 
-<span class="k">select</span> <span class="o">*</span>
-<span class="k">from</span> <span class="n">tipo_incidencias</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">cql</span> SELECT user, score FROM dailyhigh WHERE game = 'Coup' AND year = 2015 AND month = 06 AND day = 01  LIMIT 1
 </pre></div>
 
      </div>
@@ -14566,20 +14729,7 @@ memory usage: 195.3+ KB
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre> * postgresql://postgres:***@localhost/avisa
-3 rows affected.
-</pre>
-</div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[12]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
 
 
 
@@ -14587,26 +14737,14 @@ memory usage: 195.3+ KB
 <table>
     <thead>
         <tr>
-            <th>index</th>
-            <th>TIPO_INCIDENCIA_ID</th>
-            <th>TIPO_INCIDENCIA</th>
+            <th>user</th>
+            <th>score</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>448688</td>
-            <td>0</td>
-            <td>AVISO</td>
-        </tr>
-        <tr>
-            <td>443661</td>
-            <td>1</td>
-            <td>Peticion</td>
-        </tr>
-        <tr>
-            <td>48845</td>
-            <td>2</td>
-            <td>No conforme con resolucion</td>
+            <td>iamaleksey</td>
+            <td>2500</td>
         </tr>
     </tbody>
 </table>
@@ -14621,7 +14759,97 @@ memory usage: 195.3+ KB
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Exportación-de-un-DataFrame-a-un-JSON">Exportación de un DataFrame a un JSON<a class="anchor-link" href="#Exportaci%C3%B3n-de-un-DataFrame-a-un-JSON">¶</a></h1>
+<p>All of the entries have been copied into the all time high materialized view:</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">cql</span> SELECT user, score FROM alltimehigh WHERE game = 'Coup'
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[12]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<table>
+    <thead>
+        <tr>
+            <th>user</th>
+            <th>score</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>pcmanus</td>
+            <td>4000</td>
+        </tr>
+        <tr>
+            <td>iamaleksey</td>
+            <td>2500</td>
+        </tr>
+        <tr>
+            <td>yukim</td>
+            <td>2250</td>
+        </tr>
+        <tr>
+            <td>jmckenzie</td>
+            <td>2000</td>
+        </tr>
+        <tr>
+            <td>pcmanus</td>
+            <td>2000</td>
+        </tr>
+        <tr>
+            <td>jbellis</td>
+            <td>1750</td>
+        </tr>
+        <tr>
+            <td>tjake</td>
+            <td>1000</td>
+        </tr>
+        <tr>
+            <td>tjake</td>
+            <td>500</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Because we have a CQL Row in the view for each CQL Row in the base, ‘pcmanus’ and ‘tjake’ appear multiple times in the high scores table, one for each date in the base table.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>We can also delete rows from the base table and the materialized view’s records will be deleted. We’ll delete the tjake rows from the scores table:</p>
+
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
@@ -14629,11 +14857,7 @@ memory usage: 195.3+ KB
 <div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">json_string</span> <span class="o">=</span> <span class="n">df</span> \
-                <span class="o">.</span><span class="n">filter</span><span class="p">([</span><span class="s2">"TIPO_INCIDENCIA_ID"</span><span class="p">,</span> <span class="s2">"TIPO_INCIDENCIA"</span><span class="p">])</span> \
-                <span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span> \
-                <span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">orient</span> <span class="o">=</span> <span class="s1">'records'</span><span class="p">)</span>
-<span class="n">json_string</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">cql</span> DELETE FROM scores WHERE user = 'tjake'
 </pre></div>
 
      </div>
@@ -14655,7 +14879,7 @@ memory usage: 195.3+ KB
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>'[{"TIPO_INCIDENCIA_ID":0,"TIPO_INCIDENCIA":"AVISO"},{"TIPO_INCIDENCIA_ID":1,"TIPO_INCIDENCIA":"Peticion"},{"TIPO_INCIDENCIA_ID":2,"TIPO_INCIDENCIA":"No conforme con resolucion"}]'</pre>
+<pre>'No results.'</pre>
 </div>
 
 </div>
@@ -14664,16 +14888,19 @@ memory usage: 195.3+ KB
 
 </div>
 
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Now, looking at all of the top scores, we don’t find the tjake entries anymore:</p>
+
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
-
-<span class="n">json_list</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">json_string</span><span class="p">)</span>
-<span class="n">json_list</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">cql</span> SELECT user, score FROM alltimehigh WHERE game = 'Coup'
 </pre></div>
 
      </div>
@@ -14693,51 +14920,43 @@ memory usage: 195.3+ KB
 
 
 
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>[{'TIPO_INCIDENCIA_ID': 0, 'TIPO_INCIDENCIA': 'AVISO'},
- {'TIPO_INCIDENCIA_ID': 1, 'TIPO_INCIDENCIA': 'Peticion'},
- {'TIPO_INCIDENCIA_ID': 2, 'TIPO_INCIDENCIA': 'No conforme con resolucion'}]</pre>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<table>
+    <thead>
+        <tr>
+            <th>user</th>
+            <th>score</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>pcmanus</td>
+            <td>4000</td>
+        </tr>
+        <tr>
+            <td>iamaleksey</td>
+            <td>2500</td>
+        </tr>
+        <tr>
+            <td>yukim</td>
+            <td>2250</td>
+        </tr>
+        <tr>
+            <td>jmckenzie</td>
+            <td>2000</td>
+        </tr>
+        <tr>
+            <td>pcmanus</td>
+            <td>2000</td>
+        </tr>
+        <tr>
+            <td>jbellis</td>
+            <td>1750</td>
+        </tr>
+    </tbody>
+</table>
 </div>
 
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">json</span> <span class="ow">in</span> <span class="n">json_list</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>{'TIPO_INCIDENCIA_ID': 0, 'TIPO_INCIDENCIA': 'AVISO'}
-{'TIPO_INCIDENCIA_ID': 1, 'TIPO_INCIDENCIA': 'Peticion'}
-{'TIPO_INCIDENCIA_ID': 2, 'TIPO_INCIDENCIA': 'No conforme con resolucion'}
-</pre>
-</div>
 </div>
 
 </div>
@@ -14747,299 +14966,9 @@ memory usage: 195.3+ KB
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Importacion-de-un-JSON-a-un-DataFrame">Importacion de un JSON a un DataFrame<a class="anchor-link" href="#Importacion-de-un-JSON-a-un-DataFrame">¶</a></h1>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="n">json_string</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[16]:</div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>TIPO_INCIDENCIA_ID</th>
-      <th>TIPO_INCIDENCIA</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0</td>
-      <td>AVISO</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1</td>
-      <td>Peticion</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2</td>
-      <td>No conforme con resolucion</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
+<p>When a deletion occurs, the materialized view will query all of the deleted values in the base table and generate tombstones for each of the materialized view rows, because the values that need to be tombstoned in the view are not included in the base table’s tombstone. For the single base tombstone, two view tombstones were generated; one for (tjake, 1000) and one for (tjake, 500).</p>
 
 </div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="s1">'https://api.github.com/repos/pydata/pandas/issues?per_page=5'</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[17]:</div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>url</th>
-      <th>repository_url</th>
-      <th>labels_url</th>
-      <th>comments_url</th>
-      <th>events_url</th>
-      <th>html_url</th>
-      <th>id</th>
-      <th>node_id</th>
-      <th>number</th>
-      <th>title</th>
-      <th>...</th>
-      <th>milestone</th>
-      <th>comments</th>
-      <th>created_at</th>
-      <th>updated_at</th>
-      <th>closed_at</th>
-      <th>author_association</th>
-      <th>active_lock_reason</th>
-      <th>body</th>
-      <th>performed_via_github_app</th>
-      <th>pull_request</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://github.com/pandas-dev/pandas/issues/38692</td>
-      <td>774620221</td>
-      <td>MDU6SXNzdWU3NzQ2MjAyMjE=</td>
-      <td>38692</td>
-      <td>API: setting np.nan into Series[bool]</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>0</td>
-      <td>2020-12-25 04:06:58+00:00</td>
-      <td>2020-12-25 04:06:58+00:00</td>
-      <td>NaT</td>
-      <td>MEMBER</td>
-      <td>NaN</td>
-      <td>```\r\nser = pd.Series([True, False, True, Fal...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://github.com/pandas-dev/pandas/issues/38691</td>
-      <td>774614474</td>
-      <td>MDU6SXNzdWU3NzQ2MTQ0NzQ=</td>
-      <td>38691</td>
-      <td>BUG: Pandas pivot_table fails with columns and...</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>2</td>
-      <td>2020-12-25 03:30:32+00:00</td>
-      <td>2020-12-25 05:45:54+00:00</td>
-      <td>NaT</td>
-      <td>NONE</td>
-      <td>NaN</td>
-      <td>- [x ] I have checked that this issue has not ...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://github.com/pandas-dev/pandas/issues/38690</td>
-      <td>774584760</td>
-      <td>MDU6SXNzdWU3NzQ1ODQ3NjA=</td>
-      <td>38690</td>
-      <td>ASV: Add benchmark for indexing with .loc for ...</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>0</td>
-      <td>2020-12-25 00:05:41+00:00</td>
-      <td>2020-12-25 00:05:59+00:00</td>
-      <td>NaT</td>
-      <td>MEMBER</td>
-      <td>NaN</td>
-      <td>xref #17754, a benchmark should be added for i...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://github.com/pandas-dev/pandas/pull/38689</td>
-      <td>774569964</td>
-      <td>MDExOlB1bGxSZXF1ZXN0NTQ1NDcyMTI1</td>
-      <td>38689</td>
-      <td>REF: make pd._testing a directory</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>0</td>
-      <td>2020-12-24 22:02:10+00:00</td>
-      <td>2020-12-25 03:39:43+00:00</td>
-      <td>NaT</td>
-      <td>MEMBER</td>
-      <td>NaN</td>
-      <td>We've accumulated some other helpers outside o...</td>
-      <td>NaN</td>
-      <td>{'url': 'https://api.github.com/repos/pandas-d...</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://github.com/pandas-dev/pandas/pull/38688</td>
-      <td>774566949</td>
-      <td>MDExOlB1bGxSZXF1ZXN0NTQ1NDY5NTI1</td>
-      <td>38688</td>
-      <td>TST: implement tm.check_setitem_equivalents</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>0</td>
-      <td>2020-12-24 21:49:55+00:00</td>
-      <td>2020-12-25 00:12:14+00:00</td>
-      <td>NaT</td>
-      <td>MEMBER</td>
-      <td>NaN</td>
-      <td>- [ ] closes #xxxx\r\n- [ ] tests added / pass...</td>
-      <td>NaN</td>
-      <td>{'url': 'https://api.github.com/repos/pandas-d...</td>
-    </tr>
-  </tbody>
-</table>
-<p>5 rows × 26 columns</p>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
 </div>
 </body>
 

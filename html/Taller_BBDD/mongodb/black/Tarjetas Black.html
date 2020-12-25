@@ -3,7 +3,7 @@
 <head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Read_Csv_Json</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>Tarjetas Black</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 
 
@@ -14259,13 +14259,12 @@ a.anchor-link {
 
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Lectura-de-un-CSV-a-un-DataFrame">Lectura de un CSV a un DataFrame<a class="anchor-link" href="#Lectura-de-un-CSV-a-un-DataFrame">¶</a></h1>
+<h1 id="MongoDB">MongoDB<a class="anchor-link" href="#MongoDB">¶</a></h1>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a href="http://bit.ly/2mEQRxE">http://bit.ly/2mEQRxE</a></p>
-
+<h2 id="Conexión-con-MongoDB-y-borrado-de-datos">Conexión con MongoDB y borrado de datos<a class="anchor-link" href="#Conexi%C3%B3n-con-MongoDB-y-borrado-de-datos">¶</a></h2>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
@@ -14273,17 +14272,71 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pymongo</span> 
+<span class="kn">from</span> <span class="nn">pymongo</span> <span class="kn">import</span> <span class="n">MongoClient</span>
+<span class="kn">from</span> <span class="nn">pymongo.errors</span> <span class="kn">import</span> <span class="n">DuplicateKeyError</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="kn">from</span> <span class="nn">pprintpp</span> <span class="kn">import</span> <span class="n">pprint</span> <span class="k">as</span> <span class="n">pp</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># connect to database</span>
+<span class="n">connection</span> <span class="o">=</span> <span class="n">MongoClient</span><span class="p">(</span><span class="s1">'localhost'</span><span class="p">,</span> <span class="mi">27017</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Borramos la base de datos</span>
+<span class="n">connection</span><span class="o">.</span><span class="n">drop_database</span><span class="p">(</span><span class="s1">'black'</span><span class="p">)</span>
+
+<span class="c1"># Pymongo permite una sintaxis practicamente igual que la original</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">black</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Lectura-en-Pandas">Lectura en Pandas<a class="anchor-link" href="#Lectura-en-Pandas">¶</a></h2>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Leemos los datos desde el fichero Excel y los desnormalizamos</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-
-<span class="n">url</span><span class="o">=</span><span class="s2">"http://datos.madrid.es/egob/catalogo/212411-16-madrid-avisa.csv"</span>
-<span class="n">data</span><span class="o">=</span><span class="n">StringIO</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">";"</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="s2">"ISO-8859-1"</span><span class="p">)</span>
-
-<span class="c1"># Take a sample</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
 </pre></div>
 
      </div>
@@ -14294,10 +14347,13 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_mov</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">"../../data/black.xlsx"</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span> <span class="s2">"Movimientos"</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">'openpyxl'</span><span class="p">)</span>
+<span class="n">df_miembros</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">"../../data/black.xlsx"</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span> <span class="s2">"Miembros"</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">'openpyxl'</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_mov</span><span class="p">,</span> <span class="n">df_miembros</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'id_miembro'</span><span class="p">],</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">'inner'</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -14318,36 +14374,23 @@ a.anchor-link {
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>&lt;class 'pandas.core.frame.DataFrame'&gt;
-Int64Index: 1000 entries, 448688 to 326909
-Data columns (total 24 columns):
- #   Column                Non-Null Count  Dtype  
----  ------                --------------  -----  
- 0   TIPO_INCIDENCIA_ID    1000 non-null   int64  
- 1   TIPO_INCIDENCIA       1000 non-null   object 
- 2   CANAL_DE_ENTRADA_ID   183 non-null    float64
- 3   CANAL_DE_ENTRADA      1000 non-null   object 
- 4   FECHA_DE_RECEPCION    1000 non-null   object 
- 5   HORA_DE_RECEPCION     1000 non-null   object 
- 6   SECCION_ID            1000 non-null   int64  
- 7   SECCION               1000 non-null   object 
- 8   ANOMALIA_ID           1000 non-null   int64  
- 9   ANOMALIA              1000 non-null   object 
- 10  TIPO_DE_VIAL_ID       1000 non-null   int64  
- 11  TIPO_DE_VIAL          1000 non-null   object 
- 12  NOMBRE_DE_VIAL        1000 non-null   object 
- 13  NUMERO                1000 non-null   int64  
- 14  CALIFICADOR           1000 non-null   object 
- 15  DISTRITO_ID           1000 non-null   int64  
- 16  DISTRITO              1000 non-null   object 
- 17  BARRIO_ID             1000 non-null   int64  
- 18  BARRIO                1000 non-null   object 
- 19  CODIGO_POSTAL         1000 non-null   int64  
- 20  COORDENADA_OFICIAL_X  1000 non-null   int64  
- 21  COORDENADA_OFICIAL_Y  1000 non-null   int64  
- 22  COORDENADA_REAL_X     1000 non-null   int64  
- 23  COORDENADA_REAL_Y     1000 non-null   int64  
-dtypes: float64(1), int64(12), object(11)
-memory usage: 195.3+ KB
+Int64Index: 7624 entries, 0 to 7623
+Data columns (total 11 columns):
+ #   Column              Non-Null Count  Dtype         
+---  ------              --------------  -----         
+ 0   id_miembro          7624 non-null   int64         
+ 1   fecha               7624 non-null   datetime64[ns]
+ 2   hora                7624 non-null   int64         
+ 3   minuto              7624 non-null   int64         
+ 4   importe             7624 non-null   float64       
+ 5   comercio            6882 non-null   object        
+ 6   actividad_completa  7621 non-null   object        
+ 7   actividad           7621 non-null   object        
+ 8   nombre              7624 non-null   object        
+ 9   funcion             7624 non-null   object        
+ 10  organizacion        6060 non-null   object        
+dtypes: datetime64[ns](1), float64(1), int64(3), object(6)
+memory usage: 714.8+ KB
 </pre>
 </div>
 </div>
@@ -14356,61 +14399,25 @@ memory usage: 195.3+ KB
 
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Creacción-de-una-base-de-datos-en-Postgres">Creacción de una base de datos en Postgres<a class="anchor-link" href="#Creacci%C3%B3n-de-una-base-de-datos-en-Postgres">¶</a></h1>
+<h2 id="Carga-en-MongoDB">Carga en MongoDB<a class="anchor-link" href="#Carga-en-MongoDB">¶</a></h2>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">alias</span> dropdb docker exec -i postgres_container dropdb -U postgres 
-<span class="o">%</span><span class="k">alias</span> createdb docker exec -i postgres_container createdb -U postgres 
-</pre></div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Gracias a Pandas convertimos el dataset en formato JSON, que es el que vamos a insertar en MongoDB prácticamente sin cambios.</p>
 
-     </div>
 </div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dropdb</span> <span class="n">avisa</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">createdb</span> <span class="n">avisa</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">json_string</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">orient</span> <span class="o">=</span> <span class="s1">'records'</span><span class="p">)</span>
+<span class="n">json_list</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">json_string</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14418,13 +14425,13 @@ memory usage: 195.3+ KB
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> sql
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pp</span><span class="p">(</span><span class="n">json_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 
      </div>
@@ -14432,13 +14439,78 @@ memory usage: 195.3+ KB
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>{
+    'actividad': 'SALUD',
+    'actividad_completa': 'FARMACIAS',
+    'comercio': 'FCIA TORRES MU¬OZ',
+    'fecha': 1145232000000,
+    'funcion': 'concejal',
+    'hora': 11,
+    'id_miembro': 77,
+    'importe': 44.56,
+    'minuto': 40,
+    'nombre': 'Ricardo Romero de Tejada y Picatoste',
+    'organizacion': 'Partido Popular',
+}
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>En MongoDB vamos a crear una única colección donde vamos a guardar todos los datos desnormalizados:</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><img src="data:image/png;base64,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" width="300" height="100"></p>
+<p><br><br></p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>En la inserción de la información en mongo realizan algunas tareas de limpieza:</p>
+<ul>
+<li>Eliminar los campos nulos (no todos)</li>
+<li>Convertir la fecha a un formato DateTime, de forma que mongo inserte el dato correctamente</li>
+<li>Eliminar campos que no queremos tener en el modelo (id_miembro)</li>
+</ul>
+
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">sql</span> postgresql://postgres:postgres@localhost/avisa
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">movimiento_json</span> <span class="ow">in</span> <span class="n">json_list</span><span class="p">:</span>
+    <span class="n">movimiento_json</span><span class="p">[</span><span class="s1">'fecha'</span><span class="p">]</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">movimiento_json</span><span class="p">[</span><span class="s1">'fecha'</span><span class="p">]</span> <span class="o">/</span> <span class="mf">1e3</span><span class="p">)</span>
+    
+    <span class="k">del</span> <span class="n">movimiento_json</span><span class="p">[</span><span class="s1">'id_miembro'</span><span class="p">]</span>
+
+    <span class="k">if</span>  <span class="n">movimiento_json</span><span class="p">[</span><span class="s1">'comercio'</span><span class="p">]</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">del</span> <span class="n">movimiento_json</span><span class="p">[</span><span class="s1">'comercio'</span><span class="p">]</span>
+    
+    <span class="n">db</span><span class="o">.</span><span class="n">movimientos</span><span class="o">.</span><span class="n">insert_one</span><span class="p">(</span><span class="n">movimiento_json</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14449,7 +14521,18 @@ memory usage: 195.3+ KB
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Exportación-de-un-Dataframe-a-una-tabla-en-Postgres">Exportación de un Dataframe a una tabla en Postgres<a class="anchor-link" href="#Exportaci%C3%B3n-de-un-Dataframe-a-una-tabla-en-Postgres">¶</a></h1>
+<h2 id="Querys">Querys<a class="anchor-link" href="#Querys">¶</a></h2>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Todas las querys de este caso de uso se pueden resolver directamente por la base de datos ...</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Los-10-movimientos-mas-caros">Los 10 movimientos mas caros<a class="anchor-link" href="#Los-10-movimientos-mas-caros">¶</a></h3>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
@@ -14457,8 +14540,13 @@ memory usage: 195.3+ KB
 <div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s1">'postgresql://postgres:postgres@localhost:5432/avisa'</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s1">'incidencias'</span><span class="p">,</span> <span class="n">engine</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rs</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">movimientos</span><span class="o">.</span><span class="n">find</span><span class="p">({},</span> <span class="p">{</span>
+    <span class="s2">"nombre"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"fecha"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"actividad_completa"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"importe"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"_id"</span> <span class="p">:</span> <span class="mi">0</span>
+<span class="p">})</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">sort</span><span class="p">([(</span><span class="s2">"importe"</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)])</span>
 </pre></div>
 
      </div>
@@ -14472,9 +14560,7 @@ memory usage: 195.3+ KB
 <div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">sql</span> 
-<span class="k">select</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
-<span class="k">from</span> <span class="n">incidencias</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">rs</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -14490,51 +14576,137 @@ memory usage: 195.3+ KB
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre> * postgresql://postgres:***@localhost/avisa
-1 rows affected.
-</pre>
-</div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[10]:</div>
 
 
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<table>
-    <thead>
-        <tr>
-            <th>count</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>1000</td>
-        </tr>
-    </tbody>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fecha</th>
+      <th>importe</th>
+      <th>actividad_completa</th>
+      <th>nombre</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2007-11-28</td>
+      <td>12000.00</td>
+      <td>AGENCIAS BANCARIAS(ANTICIPO VENTANILLA)</td>
+      <td>Enrique de la Torre Martínez</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2007-12-19</td>
+      <td>9424.08</td>
+      <td>AGENCIAS BANCARIAS(ANTICIPO VENTANILLA)</td>
+      <td>Ramón Ferraz Ricarte</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2008-10-23</td>
+      <td>9000.00</td>
+      <td>AGENCIAS BANCARIAS(ANTICIPO VENTANILLA)</td>
+      <td>Enrique de la Torre Martínez</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2006-11-29</td>
+      <td>8000.00</td>
+      <td>AGENCIAS BANCARIAS(ANTICIPO VENTANILLA)</td>
+      <td>Enrique de la Torre Martínez</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2006-12-26</td>
+      <td>6397.31</td>
+      <td>EL CORTE INGLES</td>
+      <td>Miguel Blesa de la Parra</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2007-11-30</td>
+      <td>6375.00</td>
+      <td>CONFECCION TEXTIL EN GENERAL</td>
+      <td>Rafael Spottorno Díaz Caro</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2006-08-13</td>
+      <td>6198.02</td>
+      <td>HOTELES 4 Y 5 ESTRELLAS,BALNEARIOS,CAMPI</td>
+      <td>Carmen Contreras Gómez</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2006-08-13</td>
+      <td>5763.10</td>
+      <td>BRITISH AIRWAYS - BRITISH A</td>
+      <td>Matías Amat Roca</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2005-07-31</td>
+      <td>5403.97</td>
+      <td>AUTOM.Y MOTOCICLETAS ( VENTAS Y REPARAC)</td>
+      <td>Juan Manuel Astorqui Portera</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2004-12-06</td>
+      <td>5390.00</td>
+      <td>AGENCIAS BANCARIAS(ANTICIPO VENTANILLA)</td>
+      <td>Enrique de la Torre Martínez</td>
+    </tr>
+  </tbody>
 </table>
 </div>
-
 </div>
 
 </div>
 
 </div>
 
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Los-10-movimientos-mas-caros-por-actividad">Los 10 movimientos mas caros por actividad<a class="anchor-link" href="#Los-10-movimientos-mas-caros-por-actividad">¶</a></h3>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">([</span><span class="s2">"TIPO_INCIDENCIA_ID"</span><span class="p">,</span> <span class="s2">"TIPO_INCIDENCIA"</span><span class="p">])</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s1">'tipo_incidencias'</span><span class="p">,</span> <span class="n">engine</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rs</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">movimientos</span><span class="o">.</span><span class="n">find</span><span class="p">({</span>
+    <span class="s2">"actividad"</span><span class="p">:</span> <span class="s2">"HOGAR"</span>
+<span class="p">},</span> <span class="p">{</span>
+    <span class="s2">"nombre"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"fecha"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"actividad_completa"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"importe"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"_id"</span> <span class="p">:</span> <span class="mi">0</span>
+<span class="p">})</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">sort</span><span class="p">([(</span><span class="s2">"importe"</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)])</span>
 </pre></div>
 
      </div>
@@ -14548,9 +14720,7 @@ memory usage: 195.3+ KB
 <div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">sql</span> 
-<span class="k">select</span> <span class="o">*</span>
-<span class="k">from</span> <span class="n">tipo_incidencias</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">rs</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -14566,50 +14736,109 @@ memory usage: 195.3+ KB
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre> * postgresql://postgres:***@localhost/avisa
-3 rows affected.
-</pre>
-</div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[12]:</div>
 
 
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<table>
-    <thead>
-        <tr>
-            <th>index</th>
-            <th>TIPO_INCIDENCIA_ID</th>
-            <th>TIPO_INCIDENCIA</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>448688</td>
-            <td>0</td>
-            <td>AVISO</td>
-        </tr>
-        <tr>
-            <td>443661</td>
-            <td>1</td>
-            <td>Peticion</td>
-        </tr>
-        <tr>
-            <td>48845</td>
-            <td>2</td>
-            <td>No conforme con resolucion</td>
-        </tr>
-    </tbody>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fecha</th>
+      <th>importe</th>
+      <th>actividad_completa</th>
+      <th>nombre</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2007-10-14</td>
+      <td>2150.00</td>
+      <td>MUEBLES,ANTIGUEDADES Y GALERIAS DE ARTE</td>
+      <td>Miguel Ángel Araujo Serrano</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2005-12-16</td>
+      <td>1908.19</td>
+      <td>FLORES Y PLANTAS</td>
+      <td>Mariano Pérez Claver</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2004-01-09</td>
+      <td>1800.00</td>
+      <td>TAPICERIAS,ALFOMBRAS</td>
+      <td>Domingo Navalmoral Sánchez</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2008-07-06</td>
+      <td>1281.31</td>
+      <td>MUEBLES,ANTIGUEDADES Y GALERIAS DE ARTE</td>
+      <td>Ramón Ferraz Ricarte</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2011-03-10</td>
+      <td>1231.00</td>
+      <td>MUEBLES DE COCINA</td>
+      <td>Miguel Ángel Araujo Serrano</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2007-04-20</td>
+      <td>1188.90</td>
+      <td>MUEBLES,ANTIGUEDADES Y GALERIAS DE ARTE</td>
+      <td>Francisco Baquero Noriega</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2006-11-03</td>
+      <td>1090.00</td>
+      <td>MUEBLES,ANTIGUEDADES Y GALERIAS DE ARTE</td>
+      <td>Francisco Baquero Noriega</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2009-04-06</td>
+      <td>1000.00</td>
+      <td>ELECTRODOMESTICOS,EQUIPOS ELECTRICOS</td>
+      <td>Ricardo Romero de Tejada y Picatoste</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2006-02-07</td>
+      <td>1000.00</td>
+      <td>MUEBLES,ANTIGUEDADES Y GALERIAS DE ARTE</td>
+      <td>Pedro Bugidos Garay</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2011-05-24</td>
+      <td>1000.00</td>
+      <td>MUEBLES,ANTIGUEDADES Y GALERIAS DE ARTE</td>
+      <td>Jesús Pedroche Nieto</td>
+    </tr>
+  </tbody>
 </table>
+</div>
 </div>
 
 </div>
@@ -14621,47 +14850,31 @@ memory usage: 195.3+ KB
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Exportación-de-un-DataFrame-a-un-JSON">Exportación de un DataFrame a un JSON<a class="anchor-link" href="#Exportaci%C3%B3n-de-un-DataFrame-a-un-JSON">¶</a></h1>
+<h3 id="Las-10-personas-que-mas-han-gastado">Las 10 personas que mas han gastado<a class="anchor-link" href="#Las-10-personas-que-mas-han-gastado">¶</a></h3>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>En este caso, al obtener un dato agregado, necesitamos utilizar la función <strong>aggregate()</strong> de mongo</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">json_string</span> <span class="o">=</span> <span class="n">df</span> \
-                <span class="o">.</span><span class="n">filter</span><span class="p">([</span><span class="s2">"TIPO_INCIDENCIA_ID"</span><span class="p">,</span> <span class="s2">"TIPO_INCIDENCIA"</span><span class="p">])</span> \
-                <span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span> \
-                <span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">orient</span> <span class="o">=</span> <span class="s1">'records'</span><span class="p">)</span>
-<span class="n">json_string</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rs</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">movimientos</span><span class="o">.</span><span class="n">aggregate</span><span class="p">([</span>
+        <span class="p">{</span><span class="s2">"$group"</span> <span class="p">:</span> <span class="p">{</span> <span class="s2">"_id"</span> <span class="p">:</span> <span class="s2">"$nombre"</span><span class="p">,</span> <span class="s2">"importe"</span> <span class="p">:</span> <span class="p">{</span> <span class="s2">"$sum"</span> <span class="p">:</span> <span class="s2">"$importe"</span><span class="p">}}},</span>
+        <span class="p">{</span><span class="s2">"$sort"</span> <span class="p">:</span> <span class="p">{</span><span class="s2">"importe"</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">}},</span>
+        <span class="p">{</span><span class="s2">"$limit"</span> <span class="p">:</span> <span class="mi">10</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">"$project"</span> <span class="p">:</span> <span class="p">{</span><span class="s2">"_id"</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">"nombre"</span><span class="p">:</span> <span class="s2">"$_id"</span><span class="p">,</span> <span class="s2">"importe"</span><span class="p">:</span> <span class="mi">1</span><span class="p">}}</span>
+    <span class="p">])</span>
 </pre></div>
 
      </div>
 </div>
 </div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[13]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>'[{"TIPO_INCIDENCIA_ID":0,"TIPO_INCIDENCIA":"AVISO"},{"TIPO_INCIDENCIA_ID":1,"TIPO_INCIDENCIA":"Peticion"},{"TIPO_INCIDENCIA_ID":2,"TIPO_INCIDENCIA":"No conforme con resolucion"}]'</pre>
-</div>
-
-</div>
-
-</div>
-
 </div>
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -14670,10 +14883,8 @@ memory usage: 195.3+ KB
 <div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
-
-<span class="n">json_list</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">json_string</span><span class="p">)</span>
-<span class="n">json_list</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">rs</span><span class="p">))</span>
+<span class="n">df</span>
 </pre></div>
 
      </div>
@@ -14693,51 +14904,85 @@ memory usage: 195.3+ KB
 
 
 
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>[{'TIPO_INCIDENCIA_ID': 0, 'TIPO_INCIDENCIA': 'AVISO'},
- {'TIPO_INCIDENCIA_ID': 1, 'TIPO_INCIDENCIA': 'Peticion'},
- {'TIPO_INCIDENCIA_ID': 2, 'TIPO_INCIDENCIA': 'No conforme con resolucion'}]</pre>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>importe</th>
+      <th>nombre</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>58826.28</td>
+      <td>Enrique de la Torre Martínez</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>52447.07</td>
+      <td>José Antonio Moral Santín</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>45371.52</td>
+      <td>Ramón Ferraz Ricarte</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>40298.84</td>
+      <td>Miguel Blesa de la Parra</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>39437.99</td>
+      <td>Ildefonso José Sánchez Barcoj</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>36627.89</td>
+      <td>Juan Manuel Astorqui Portera</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>35256.67</td>
+      <td>Francisco Baquero Noriega</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>33434.74</td>
+      <td>Matías Amat Roca</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>31556.45</td>
+      <td>Carmen Contreras Gómez</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>29350.65</td>
+      <td>Estanislao Rodríguez-Ponga Salamanca</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 </div>
 
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">json</span> <span class="ow">in</span> <span class="n">json_list</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>{'TIPO_INCIDENCIA_ID': 0, 'TIPO_INCIDENCIA': 'AVISO'}
-{'TIPO_INCIDENCIA_ID': 1, 'TIPO_INCIDENCIA': 'Peticion'}
-{'TIPO_INCIDENCIA_ID': 2, 'TIPO_INCIDENCIA': 'No conforme con resolucion'}
-</pre>
-</div>
 </div>
 
 </div>
@@ -14747,15 +14992,49 @@ memory usage: 195.3+ KB
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Importacion-de-un-JSON-a-un-DataFrame">Importacion de un JSON a un DataFrame<a class="anchor-link" href="#Importacion-de-un-JSON-a-un-DataFrame">¶</a></h1>
+<h3 id="¿Que-comercio-es-más-popular?">¿Que comercio es más popular?<a class="anchor-link" href="#%C2%BFQue-comercio-es-m%C3%A1s-popular?">¶</a></h3>
 </div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Este es un caso especial de agregación, ya que cuenta los distintos. Dentro del flujo de la función se realizan varios pasos para resolver esta query:</p>
+<ul>
+<li>Formar un conjunto con los distintas personas que han comprado en cada comercio</li>
+<li>Desagregar el conjunto</li>
+<li>Agrupar los comercios, contanto los distintos elementos de cada conjunto</li>
+</ul>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rs</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">movimientos</span><span class="o">.</span><span class="n">aggregate</span><span class="p">([</span>
+        <span class="p">{</span><span class="s2">"$group"</span> <span class="p">:</span> <span class="p">{</span> <span class="s2">"_id"</span> <span class="p">:</span> <span class="s2">"$comercio"</span><span class="p">,</span> <span class="s2">"nombres"</span> <span class="p">:</span> <span class="p">{</span> <span class="s2">"$addToSet"</span> <span class="p">:</span> <span class="s2">"$nombre"</span><span class="p">}}},</span>
+        <span class="p">{</span><span class="s2">"$unwind"</span> <span class="p">:</span> <span class="s2">"$nombres"</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">"$group"</span> <span class="p">:</span> <span class="p">{</span> <span class="s2">"_id"</span> <span class="p">:</span> <span class="s2">"$_id"</span><span class="p">,</span> <span class="s2">"cuenta"</span> <span class="p">:</span> <span class="p">{</span> <span class="s2">"$sum"</span> <span class="p">:</span> <span class="mi">1</span><span class="p">}}},</span>
+        <span class="p">{</span><span class="s2">"$sort"</span> <span class="p">:</span> <span class="p">{</span><span class="s2">"cuenta"</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">}},</span>
+        <span class="p">{</span><span class="s2">"$project"</span> <span class="p">:</span> <span class="p">{</span><span class="s2">"_id"</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">"comercio"</span><span class="p">:</span> <span class="s2">"$_id"</span><span class="p">,</span> <span class="s2">"cuenta"</span><span class="p">:</span> <span class="mi">1</span><span class="p">}},</span>
+        <span class="p">{</span><span class="s2">"$match"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"comercio"</span><span class="p">:</span> <span class="p">{</span> <span class="s2">"$exists"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">"$ne"</span><span class="p">:</span> <span class="kc">None</span> <span class="p">}}},</span>
+        <span class="p">{</span><span class="s2">"$limit"</span> <span class="p">:</span> <span class="mi">10</span><span class="p">}</span>
+    <span class="p">])</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="n">json_string</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">rs</span><span class="p">))</span>
+<span class="n">df</span>
 </pre></div>
 
      </div>
@@ -14794,25 +15073,60 @@ memory usage: 195.3+ KB
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>TIPO_INCIDENCIA_ID</th>
-      <th>TIPO_INCIDENCIA</th>
+      <th>cuenta</th>
+      <th>comercio</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>0</td>
-      <td>AVISO</td>
+      <td>49</td>
+      <td>EL CORTE INGLES</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>1</td>
-      <td>Peticion</td>
+      <td>29</td>
+      <td>IBERIA</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>2</td>
-      <td>No conforme con resolucion</td>
+      <td>28</td>
+      <td>RENFE 001</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>26</td>
+      <td>EL CORTE INGLES S.A.</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>16</td>
+      <td>PARKING EGUISA C/SEVILLA</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>15</td>
+      <td>VIAJES ECI</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>14</td>
+      <td>ESPASA CALPE-CASA DEL LIBRO</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>13</td>
+      <td>ACCESOS DE MADRID</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>13</td>
+      <td>APARCAMIENTO CORTES</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>13</td>
+      <td>REST EL ESPIGON</td>
     </tr>
   </tbody>
 </table>
@@ -14825,13 +15139,25 @@ memory usage: 195.3+ KB
 
 </div>
 
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Truco ...</p>
+<p>En este tipo de querys complicadas podemos ver los resultados parciales ...</p>
+
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="s1">'https://api.github.com/repos/pydata/pandas/issues?per_page=5'</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rs</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">movimientos</span><span class="o">.</span><span class="n">aggregate</span><span class="p">([</span>
+        <span class="p">{</span><span class="s2">"$group"</span> <span class="p">:</span> <span class="p">{</span> <span class="s2">"_id"</span> <span class="p">:</span> <span class="s2">"$comercio"</span><span class="p">,</span> <span class="s2">"nombres"</span> <span class="p">:</span> <span class="p">{</span> <span class="s2">"$addToSet"</span> <span class="p">:</span> <span class="s2">"$nombre"</span><span class="p">}}},</span>
+        <span class="p">{</span><span class="s2">"$unwind"</span> <span class="p">:</span> <span class="s2">"$nombres"</span><span class="p">}</span>
+    <span class="p">])</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">rs</span><span class="p">))</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -14870,153 +15196,38 @@ memory usage: 195.3+ KB
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>url</th>
-      <th>repository_url</th>
-      <th>labels_url</th>
-      <th>comments_url</th>
-      <th>events_url</th>
-      <th>html_url</th>
-      <th>id</th>
-      <th>node_id</th>
-      <th>number</th>
-      <th>title</th>
-      <th>...</th>
-      <th>milestone</th>
-      <th>comments</th>
-      <th>created_at</th>
-      <th>updated_at</th>
-      <th>closed_at</th>
-      <th>author_association</th>
-      <th>active_lock_reason</th>
-      <th>body</th>
-      <th>performed_via_github_app</th>
-      <th>pull_request</th>
+      <th>_id</th>
+      <th>nombres</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://github.com/pandas-dev/pandas/issues/38692</td>
-      <td>774620221</td>
-      <td>MDU6SXNzdWU3NzQ2MjAyMjE=</td>
-      <td>38692</td>
-      <td>API: setting np.nan into Series[bool]</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>0</td>
-      <td>2020-12-25 04:06:58+00:00</td>
-      <td>2020-12-25 04:06:58+00:00</td>
-      <td>NaT</td>
-      <td>MEMBER</td>
-      <td>NaN</td>
-      <td>```\r\nser = pd.Series([True, False, True, Fal...</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>OYSHO</td>
+      <td>Carmen Contreras Gómez</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://github.com/pandas-dev/pandas/issues/38691</td>
-      <td>774614474</td>
-      <td>MDU6SXNzdWU3NzQ2MTQ0NzQ=</td>
-      <td>38691</td>
-      <td>BUG: Pandas pivot_table fails with columns and...</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>2</td>
-      <td>2020-12-25 03:30:32+00:00</td>
-      <td>2020-12-25 05:45:54+00:00</td>
-      <td>NaT</td>
-      <td>NONE</td>
-      <td>NaN</td>
-      <td>- [x ] I have checked that this issue has not ...</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>HELEN'S</td>
+      <td>Miguel Muñiz de las Cuevas</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://github.com/pandas-dev/pandas/issues/38690</td>
-      <td>774584760</td>
-      <td>MDU6SXNzdWU3NzQ1ODQ3NjA=</td>
-      <td>38690</td>
-      <td>ASV: Add benchmark for indexing with .loc for ...</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>0</td>
-      <td>2020-12-25 00:05:41+00:00</td>
-      <td>2020-12-25 00:05:59+00:00</td>
-      <td>NaT</td>
-      <td>MEMBER</td>
-      <td>NaN</td>
-      <td>xref #17754, a benchmark should be added for i...</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>HELEN'S</td>
+      <td>Miguel Ángel Abejón Resa</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://github.com/pandas-dev/pandas/pull/38689</td>
-      <td>774569964</td>
-      <td>MDExOlB1bGxSZXF1ZXN0NTQ1NDcyMTI1</td>
-      <td>38689</td>
-      <td>REF: make pd._testing a directory</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>0</td>
-      <td>2020-12-24 22:02:10+00:00</td>
-      <td>2020-12-25 03:39:43+00:00</td>
-      <td>NaT</td>
-      <td>MEMBER</td>
-      <td>NaN</td>
-      <td>We've accumulated some other helpers outside o...</td>
-      <td>NaN</td>
-      <td>{'url': 'https://api.github.com/repos/pandas-d...</td>
+      <td>JOSEFINA GARDIEL E HIJO</td>
+      <td>Ignacio de Navasques Cobián</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://github.com/pandas-dev/pandas/pull/38688</td>
-      <td>774566949</td>
-      <td>MDExOlB1bGxSZXF1ZXN0NTQ1NDY5NTI1</td>
-      <td>38688</td>
-      <td>TST: implement tm.check_setitem_equivalents</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>0</td>
-      <td>2020-12-24 21:49:55+00:00</td>
-      <td>2020-12-25 00:12:14+00:00</td>
-      <td>NaT</td>
-      <td>MEMBER</td>
-      <td>NaN</td>
-      <td>- [ ] closes #xxxx\r\n- [ ] tests added / pass...</td>
-      <td>NaN</td>
-      <td>{'url': 'https://api.github.com/repos/pandas-d...</td>
+      <td>ALDEASA</td>
+      <td>Gonzalo Martín Pascual</td>
     </tr>
   </tbody>
 </table>
-<p>5 rows × 26 columns</p>
 </div>
 </div>
 
