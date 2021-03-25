@@ -10,9 +10,9 @@
 
 <style type="text/css">
     pre { line-height: 125%; }
-td.linenos pre { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
-span.linenos { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
-td.linenos pre.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 .highlight .hll { background-color: var(--jp-cell-editor-active-background) }
 .highlight { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
@@ -14617,16 +14617,12 @@ RETURN count(*)
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-            <th>count(*)</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>7624</td>
-        </tr>
-    </tbody>
+    <tr>
+        <th>count(*)</th>
+    </tr>
+    <tr>
+        <td>7624</td>
+    </tr>
 </table>
 </div>
 
@@ -14684,16 +14680,12 @@ RETURN count(*)
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-            <th>count(*)</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>82</td>
-        </tr>
-    </tbody>
+    <tr>
+        <th>count(*)</th>
+    </tr>
+    <tr>
+        <td>82</td>
+    </tr>
 </table>
 </div>
 
@@ -14752,16 +14744,12 @@ RETURN count(*)
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-            <th>count(*)</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>3206</td>
-        </tr>
-    </tbody>
+    <tr>
+        <th>count(*)</th>
+    </tr>
+    <tr>
+        <td>3206</td>
+    </tr>
 </table>
 </div>
 
@@ -14820,16 +14808,12 @@ RETURN count(*)
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-            <th>count(*)</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>10</td>
-        </tr>
-    </tbody>
+    <tr>
+        <th>count(*)</th>
+    </tr>
+    <tr>
+        <td>10</td>
+    </tr>
 </table>
 </div>
 
@@ -14959,65 +14943,61 @@ LIMIT 10
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-            <th>persona.nombre</th>
-            <th>comercio.actividad_completa</th>
-            <th>movimiento.importe</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Enrique de la Torre Martínez</td>
-            <td>AGENCIAS BANCARIAS(ANTICIPO VENTANILLA)</td>
-            <td>12000.0</td>
-        </tr>
-        <tr>
-            <td>Ramón Ferraz Ricarte</td>
-            <td>AGENCIAS BANCARIAS(ANTICIPO VENTANILLA)</td>
-            <td>9424.08</td>
-        </tr>
-        <tr>
-            <td>Enrique de la Torre Martínez</td>
-            <td>AGENCIAS BANCARIAS(ANTICIPO VENTANILLA)</td>
-            <td>9000.0</td>
-        </tr>
-        <tr>
-            <td>Enrique de la Torre Martínez</td>
-            <td>AGENCIAS BANCARIAS(ANTICIPO VENTANILLA)</td>
-            <td>8000.0</td>
-        </tr>
-        <tr>
-            <td>Miguel Blesa de la Parra</td>
-            <td>EL CORTE INGLES</td>
-            <td>6397.31</td>
-        </tr>
-        <tr>
-            <td>Rafael Spottorno Díaz Caro</td>
-            <td>CONFECCION TEXTIL EN GENERAL</td>
-            <td>6375.0</td>
-        </tr>
-        <tr>
-            <td>Carmen Contreras Gómez</td>
-            <td>HOTELES 4 Y 5 ESTRELLAS,BALNEARIOS,CAMPI</td>
-            <td>6198.02</td>
-        </tr>
-        <tr>
-            <td>Matías Amat Roca</td>
-            <td>BRITISH AIRWAYS - BRITISH A</td>
-            <td>5763.1</td>
-        </tr>
-        <tr>
-            <td>Juan Manuel Astorqui Portera</td>
-            <td>AUTOM.Y MOTOCICLETAS ( VENTAS Y REPARAC)</td>
-            <td>5403.97</td>
-        </tr>
-        <tr>
-            <td>Enrique de la Torre Martínez</td>
-            <td>AGENCIAS BANCARIAS(ANTICIPO VENTANILLA)</td>
-            <td>5390.0</td>
-        </tr>
-    </tbody>
+    <tr>
+        <th>persona.nombre</th>
+        <th>comercio.actividad_completa</th>
+        <th>movimiento.importe</th>
+    </tr>
+    <tr>
+        <td>Enrique de la Torre Martínez</td>
+        <td>AGENCIAS BANCARIAS(ANTICIPO VENTANILLA)</td>
+        <td>12000.0</td>
+    </tr>
+    <tr>
+        <td>Ramón Ferraz Ricarte</td>
+        <td>AGENCIAS BANCARIAS(ANTICIPO VENTANILLA)</td>
+        <td>9424.08</td>
+    </tr>
+    <tr>
+        <td>Enrique de la Torre Martínez</td>
+        <td>AGENCIAS BANCARIAS(ANTICIPO VENTANILLA)</td>
+        <td>9000.0</td>
+    </tr>
+    <tr>
+        <td>Enrique de la Torre Martínez</td>
+        <td>AGENCIAS BANCARIAS(ANTICIPO VENTANILLA)</td>
+        <td>8000.0</td>
+    </tr>
+    <tr>
+        <td>Miguel Blesa de la Parra</td>
+        <td>EL CORTE INGLES</td>
+        <td>6397.31</td>
+    </tr>
+    <tr>
+        <td>Rafael Spottorno Díaz Caro</td>
+        <td>CONFECCION TEXTIL EN GENERAL</td>
+        <td>6375.0</td>
+    </tr>
+    <tr>
+        <td>Carmen Contreras Gómez</td>
+        <td>HOTELES 4 Y 5 ESTRELLAS,BALNEARIOS,CAMPI</td>
+        <td>6198.02</td>
+    </tr>
+    <tr>
+        <td>Matías Amat Roca</td>
+        <td>BRITISH AIRWAYS - BRITISH A</td>
+        <td>5763.1</td>
+    </tr>
+    <tr>
+        <td>Juan Manuel Astorqui Portera</td>
+        <td>AUTOM.Y MOTOCICLETAS ( VENTAS Y REPARAC)</td>
+        <td>5403.97</td>
+    </tr>
+    <tr>
+        <td>Enrique de la Torre Martínez</td>
+        <td>AGENCIAS BANCARIAS(ANTICIPO VENTANILLA)</td>
+        <td>5390.0</td>
+    </tr>
 </table>
 </div>
 
@@ -15367,65 +15347,61 @@ LIMIT 10
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-            <th>persona.nombre</th>
-            <th>comercio.actividad_completa</th>
-            <th>importe</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Francisco Baquero Noriega</td>
-            <td>MUEBLES,ANTIGUEDADES Y GALERIAS DE ARTE</td>
-            <td>3024.5</td>
-        </tr>
-        <tr>
-            <td>Pedro Bugidos Garay</td>
-            <td>MUEBLES,ANTIGUEDADES Y GALERIAS DE ARTE</td>
-            <td>2921.0</td>
-        </tr>
-        <tr>
-            <td>Mariano Pérez Claver</td>
-            <td>FLORES Y PLANTAS</td>
-            <td>2858.59</td>
-        </tr>
-        <tr>
-            <td>Miguel Ángel Araujo Serrano</td>
-            <td>MUEBLES,ANTIGUEDADES Y GALERIAS DE ARTE</td>
-            <td>2150.0</td>
-        </tr>
-        <tr>
-            <td>Domingo Navalmoral Sánchez</td>
-            <td>TAPICERIAS,ALFOMBRAS</td>
-            <td>1800.0</td>
-        </tr>
-        <tr>
-            <td>Ramón Ferraz Ricarte</td>
-            <td>MUEBLES,ANTIGUEDADES Y GALERIAS DE ARTE</td>
-            <td>1281.31</td>
-        </tr>
-        <tr>
-            <td>Miguel Ángel Araujo Serrano</td>
-            <td>MUEBLES DE COCINA</td>
-            <td>1231.0</td>
-        </tr>
-        <tr>
-            <td>Jesús Pedroche Nieto</td>
-            <td>MUEBLES,ANTIGUEDADES Y GALERIAS DE ARTE</td>
-            <td>1213.33</td>
-        </tr>
-        <tr>
-            <td>Ricardo Romero de Tejada y Picatoste</td>
-            <td>ELECTRODOMESTICOS,EQUIPOS ELECTRICOS</td>
-            <td>1000.0</td>
-        </tr>
-        <tr>
-            <td>María Carmen Cafranga Cavestany</td>
-            <td>MUEBLES,ANTIGUEDADES Y GALERIAS DE ARTE</td>
-            <td>850.0</td>
-        </tr>
-    </tbody>
+    <tr>
+        <th>persona.nombre</th>
+        <th>comercio.actividad_completa</th>
+        <th>importe</th>
+    </tr>
+    <tr>
+        <td>Francisco Baquero Noriega</td>
+        <td>MUEBLES,ANTIGUEDADES Y GALERIAS DE ARTE</td>
+        <td>3024.5</td>
+    </tr>
+    <tr>
+        <td>Pedro Bugidos Garay</td>
+        <td>MUEBLES,ANTIGUEDADES Y GALERIAS DE ARTE</td>
+        <td>2921.0</td>
+    </tr>
+    <tr>
+        <td>Mariano Pérez Claver</td>
+        <td>FLORES Y PLANTAS</td>
+        <td>2858.59</td>
+    </tr>
+    <tr>
+        <td>Miguel Ángel Araujo Serrano</td>
+        <td>MUEBLES,ANTIGUEDADES Y GALERIAS DE ARTE</td>
+        <td>2150.0</td>
+    </tr>
+    <tr>
+        <td>Domingo Navalmoral Sánchez</td>
+        <td>TAPICERIAS,ALFOMBRAS</td>
+        <td>1800.0</td>
+    </tr>
+    <tr>
+        <td>Ramón Ferraz Ricarte</td>
+        <td>MUEBLES,ANTIGUEDADES Y GALERIAS DE ARTE</td>
+        <td>1281.31</td>
+    </tr>
+    <tr>
+        <td>Miguel Ángel Araujo Serrano</td>
+        <td>MUEBLES DE COCINA</td>
+        <td>1231.0</td>
+    </tr>
+    <tr>
+        <td>Jesús Pedroche Nieto</td>
+        <td>MUEBLES,ANTIGUEDADES Y GALERIAS DE ARTE</td>
+        <td>1213.33</td>
+    </tr>
+    <tr>
+        <td>Ricardo Romero de Tejada y Picatoste</td>
+        <td>ELECTRODOMESTICOS,EQUIPOS ELECTRICOS</td>
+        <td>1000.0</td>
+    </tr>
+    <tr>
+        <td>María Carmen Cafranga Cavestany</td>
+        <td>MUEBLES,ANTIGUEDADES Y GALERIAS DE ARTE</td>
+        <td>850.0</td>
+    </tr>
 </table>
 </div>
 

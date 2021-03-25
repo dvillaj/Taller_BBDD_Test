@@ -10,9 +10,9 @@
 
 <style type="text/css">
     pre { line-height: 125%; }
-td.linenos pre { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
-span.linenos { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
-td.linenos pre.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 .highlight .hll { background-color: var(--jp-cell-editor-active-background) }
 .highlight { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
@@ -14303,7 +14303,7 @@ a.anchor-link {
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>'No results.'</pre>
+<pre>"Cannot drop non existing keyspace 'demo'."</pre>
 </div>
 
 </div>
@@ -14428,16 +14428,12 @@ WITH replication = {'class': 'SimpleStrategy', 'replication_factor' : 1};
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-            <th>release_version</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>3.11.9</td>
-        </tr>
-    </tbody>
+    <tr>
+        <th>release_version</th>
+    </tr>
+    <tr>
+        <td>3.11.10</td>
+    </tr>
 </table>
 </div>
 
@@ -14559,38 +14555,34 @@ CREATE TABLE users (
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-            <th>lastname</th>
-            <th>age</th>
-            <th>city</th>
-            <th>email</th>
-            <th>firstname</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Doe</td>
-            <td>36</td>
-            <td>Beverly Hills</td>
-            <td>janedoe@email.com</td>
-            <td>Jane</td>
-        </tr>
-        <tr>
-            <td>Byrne</td>
-            <td>24</td>
-            <td>San Diego</td>
-            <td>robbyrne@email.com</td>
-            <td>Rob</td>
-        </tr>
-        <tr>
-            <td>Smith</td>
-            <td>46</td>
-            <td>Sacramento</td>
-            <td>johnsmith@email.com</td>
-            <td>John</td>
-        </tr>
-    </tbody>
+    <tr>
+        <th>lastname</th>
+        <th>age</th>
+        <th>city</th>
+        <th>email</th>
+        <th>firstname</th>
+    </tr>
+    <tr>
+        <td>Doe</td>
+        <td>36</td>
+        <td>Beverly Hills</td>
+        <td>janedoe@email.com</td>
+        <td>Jane</td>
+    </tr>
+    <tr>
+        <td>Byrne</td>
+        <td>24</td>
+        <td>San Diego</td>
+        <td>robbyrne@email.com</td>
+        <td>Rob</td>
+    </tr>
+    <tr>
+        <td>Smith</td>
+        <td>46</td>
+        <td>Sacramento</td>
+        <td>johnsmith@email.com</td>
+        <td>John</td>
+    </tr>
 </table>
 </div>
 
@@ -14628,24 +14620,20 @@ CREATE TABLE users (
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-            <th>lastname</th>
-            <th>age</th>
-            <th>city</th>
-            <th>email</th>
-            <th>firstname</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Doe</td>
-            <td>36</td>
-            <td>Beverly Hills</td>
-            <td>janedoe@email.com</td>
-            <td>Jane</td>
-        </tr>
-    </tbody>
+    <tr>
+        <th>lastname</th>
+        <th>age</th>
+        <th>city</th>
+        <th>email</th>
+        <th>firstname</th>
+    </tr>
+    <tr>
+        <td>Doe</td>
+        <td>36</td>
+        <td>Beverly Hills</td>
+        <td>janedoe@email.com</td>
+        <td>Jane</td>
+    </tr>
 </table>
 </div>
 
@@ -14720,24 +14708,20 @@ CREATE TABLE users (
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-            <th>lastname</th>
-            <th>age</th>
-            <th>city</th>
-            <th>email</th>
-            <th>firstname</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Doe</td>
-            <td>36</td>
-            <td>San Jose</td>
-            <td>janedoe@email.com</td>
-            <td>Jane</td>
-        </tr>
-    </tbody>
+    <tr>
+        <th>lastname</th>
+        <th>age</th>
+        <th>city</th>
+        <th>email</th>
+        <th>firstname</th>
+    </tr>
+    <tr>
+        <td>Doe</td>
+        <td>36</td>
+        <td>San Jose</td>
+        <td>janedoe@email.com</td>
+        <td>Jane</td>
+    </tr>
 </table>
 </div>
 
@@ -14812,31 +14796,27 @@ CREATE TABLE users (
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-            <th>lastname</th>
-            <th>age</th>
-            <th>city</th>
-            <th>email</th>
-            <th>firstname</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Byrne</td>
-            <td>24</td>
-            <td>San Diego</td>
-            <td>robbyrne@email.com</td>
-            <td>Rob</td>
-        </tr>
-        <tr>
-            <td>Smith</td>
-            <td>46</td>
-            <td>Sacramento</td>
-            <td>johnsmith@email.com</td>
-            <td>John</td>
-        </tr>
-    </tbody>
+    <tr>
+        <th>lastname</th>
+        <th>age</th>
+        <th>city</th>
+        <th>email</th>
+        <th>firstname</th>
+    </tr>
+    <tr>
+        <td>Byrne</td>
+        <td>24</td>
+        <td>San Diego</td>
+        <td>robbyrne@email.com</td>
+        <td>Rob</td>
+    </tr>
+    <tr>
+        <td>Smith</td>
+        <td>46</td>
+        <td>Sacramento</td>
+        <td>johnsmith@email.com</td>
+        <td>John</td>
+    </tr>
 </table>
 </div>
 
@@ -14914,24 +14894,20 @@ ALLOW FILTERING;
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-            <th>lastname</th>
-            <th>age</th>
-            <th>city</th>
-            <th>email</th>
-            <th>firstname</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Byrne</td>
-            <td>24</td>
-            <td>San Diego</td>
-            <td>robbyrne@email.com</td>
-            <td>Rob</td>
-        </tr>
-    </tbody>
+    <tr>
+        <th>lastname</th>
+        <th>age</th>
+        <th>city</th>
+        <th>email</th>
+        <th>firstname</th>
+    </tr>
+    <tr>
+        <td>Byrne</td>
+        <td>24</td>
+        <td>San Diego</td>
+        <td>robbyrne@email.com</td>
+        <td>Rob</td>
+    </tr>
 </table>
 </div>
 
@@ -15008,24 +14984,20 @@ SELECT * FROM users WHERE city = 'San Diego';
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-            <th>lastname</th>
-            <th>age</th>
-            <th>city</th>
-            <th>email</th>
-            <th>firstname</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Byrne</td>
-            <td>24</td>
-            <td>San Diego</td>
-            <td>robbyrne@email.com</td>
-            <td>Rob</td>
-        </tr>
-    </tbody>
+    <tr>
+        <th>lastname</th>
+        <th>age</th>
+        <th>city</th>
+        <th>email</th>
+        <th>firstname</th>
+    </tr>
+    <tr>
+        <td>Byrne</td>
+        <td>24</td>
+        <td>San Diego</td>
+        <td>robbyrne@email.com</td>
+        <td>Rob</td>
+    </tr>
 </table>
 </div>
 

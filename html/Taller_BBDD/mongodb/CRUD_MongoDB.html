@@ -10,9 +10,9 @@
 
 <style type="text/css">
     pre { line-height: 125%; }
-td.linenos pre { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
-span.linenos { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
-td.linenos pre.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 .highlight .hll { background-color: var(--jp-cell-editor-active-background) }
 .highlight { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
@@ -14375,7 +14375,7 @@ a.anchor-link {
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;pymongo.results.InsertOneResult at 0x7f6205c4aa08&gt;</pre>
+<pre>&lt;pymongo.results.InsertOneResult at 0x7f5c6d26d808&gt;</pre>
 </div>
 
 </div>
@@ -14461,7 +14461,7 @@ a.anchor-link {
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;pymongo.results.InsertOneResult at 0x7f6205d847c8&gt;</pre>
+<pre>&lt;pymongo.results.InsertOneResult at 0x7f5c6c873ac8&gt;</pre>
 </div>
 
 </div>
@@ -14503,7 +14503,7 @@ a.anchor-link {
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;pymongo.results.InsertOneResult at 0x7f6205c70f88&gt;</pre>
+<pre>&lt;pymongo.results.InsertOneResult at 0x7f5c6c873a88&gt;</pre>
 </div>
 
 </div>
@@ -14549,7 +14549,7 @@ a.anchor-link {
  'author': 'Mike',
  'text': 'My first blog post!',
  'tags': ['mongodb', 'python', 'pymongo'],
- 'date': datetime.datetime(2020, 12, 25, 7, 24, 24, 730000)}</pre>
+ 'date': datetime.datetime(2021, 3, 25, 16, 47, 24, 70000)}</pre>
 </div>
 
 </div>
@@ -14587,9 +14587,9 @@ FROM posts<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>{'_id': 1, 'author': 'Mike', 'text': 'My first blog post!', 'tags': ['mongodb', 'python', 'pymongo'], 'date': datetime.datetime(2020, 12, 25, 7, 24, 24, 730000)}
-{'_id': ObjectId('5fe593a856bc28d7b14e94dc'), 'author': 'Mike', 'text': 'My first blog post!', 'tags': ['mongodb', 'python', 'pymongo'], 'date': datetime.datetime(2020, 12, 25, 7, 24, 24, 759000)}
-{'_id': ObjectId('5fe593a856bc28d7b14e94dd'), 'author': 'Arthur', 'text': 'I love MongoDB!', 'tags': ['mongodb'], 'date': datetime.datetime(2020, 12, 25, 7, 24, 24, 766000)}
+<pre>{'_id': 1, 'author': 'Mike', 'text': 'My first blog post!', 'tags': ['mongodb', 'python', 'pymongo'], 'date': datetime.datetime(2021, 3, 25, 16, 47, 24, 70000)}
+{'_id': ObjectId('605cbe9c5d39400a52163934'), 'author': 'Mike', 'text': 'My first blog post!', 'tags': ['mongodb', 'python', 'pymongo'], 'date': datetime.datetime(2021, 3, 25, 16, 47, 24, 103000)}
+{'_id': ObjectId('605cbe9c5d39400a52163935'), 'author': 'Arthur', 'text': 'I love MongoDB!', 'tags': ['mongodb'], 'date': datetime.datetime(2021, 3, 25, 16, 47, 24, 110000)}
 </pre>
 </div>
 </div>
@@ -14628,7 +14628,7 @@ WHERE author = 'Arthur'<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>{'_id': ObjectId('5fe593a856bc28d7b14e94dd'), 'author': 'Arthur', 'text': 'I love MongoDB!', 'tags': ['mongodb'], 'date': datetime.datetime(2020, 12, 25, 7, 24, 24, 766000)}
+<pre>{'_id': ObjectId('605cbe9c5d39400a52163935'), 'author': 'Arthur', 'text': 'I love MongoDB!', 'tags': ['mongodb'], 'date': datetime.datetime(2021, 3, 25, 16, 47, 24, 110000)}
 </pre>
 </div>
 </div>
@@ -14665,7 +14665,7 @@ WHERE author = 'Arthur'<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>{'author': 'Arthur', 'text': 'I love MongoDB!', 'tags': ['mongodb'], 'date': datetime.datetime(2020, 12, 25, 7, 24, 24, 766000)}
+<pre>{'author': 'Arthur', 'text': 'I love MongoDB!', 'tags': ['mongodb'], 'date': datetime.datetime(2021, 3, 25, 16, 47, 24, 110000)}
 </pre>
 </div>
 </div>
@@ -14704,7 +14704,7 @@ WHERE author = 'Arthur'<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>{'_id': ObjectId('5fe593a856bc28d7b14e94dd'), 'author': 'Arthur', 'text': 'I love MongoDB!'}
+<pre>{'_id': ObjectId('605cbe9c5d39400a52163935'), 'author': 'Arthur', 'text': 'I love MongoDB!'}
 </pre>
 </div>
 </div>
@@ -14744,8 +14744,8 @@ ORDER BY date DESC<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>{'author': 'Mike', 'text': 'My first blog post!', 'tags': ['mongodb', 'python', 'pymongo'], 'date': datetime.datetime(2020, 12, 25, 7, 24, 24, 759000)}
-{'author': 'Mike', 'text': 'My first blog post!', 'tags': ['mongodb', 'python', 'pymongo'], 'date': datetime.datetime(2020, 12, 25, 7, 24, 24, 730000)}
+<pre>{'author': 'Mike', 'text': 'My first blog post!', 'tags': ['mongodb', 'python', 'pymongo'], 'date': datetime.datetime(2021, 3, 25, 16, 47, 24, 103000)}
+{'author': 'Mike', 'text': 'My first blog post!', 'tags': ['mongodb', 'python', 'pymongo'], 'date': datetime.datetime(2021, 3, 25, 16, 47, 24, 70000)}
 </pre>
 </div>
 </div>
@@ -14798,8 +14798,8 @@ GROUP BY author<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>{'total': 1, 'author': 'Arthur'}
-{'total': 2, 'author': 'Mike'}
+<pre>{'total': 2, 'author': 'Mike'}
+{'total': 1, 'author': 'Arthur'}
 </pre>
 </div>
 </div>
@@ -14808,16 +14808,10 @@ GROUP BY author<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 
 </div>
 
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>SELECT author, count(*)
+</div>SELECT author, count(*)
 FROM posts
 GROUP BY author
-HAVING author = 'Arthur'</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+HAVING author = 'Arthur'<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
@@ -14891,7 +14885,7 @@ HAVING author = 'Arthur'</p>
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;pymongo.results.UpdateResult at 0x7f6205c70a08&gt;</pre>
+<pre>&lt;pymongo.results.UpdateResult at 0x7f5c6c796ec8&gt;</pre>
 </div>
 
 </div>
@@ -14932,7 +14926,7 @@ HAVING author = 'Arthur'</p>
  'author': 'Mike',
  'text': 'My first blog post!',
  'tags': ['mongodb', 'python', 'pymongo'],
- 'date': datetime.datetime(2020, 12, 25, 7, 24, 24, 730000),
+ 'date': datetime.datetime(2021, 3, 25, 16, 47, 24, 70000),
  'new_field': 1}</pre>
 </div>
 
@@ -14981,7 +14975,7 @@ HAVING author = 'Arthur'</p>
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;pymongo.results.DeleteResult at 0x7f6205c78888&gt;</pre>
+<pre>&lt;pymongo.results.DeleteResult at 0x7f5c6c873ac8&gt;</pre>
 </div>
 
 </div>

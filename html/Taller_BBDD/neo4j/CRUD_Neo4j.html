@@ -10,9 +10,9 @@
 
 <style type="text/css">
     pre { line-height: 125%; }
-td.linenos pre { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
-span.linenos { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
-td.linenos pre.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 .highlight .hll { background-color: var(--jp-cell-editor-active-background) }
 .highlight { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
@@ -14359,12 +14359,8 @@ DELETE n,r
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-        </tr>
-    </thead>
-    <tbody>
-    </tbody>
+    <tr>
+    </tr>
 </table>
 </div>
 
@@ -14423,16 +14419,12 @@ RETURN ann
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-            <th>ann</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{'name': 'Ann'}</td>
-        </tr>
-    </tbody>
+    <tr>
+        <th>ann</th>
+    </tr>
+    <tr>
+        <td>{'name': 'Ann'}</td>
+    </tr>
 </table>
 </div>
 
@@ -14484,16 +14476,12 @@ RETURN ann
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-            <th>dan</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{'name': 'Dan'}</td>
-        </tr>
-    </tbody>
+    <tr>
+        <th>dan</th>
+    </tr>
+    <tr>
+        <td>{'name': 'Dan'}</td>
+    </tr>
 </table>
 </div>
 
@@ -14551,12 +14539,8 @@ CREATE (a)-[:KNOWS]-&gt;(b)
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-        </tr>
-    </thead>
-    <tbody>
-    </tbody>
+    <tr>
+    </tr>
 </table>
 </div>
 
@@ -14620,16 +14604,12 @@ MERGE (n:Person { name: 'Victor' , age : 20}) RETURN n
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-            <th>n</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{'name': 'Victor', 'age': 20}</td>
-        </tr>
-    </tbody>
+    <tr>
+        <th>n</th>
+    </tr>
+    <tr>
+        <td>{'name': 'Victor', 'age': 20}</td>
+    </tr>
 </table>
 </div>
 
@@ -14695,20 +14675,16 @@ RETURN a,type(r),b
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-            <th>a</th>
-            <th>type(r)</th>
-            <th>b</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{'name': 'Ann'}</td>
-            <td>KNOWS</td>
-            <td>{'name': 'Dan'}</td>
-        </tr>
-    </tbody>
+    <tr>
+        <th>a</th>
+        <th>type(r)</th>
+        <th>b</th>
+    </tr>
+    <tr>
+        <td>{'name': 'Ann'}</td>
+        <td>KNOWS</td>
+        <td>{'name': 'Dan'}</td>
+    </tr>
 </table>
 </div>
 
@@ -14761,20 +14737,16 @@ RETURN a,type(r),b
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-            <th>a</th>
-            <th>type(r)</th>
-            <th>b</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{'name': 'Ann'}</td>
-            <td>KNOWS</td>
-            <td>{'name': 'Victor', 'age': 20}</td>
-        </tr>
-    </tbody>
+    <tr>
+        <th>a</th>
+        <th>type(r)</th>
+        <th>b</th>
+    </tr>
+    <tr>
+        <td>{'name': 'Ann'}</td>
+        <td>KNOWS</td>
+        <td>{'name': 'Victor', 'age': 20}</td>
+    </tr>
 </table>
 </div>
 
@@ -14838,12 +14810,8 @@ CREATE
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-        </tr>
-    </thead>
-    <tbody>
-    </tbody>
+    <tr>
+    </tr>
 </table>
 </div>
 
@@ -14900,28 +14868,24 @@ RETURN n.name
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-            <th>n.name</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Ann</td>
-        </tr>
-        <tr>
-            <td>Dan</td>
-        </tr>
-        <tr>
-            <td>Felix</td>
-        </tr>
-        <tr>
-            <td>Mariam</td>
-        </tr>
-        <tr>
-            <td>Victor</td>
-        </tr>
-    </tbody>
+    <tr>
+        <th>n.name</th>
+    </tr>
+    <tr>
+        <td>Ann</td>
+    </tr>
+    <tr>
+        <td>Dan</td>
+    </tr>
+    <tr>
+        <td>Felix</td>
+    </tr>
+    <tr>
+        <td>Mariam</td>
+    </tr>
+    <tr>
+        <td>Victor</td>
+    </tr>
 </table>
 </div>
 
@@ -14973,16 +14937,12 @@ RETURN n.name
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-            <th>n.name</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Ann</td>
-        </tr>
-    </tbody>
+    <tr>
+        <th>n.name</th>
+    </tr>
+    <tr>
+        <td>Ann</td>
+    </tr>
 </table>
 </div>
 
@@ -15035,16 +14995,12 @@ RETURN n.name
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-            <th>n.name</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Ann</td>
-        </tr>
-    </tbody>
+    <tr>
+        <th>n.name</th>
+    </tr>
+    <tr>
+        <td>Ann</td>
+    </tr>
 </table>
 </div>
 
@@ -15097,16 +15053,12 @@ RETURN n
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-            <th>n</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{'name': 'Victor', 'age': 20}</td>
-        </tr>
-    </tbody>
+    <tr>
+        <th>n</th>
+    </tr>
+    <tr>
+        <td>{'name': 'Victor', 'age': 20}</td>
+    </tr>
 </table>
 </div>
 
@@ -15158,22 +15110,18 @@ RETURN n,neighbors
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-            <th>n</th>
-            <th>neighbors</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{'name': 'Ann'}</td>
-            <td>{'name': 'Victor', 'age': 20}</td>
-        </tr>
-        <tr>
-            <td>{'name': 'Ann'}</td>
-            <td>{'name': 'Dan'}</td>
-        </tr>
-    </tbody>
+    <tr>
+        <th>n</th>
+        <th>neighbors</th>
+    </tr>
+    <tr>
+        <td>{'name': 'Ann'}</td>
+        <td>{'name': 'Victor', 'age': 20}</td>
+    </tr>
+    <tr>
+        <td>{'name': 'Ann'}</td>
+        <td>{'name': 'Dan'}</td>
+    </tr>
 </table>
 </div>
 
@@ -15227,22 +15175,18 @@ LIMIT 10
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>count</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Victor</td>
-            <td>1</td>
-        </tr>
-        <tr>
-            <td>Dan</td>
-            <td>1</td>
-        </tr>
-    </tbody>
+    <tr>
+        <th>Name</th>
+        <th>count</th>
+    </tr>
+    <tr>
+        <td>Victor</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>Dan</td>
+        <td>1</td>
+    </tr>
 </table>
 </div>
 
@@ -15294,22 +15238,18 @@ RETURN DISTINCT n, neighbors
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-            <th>n</th>
-            <th>neighbors</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{'name': 'Victor', 'age': 20}</td>
-            <td>{'name': 'Dan'}</td>
-        </tr>
-        <tr>
-            <td>{'name': 'Victor', 'age': 20}</td>
-            <td>{'name': 'Ann'}</td>
-        </tr>
-    </tbody>
+    <tr>
+        <th>n</th>
+        <th>neighbors</th>
+    </tr>
+    <tr>
+        <td>{'name': 'Victor', 'age': 20}</td>
+        <td>{'name': 'Dan'}</td>
+    </tr>
+    <tr>
+        <td>{'name': 'Victor', 'age': 20}</td>
+        <td>{'name': 'Ann'}</td>
+    </tr>
 </table>
 </div>
 
@@ -15361,18 +15301,14 @@ RETURN n, collect(DISTINCT neighbors)
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-            <th>n</th>
-            <th>collect(DISTINCT neighbors)</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{'name': 'Dan'}</td>
-            <td>[{'name': 'Victor', 'age': 20}, {'name': 'Ann'}]</td>
-        </tr>
-    </tbody>
+    <tr>
+        <th>n</th>
+        <th>collect(DISTINCT neighbors)</th>
+    </tr>
+    <tr>
+        <td>{'name': 'Dan'}</td>
+        <td>[{'name': 'Victor', 'age': 20}, {'name': 'Ann'}]</td>
+    </tr>
 </table>
 </div>
 
@@ -15429,12 +15365,8 @@ SET n.hair = "Brown"
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-        </tr>
-    </thead>
-    <tbody>
-    </tbody>
+    <tr>
+    </tr>
 </table>
 </div>
 
@@ -15493,16 +15425,12 @@ RETURN n;
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-            <th>n</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{'name': 'Alex'}</td>
-        </tr>
-    </tbody>
+    <tr>
+        <th>n</th>
+    </tr>
+    <tr>
+        <td>{'name': 'Alex'}</td>
+    </tr>
 </table>
 </div>
 
@@ -15554,12 +15482,8 @@ DELETE Alex
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-        </tr>
-    </thead>
-    <tbody>
-    </tbody>
+    <tr>
+    </tr>
 </table>
 </div>
 
@@ -15618,16 +15542,12 @@ RETURN p
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-            <th>p</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>[{'hair': 'Brown', 'name': 'Ann'}, {}, {'name': 'Dan'}]</td>
-        </tr>
-    </tbody>
+    <tr>
+        <th>p</th>
+    </tr>
+    <tr>
+        <td>[{'hair': 'Brown', 'name': 'Ann'}, {}, {'name': 'Dan'}]</td>
+    </tr>
 </table>
 </div>
 
@@ -15681,16 +15601,12 @@ RETURN p
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-            <th>p</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>[{'name': 'Victor', 'age': 20}, {}, {'hair': 'Brown', 'name': 'Ann'}, {}, {'name': 'Dan'}]</td>
-        </tr>
-    </tbody>
+    <tr>
+        <th>p</th>
+    </tr>
+    <tr>
+        <td>[{'name': 'Victor', 'age': 20}, {}, {'hair': 'Brown', 'name': 'Ann'}, {}, {'name': 'Dan'}]</td>
+    </tr>
 </table>
 </div>
 

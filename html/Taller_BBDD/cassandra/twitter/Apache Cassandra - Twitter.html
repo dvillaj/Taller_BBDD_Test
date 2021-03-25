@@ -10,9 +10,9 @@
 
 <style type="text/css">
     pre { line-height: 125%; }
-td.linenos pre { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
-span.linenos { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
-td.linenos pre.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 .highlight .hll { background-color: var(--jp-cell-editor-active-background) }
 .highlight { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
@@ -14315,7 +14315,7 @@ DROP KEYSPACE twitter;
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>'No results.'</pre>
+<pre>"Cannot drop non existing keyspace 'twitter'."</pre>
 </div>
 
 </div>
@@ -15257,52 +15257,48 @@ WHERE screen_name IN  ( 'Grandite', 'pinaldave')
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-            <th>screen_name</th>
-            <th>created_at</th>
-            <th>description</th>
-            <th>favourites_count</th>
-            <th>followers_count</th>
-            <th>friends_count</th>
-            <th>geo_enabled</th>
-            <th>id_str</th>
-            <th>name</th>
-            <th>profile_image_url</th>
-            <th>statuses_count</th>
-            <th>time_zone</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Grandite</td>
-            <td>2008-11-28 19:24:48</td>
-            <td>Professional Business Process, Data and UML Modeling Tools</td>
-            <td>0</td>
-            <td>369</td>
-            <td>127</td>
-            <td>False</td>
-            <td>17717256</td>
-            <td>Grandite</td>
-            <td>http://pbs.twimg.com/profile_images/1373004005/G_2400dpi_at_red-tr_normal.png</td>
-            <td>8468</td>
-            <td>None</td>
-        </tr>
-        <tr>
-            <td>pinaldave</td>
-            <td>2007-05-14 02:07:41</td>
-            <td>SQL, SQL Server, MySQL, Big Data and http://t.co/AdcHKNHeDc, Independent Consultant</td>
-            <td>0</td>
-            <td>14280</td>
-            <td>555</td>
-            <td>False</td>
-            <td>6020572</td>
-            <td>Pinal Dave</td>
-            <td>http://pbs.twimg.com/profile_images/2741455121/a3b2ea7afacceea3098a3bd2fe11a082_normal.png</td>
-            <td>44873</td>
-            <td>None</td>
-        </tr>
-    </tbody>
+    <tr>
+        <th>screen_name</th>
+        <th>created_at</th>
+        <th>description</th>
+        <th>favourites_count</th>
+        <th>followers_count</th>
+        <th>friends_count</th>
+        <th>geo_enabled</th>
+        <th>id_str</th>
+        <th>name</th>
+        <th>profile_image_url</th>
+        <th>statuses_count</th>
+        <th>time_zone</th>
+    </tr>
+    <tr>
+        <td>Grandite</td>
+        <td>2008-11-28 19:24:48</td>
+        <td>Professional Business Process, Data and UML Modeling Tools</td>
+        <td>0</td>
+        <td>369</td>
+        <td>127</td>
+        <td>False</td>
+        <td>17717256</td>
+        <td>Grandite</td>
+        <td>http://pbs.twimg.com/profile_images/1373004005/G_2400dpi_at_red-tr_normal.png</td>
+        <td>8468</td>
+        <td>None</td>
+    </tr>
+    <tr>
+        <td>pinaldave</td>
+        <td>2007-05-14 02:07:41</td>
+        <td>SQL, SQL Server, MySQL, Big Data and http://t.co/AdcHKNHeDc, Independent Consultant</td>
+        <td>0</td>
+        <td>14280</td>
+        <td>555</td>
+        <td>False</td>
+        <td>6020572</td>
+        <td>Pinal Dave</td>
+        <td>http://pbs.twimg.com/profile_images/2741455121/a3b2ea7afacceea3098a3bd2fe11a082_normal.png</td>
+        <td>44873</td>
+        <td>None</td>
+    </tr>
 </table>
 </div>
 
@@ -15348,52 +15344,48 @@ LIMIT 2
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-            <th>id</th>
-            <th>created_at</th>
-            <th>entities</th>
-            <th>favorite_count</th>
-            <th>geo</th>
-            <th>lang</th>
-            <th>retweet_count</th>
-            <th>retweet_id</th>
-            <th>source</th>
-            <th>text</th>
-            <th>user</th>
-            <th>user_mentions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>658043028339302400</td>
-            <td>2015-10-24 22:10:58</td>
-            <td>None</td>
-            <td>0</td>
-            <td>None</td>
-            <td>en</td>
-            <td>0</td>
-            <td>None</td>
-            <td>&lt;a href="https://about.twitter.com/products/tweetdeck" rel="nofollow"&gt;TweetDeck&lt;/a&gt;</td>
-            <td>.@Grandite's Not Only NoSQL https://t.co/lyVRzT59LD featuring @AxelTroike @Rick345 @DataStax @not_only_NoSQL</td>
-            <td>Grandite</td>
-            <td>['Grandite', 'AxelTroike', 'Rick345', 'DataStax', 'not_only_NoSQL']</td>
-        </tr>
-        <tr>
-            <td>657584598008770560</td>
-            <td>2015-10-23 15:49:20</td>
-            <td>None</td>
-            <td>0</td>
-            <td>None</td>
-            <td>en</td>
-            <td>0</td>
-            <td>None</td>
-            <td>&lt;a href="https://about.twitter.com/products/tweetdeck" rel="nofollow"&gt;TweetDeck&lt;/a&gt;</td>
-            <td>.@Grandite's Not Only NoSQL https://t.co/2YuydUtS6F featuring @not_only_NoSQL @Rick345 @craigmullins</td>
-            <td>Grandite</td>
-            <td>['Grandite', 'not_only_NoSQL', 'Rick345', 'craigmullins']</td>
-        </tr>
-    </tbody>
+    <tr>
+        <th>id</th>
+        <th>created_at</th>
+        <th>entities</th>
+        <th>favorite_count</th>
+        <th>geo</th>
+        <th>lang</th>
+        <th>retweet_count</th>
+        <th>retweet_id</th>
+        <th>source</th>
+        <th>text</th>
+        <th>user</th>
+        <th>user_mentions</th>
+    </tr>
+    <tr>
+        <td>658043028339302400</td>
+        <td>2015-10-24 22:10:58</td>
+        <td>None</td>
+        <td>0</td>
+        <td>None</td>
+        <td>en</td>
+        <td>0</td>
+        <td>None</td>
+        <td>&lt;a href="https://about.twitter.com/products/tweetdeck" rel="nofollow"&gt;TweetDeck&lt;/a&gt;</td>
+        <td>.@Grandite's Not Only NoSQL https://t.co/lyVRzT59LD featuring @AxelTroike @Rick345 @DataStax @not_only_NoSQL</td>
+        <td>Grandite</td>
+        <td>['Grandite', 'AxelTroike', 'Rick345', 'DataStax', 'not_only_NoSQL']</td>
+    </tr>
+    <tr>
+        <td>657584598008770560</td>
+        <td>2015-10-23 15:49:20</td>
+        <td>None</td>
+        <td>0</td>
+        <td>None</td>
+        <td>en</td>
+        <td>0</td>
+        <td>None</td>
+        <td>&lt;a href="https://about.twitter.com/products/tweetdeck" rel="nofollow"&gt;TweetDeck&lt;/a&gt;</td>
+        <td>.@Grandite's Not Only NoSQL https://t.co/2YuydUtS6F featuring @not_only_NoSQL @Rick345 @craigmullins</td>
+        <td>Grandite</td>
+        <td>['Grandite', 'not_only_NoSQL', 'Rick345', 'craigmullins']</td>
+    </tr>
 </table>
 </div>
 
@@ -15494,34 +15486,30 @@ LIMIT 2
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-            <th>user</th>
-            <th>created_at</th>
-            <th>id</th>
-            <th>lang</th>
-            <th>retweet_id</th>
-            <th>text</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Grandite</td>
-            <td>2015-10-24 22:10:58</td>
-            <td>658043028339302400</td>
-            <td>en</td>
-            <td>None</td>
-            <td>.@Grandite's Not Only NoSQL https://t.co/lyVRzT59LD featuring @AxelTroike @Rick345 @DataStax @not_only_NoSQL</td>
-        </tr>
-        <tr>
-            <td>Grandite</td>
-            <td>2015-10-23 15:49:20</td>
-            <td>657584598008770560</td>
-            <td>en</td>
-            <td>None</td>
-            <td>.@Grandite's Not Only NoSQL https://t.co/2YuydUtS6F featuring @not_only_NoSQL @Rick345 @craigmullins</td>
-        </tr>
-    </tbody>
+    <tr>
+        <th>user</th>
+        <th>created_at</th>
+        <th>id</th>
+        <th>lang</th>
+        <th>retweet_id</th>
+        <th>text</th>
+    </tr>
+    <tr>
+        <td>Grandite</td>
+        <td>2015-10-24 22:10:58</td>
+        <td>658043028339302400</td>
+        <td>en</td>
+        <td>None</td>
+        <td>.@Grandite's Not Only NoSQL https://t.co/lyVRzT59LD featuring @AxelTroike @Rick345 @DataStax @not_only_NoSQL</td>
+    </tr>
+    <tr>
+        <td>Grandite</td>
+        <td>2015-10-23 15:49:20</td>
+        <td>657584598008770560</td>
+        <td>en</td>
+        <td>None</td>
+        <td>.@Grandite's Not Only NoSQL https://t.co/2YuydUtS6F featuring @not_only_NoSQL @Rick345 @craigmullins</td>
+    </tr>
 </table>
 </div>
 
@@ -15567,52 +15555,48 @@ LIMIT 2
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-            <th>id</th>
-            <th>created_at</th>
-            <th>entities</th>
-            <th>favorite_count</th>
-            <th>geo</th>
-            <th>lang</th>
-            <th>retweet_count</th>
-            <th>retweet_id</th>
-            <th>source</th>
-            <th>text</th>
-            <th>user</th>
-            <th>user_mentions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>656958312899092484</td>
-            <td>2015-10-21 22:20:42</td>
-            <td>['BigData', 'Java', 'SoapUi', 'Hadoop', 'NoSQL', 'hive', 'MongoDB']</td>
-            <td>0</td>
-            <td>None</td>
-            <td>en</td>
-            <td>2</td>
-            <td>None</td>
-            <td>&lt;a href="https://gamedevbrain.wordpress.com/" rel="nofollow"&gt;BigDataTweetBot&lt;/a&gt;</td>
-            <td>RT @geneolot: Hottest in a sense of Technology and women #BigData #Java #SoapUi #Hadoop #NoSQL #hive #MongoDB https://t.co/CD55jAQOx0</td>
-            <td>BigDataTweetBot</td>
-            <td>['geneolot']</td>
-        </tr>
-        <tr>
-            <td>657012074699210752</td>
-            <td>2015-10-22 01:54:19</td>
-            <td>['BigData', 'Java', 'SoapUi', 'Hadoop', 'NoSQL', 'hive', 'MongoDB']</td>
-            <td>0</td>
-            <td>None</td>
-            <td>sl</td>
-            <td>1</td>
-            <td>None</td>
-            <td>&lt;a href="http://ifttt.com" rel="nofollow"&gt;IFTTT&lt;/a&gt;</td>
-            <td>geneolot: #BigData #Java #SoapUi #Hadoop #NoSQL #hive #MongoDB https://t.co/SlxhhHnaEz</td>
-            <td>ClearGrip</td>
-            <td>None</td>
-        </tr>
-    </tbody>
+    <tr>
+        <th>id</th>
+        <th>created_at</th>
+        <th>entities</th>
+        <th>favorite_count</th>
+        <th>geo</th>
+        <th>lang</th>
+        <th>retweet_count</th>
+        <th>retweet_id</th>
+        <th>source</th>
+        <th>text</th>
+        <th>user</th>
+        <th>user_mentions</th>
+    </tr>
+    <tr>
+        <td>656958312899092484</td>
+        <td>2015-10-21 22:20:42</td>
+        <td>['BigData', 'Java', 'SoapUi', 'Hadoop', 'NoSQL', 'hive', 'MongoDB']</td>
+        <td>0</td>
+        <td>None</td>
+        <td>en</td>
+        <td>2</td>
+        <td>None</td>
+        <td>&lt;a href="https://gamedevbrain.wordpress.com/" rel="nofollow"&gt;BigDataTweetBot&lt;/a&gt;</td>
+        <td>RT @geneolot: Hottest in a sense of Technology and women #BigData #Java #SoapUi #Hadoop #NoSQL #hive #MongoDB https://t.co/CD55jAQOx0</td>
+        <td>BigDataTweetBot</td>
+        <td>['geneolot']</td>
+    </tr>
+    <tr>
+        <td>657012074699210752</td>
+        <td>2015-10-22 01:54:19</td>
+        <td>['BigData', 'Java', 'SoapUi', 'Hadoop', 'NoSQL', 'hive', 'MongoDB']</td>
+        <td>0</td>
+        <td>None</td>
+        <td>sl</td>
+        <td>1</td>
+        <td>None</td>
+        <td>&lt;a href="http://ifttt.com" rel="nofollow"&gt;IFTTT&lt;/a&gt;</td>
+        <td>geneolot: #BigData #Java #SoapUi #Hadoop #NoSQL #hive #MongoDB https://t.co/SlxhhHnaEz</td>
+        <td>ClearGrip</td>
+        <td>None</td>
+    </tr>
 </table>
 </div>
 
@@ -15659,55 +15643,51 @@ LIMIT 4
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-            <th>hashtag</th>
-            <th>created_at</th>
-            <th>id</th>
-            <th>lang</th>
-            <th>retweet_id</th>
-            <th>text</th>
-            <th>user</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>NoSQL</td>
-            <td>2015-10-24 23:36:01</td>
-            <td>658064431687970816</td>
-            <td>en</td>
-            <td>None</td>
-            <td>RT @McMcgregory: @nodenow: giantapp : #SaaS #cloud #growthhacking #startup  #cloudcomputing #DevOps #MongoDB #nodejs #NoSQL #AngularJS #Had…</td>
-            <td>Growth__Hacking</td>
-        </tr>
-        <tr>
-            <td>NoSQL</td>
-            <td>2015-10-24 23:25:19</td>
-            <td>658061737422430208</td>
-            <td>en</td>
-            <td>None</td>
-            <td>RT @McMcgregory: @nodenow: giantapp : #SaaS #cloud #growthhacking #startup  #cloudcomputing #DevOps #MongoDB #nodejs #NoSQL #AngularJS #Had…</td>
-            <td>Dev_Topics</td>
-        </tr>
-        <tr>
-            <td>NoSQL</td>
-            <td>2015-10-24 23:25:12</td>
-            <td>658061709899386880</td>
-            <td>en</td>
-            <td>None</td>
-            <td>RT @javacodegeeks: #MongoDB Tutorial: A Scalable #NoSQL DB - MEGA Course https://t.co/7nz9NgHFnK https://t.co/EQYQ862oTY</td>
-            <td>Dev_Topics</td>
-        </tr>
-        <tr>
-            <td>NoSQL</td>
-            <td>2015-10-24 23:01:31</td>
-            <td>658055751911477248</td>
-            <td>in</td>
-            <td>None</td>
-            <td>vikasjee: Dev_Topics: RT SiliconArmada: Software Engineer AOL in Dublin, IRL https://t.co/MCdfXlguhv   #Java #Scripting #REST #NoSQL #Chef…</td>
-            <td>vikasjee</td>
-        </tr>
-    </tbody>
+    <tr>
+        <th>hashtag</th>
+        <th>created_at</th>
+        <th>id</th>
+        <th>lang</th>
+        <th>retweet_id</th>
+        <th>text</th>
+        <th>user</th>
+    </tr>
+    <tr>
+        <td>NoSQL</td>
+        <td>2015-10-24 23:36:01</td>
+        <td>658064431687970816</td>
+        <td>en</td>
+        <td>None</td>
+        <td>RT @McMcgregory: @nodenow: giantapp : #SaaS #cloud #growthhacking #startup  #cloudcomputing #DevOps #MongoDB #nodejs #NoSQL #AngularJS #Had…</td>
+        <td>Growth__Hacking</td>
+    </tr>
+    <tr>
+        <td>NoSQL</td>
+        <td>2015-10-24 23:25:19</td>
+        <td>658061737422430208</td>
+        <td>en</td>
+        <td>None</td>
+        <td>RT @McMcgregory: @nodenow: giantapp : #SaaS #cloud #growthhacking #startup  #cloudcomputing #DevOps #MongoDB #nodejs #NoSQL #AngularJS #Had…</td>
+        <td>Dev_Topics</td>
+    </tr>
+    <tr>
+        <td>NoSQL</td>
+        <td>2015-10-24 23:25:12</td>
+        <td>658061709899386880</td>
+        <td>en</td>
+        <td>None</td>
+        <td>RT @javacodegeeks: #MongoDB Tutorial: A Scalable #NoSQL DB - MEGA Course https://t.co/7nz9NgHFnK https://t.co/EQYQ862oTY</td>
+        <td>Dev_Topics</td>
+    </tr>
+    <tr>
+        <td>NoSQL</td>
+        <td>2015-10-24 23:01:31</td>
+        <td>658055751911477248</td>
+        <td>in</td>
+        <td>None</td>
+        <td>vikasjee: Dev_Topics: RT SiliconArmada: Software Engineer AOL in Dublin, IRL https://t.co/MCdfXlguhv   #Java #Scripting #REST #NoSQL #Chef…</td>
+        <td>vikasjee</td>
+    </tr>
 </table>
 </div>
 
