@@ -10,9 +10,9 @@
 
 <style type="text/css">
     pre { line-height: 125%; }
-td.linenos pre { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
-span.linenos { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
-td.linenos pre.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 .highlight .hll { background-color: var(--jp-cell-editor-active-background) }
 .highlight { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
@@ -14292,7 +14292,7 @@ a.anchor-link {
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
@@ -14304,6 +14304,27 @@ a.anchor-link {
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>dropdb: error: database removal failed: ERROR:  database "tajetasblack" does not exist
+</pre>
+</div>
+</div>
+
+</div>
+
 </div>
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14439,28 +14460,24 @@ a.anchor-link {
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 <table>
-    <thead>
-        <tr>
-            <th>id_consejero</th>
-            <th>nombre</th>
-            <th>funcion</th>
-            <th>organizacion</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>1</td>
-            <td>Alberto Recarte García Andrade</td>
-            <td>concejal</td>
-            <td>Partido Popular</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Alejandro Couceiro Ojeda</td>
-            <td>concejal</td>
-            <td>CEIM</td>
-        </tr>
-    </tbody>
+    <tr>
+        <th>id_consejero</th>
+        <th>nombre</th>
+        <th>funcion</th>
+        <th>organizacion</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Alberto Recarte García Andrade</td>
+        <td>concejal</td>
+        <td>Partido Popular</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Alejandro Couceiro Ojeda</td>
+        <td>concejal</td>
+        <td>CEIM</td>
+    </tr>
 </table>
 </div>
 
