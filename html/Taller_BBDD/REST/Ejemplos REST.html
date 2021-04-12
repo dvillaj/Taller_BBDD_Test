@@ -3,7 +3,7 @@
 <head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Neo4j con Python</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>Ejemplos REST</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 
 
@@ -14259,30 +14259,7 @@ a.anchor-link {
 
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Neo4j-con-Python">Neo4j con Python<a class="anchor-link" href="#Neo4j-con-Python">¶</a></h1>
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a href="http://nicolewhite.github.io/neo4j-jupyter/hello-world.html">http://nicolewhite.github.io/neo4j-jupyter/hello-world.html</a></p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="py2neo">py2neo<a class="anchor-link" href="#py2neo">¶</a></h2>
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>py2neo is one of Neo4j's Python drivers. It offers a fully-featured interface for interacting with your data in Neo4j.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a href="http://py2neo.org/v3/#">http://py2neo.org/v3/#</a></p>
-
+<h2 id="Ejemplos-REST">Ejemplos REST<a class="anchor-link" href="#Ejemplos-REST">¶</a></h2>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
@@ -14290,8 +14267,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">py2neo</span> 
-<span class="nb">print</span><span class="p">(</span><span class="n">py2neo</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>curl -X GET http://localhost:8082/
 </pre></div>
 
      </div>
@@ -14311,8 +14287,7 @@ a.anchor-link {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>3.2.0
-</pre>
+<pre>Hello World!</pre>
 </div>
 </div>
 
@@ -14320,21 +14295,13 @@ a.anchor-link {
 
 </div>
 
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Connect">Connect<a class="anchor-link" href="#Connect">¶</a></h2><p>Connect to Neo4j with the Graph class.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">py2neo</span> <span class="kn">import</span> <span class="n">Graph</span>
-
-<span class="n">graph</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>curl -X GET http://localhost:8082/recipes/
 </pre></div>
 
      </div>
@@ -14342,13 +14309,33 @@ a.anchor-link {
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>LIST</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">graph</span><span class="o">.</span><span class="n">delete_all</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>curl -X GET http://localhost:8082/recipes/rectangle
 </pre></div>
 
      </div>
@@ -14356,19 +14343,33 @@ a.anchor-link {
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>GET RECIPE rectangle</pre>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Nodes">Nodes<a class="anchor-link" href="#Nodes">¶</a></h2><p>Create nodes with the Node class. The first argument is the node's label. The remaining arguments are an arbitrary amount of node properties or key-value pairs.</p>
+</div>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">py2neo</span> <span class="kn">import</span> <span class="n">Node</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>curl -X PUT http://localhost:8082/recipes/rectangle
 </pre></div>
 
      </div>
@@ -14376,22 +14377,33 @@ a.anchor-link {
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>SAVE RECIPE rectangle</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nicole</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="s2">"Person"</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"Nicole"</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
-<span class="n">drew</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="s2">"Person"</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"Drew"</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-
-<span class="n">mtdew</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="s2">"Drink"</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"Mountain Dew"</span><span class="p">,</span> <span class="n">calories</span><span class="o">=</span><span class="mi">9000</span><span class="p">)</span>
-<span class="n">cokezero</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="s2">"Drink"</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"Coke Zero"</span><span class="p">,</span> <span class="n">calories</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-
-<span class="n">coke</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="s2">"Manufacturer"</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"Coca Cola"</span><span class="p">)</span>
-<span class="n">pepsi</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="s2">"Manufacturer"</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"Pepsi"</span><span class="p">)</span>
-
-<span class="n">graph</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">nicole</span> <span class="o">|</span> <span class="n">drew</span> <span class="o">|</span> <span class="n">mtdew</span> <span class="o">|</span> <span class="n">cokezero</span> <span class="o">|</span> <span class="n">coke</span> <span class="o">|</span> <span class="n">pepsi</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>curl -X DELETE http://localhost:8082/recipes/rectangle
 </pre></div>
 
      </div>
@@ -14399,14 +14411,33 @@ a.anchor-link {
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>DELETE RECIPE rectangle</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">drew</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">city</span> <span class="o">=</span> <span class="s1">'NY'</span><span class="p">,</span> <span class="n">country</span> <span class="o">=</span> <span class="s1">'US'</span><span class="p">)</span>
-<span class="n">graph</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">drew</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>curl -X POST http://localhost:8082/recipes/rectangle
 </pre></div>
 
      </div>
@@ -14414,574 +14445,38 @@ a.anchor-link {
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>MODIFY RECIPE rectangle</pre>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>We have only one Nicole!</p>
+</div>
 
 </div>
+
+</div>
+
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">graph</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">Node</span><span class="p">(</span><span class="s2">"Person"</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"Nicole"</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">24</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 
      </div>
 </div>
 </div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scripts.vis</span> <span class="kn">import</span> <span class="n">draw</span>
-
-<span class="n">options</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"Person"</span><span class="p">:</span> <span class="s2">"name"</span><span class="p">,</span> <span class="s2">"Drink"</span><span class="p">:</span> <span class="s2">"name"</span><span class="p">,</span> <span class="s2">"Manufacturer"</span><span class="p">:</span> <span class="s2">"name"</span><span class="p">}</span>
-<span class="n">draw</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[8]:</div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-
-        <iframe width="100%" height="400" src="figures/graph-c8b008e1-52f8-4456-8be3-151e58b8cdad.html" frameborder="0" allowfullscreen></iframe>
-        
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Relationships">Relationships<a class="anchor-link" href="#Relationships">¶</a></h2><p>Create relationships between nodes with the Relationship class.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">py2neo</span> <span class="kn">import</span> <span class="n">Relationship</span>
-
-<span class="n">rel_nicole_cokezero</span> <span class="o">=</span> <span class="n">Relationship</span><span class="p">(</span><span class="n">nicole</span><span class="p">,</span> <span class="s2">"LIKES"</span><span class="p">,</span> <span class="n">cokezero</span><span class="p">)</span>
-<span class="n">rel_nicole_mtdew</span> <span class="o">=</span> <span class="n">Relationship</span><span class="p">(</span><span class="n">nicole</span><span class="p">,</span> <span class="s2">"LIKES"</span><span class="p">,</span> <span class="n">mtdew</span><span class="p">)</span>
-<span class="n">rel_drew_mtdew</span> <span class="o">=</span> <span class="n">Relationship</span><span class="p">(</span><span class="n">drew</span><span class="p">,</span> <span class="s2">"LIKES"</span><span class="p">,</span> <span class="n">mtdew</span><span class="p">)</span>
-<span class="n">rel_coke_cokezero</span> <span class="o">=</span> <span class="n">Relationship</span><span class="p">(</span><span class="n">coke</span><span class="p">,</span> <span class="s2">"MAKES"</span><span class="p">,</span> <span class="n">cokezero</span><span class="p">)</span>
-<span class="n">rel_pepsi_mtdew</span> <span class="o">=</span> <span class="n">Relationship</span><span class="p">(</span><span class="n">pepsi</span><span class="p">,</span> <span class="s2">"MAKES"</span><span class="p">,</span> <span class="n">mtdew</span><span class="p">)</span>
-
-<span class="n">graph</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">rel_nicole_cokezero</span> <span class="o">|</span> <span class="n">rel_nicole_mtdew</span> <span class="o">|</span> <span class="n">rel_drew_mtdew</span> <span class="o">|</span>  <span class="n">rel_coke_cokezero</span> <span class="o">|</span> <span class="n">rel_pepsi_mtdew</span><span class="p">)</span>
-
-<span class="n">draw</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-
-        <iframe width="100%" height="400" src="figures/graph-3b2b953b-3c05-4f13-8dde-2c07ace1473f.html" frameborder="0" allowfullscreen></iframe>
-        
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Relationships-with-atributes">Relationships with atributes<a class="anchor-link" href="#Relationships-with-atributes">¶</a></h2>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rel_drew_pepsi</span> <span class="o">=</span> <span class="n">Relationship</span><span class="p">(</span><span class="n">drew</span><span class="p">,</span> <span class="s2">"WORKS"</span><span class="p">,</span> <span class="n">pepsi</span><span class="p">,</span> <span class="n">years</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
-
-<span class="n">graph</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">rel_drew_pepsi</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Cypher">Cypher<a class="anchor-link" href="#Cypher">¶</a></h2><p>Retrieve Cypher query results with Graph.cypher.execute.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="s2">"""</span>
-<span class="s2">MATCH (person:Person)-[:LIKES]-&gt;(drink:Drink)</span>
-<span class="s2">RETURN person.name AS name, person.city as City, drink.name AS drink</span>
-<span class="s2">"""</span>
-
-<span class="n">data</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>('name': 'Drew', 'City': 'NY', 'drink': 'Mountain Dew')
-('name': 'Nicole', 'City': None, 'drink': 'Mountain Dew')
-('name': 'Nicole', 'City': None, 'drink': 'Coke Zero')
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Parameterized-Cypher">Parameterized Cypher<a class="anchor-link" href="#Parameterized-Cypher">¶</a></h2><p>Pass parameters to Cypher queries by passing additional key-value arguments to Graph.cypher.execute. Parameters in Cypher are named and are wrapped in curly braces.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="s2">"""</span>
-<span class="s2">MATCH (p:Person)-[:LIKES]-&gt;(drink:Drink)</span>
-<span class="s2">WHERE p.name = </span><span class="si">{name}</span><span class="s2"></span>
-<span class="s2">RETURN p.name AS name, AVG(drink.calories) AS avg_calories</span>
-<span class="s2">"""</span>
-
-<span class="n">data</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"Nicole"</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>('name': 'Nicole', 'avg_calories': 4500.0)
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="ipython-cypher">ipython-cypher<a class="anchor-link" href="#ipython-cypher">¶</a></h2><p>ipython-cypher exposes %cypher magic in Jupyter. Install ipython-cypher with pip install ipython-cypher.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> cypher
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Cypher">Cypher<a class="anchor-link" href="#Cypher">¶</a></h2><p>%cypher is intended for one-line Cypher queries and %%cypher is intended for multi-line Cypher queries. Placing %%cypher above a Cypher query will display that query's results.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">cypher</span>
-MATCH (person:Person)-[:LIKES]-&gt;(drink:Drink)
-RETURN person.name, drink.name, drink.calories
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>3 rows affected.
-</pre>
-</div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[14]:</div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<table>
-    <tr>
-        <th>person.name</th>
-        <th>drink.name</th>
-        <th>drink.calories</th>
-    </tr>
-    <tr>
-        <td>Drew</td>
-        <td>Mountain Dew</td>
-        <td>9000</td>
-    </tr>
-    <tr>
-        <td>Nicole</td>
-        <td>Coke Zero</td>
-        <td>0</td>
-    </tr>
-    <tr>
-        <td>Nicole</td>
-        <td>Mountain Dew</td>
-        <td>9000</td>
-    </tr>
-</table>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Pandas-Data-Frames">Pandas Data Frames<a class="anchor-link" href="#Pandas-Data-Frames">¶</a></h2><p>Cypher query results can be coerced to pandas data frames with the get_dataframe method. To assign Cypher query results to a variable, you need to use <strong>%cypher</strong> and separate lines with \</p>
-<p>You'll first need to install pandas with pip install pandas.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="o">%</span><span class="k">cypher</span> MATCH (person:Person)-[:LIKES]-&gt;(drink:Drink) \
-                  <span class="n">RETURN</span> <span class="n">person</span><span class="o">.</span><span class="n">name</span> <span class="n">AS</span> <span class="n">name</span><span class="p">,</span> <span class="n">drink</span><span class="o">.</span><span class="n">name</span> <span class="n">AS</span> <span class="n">drink</span>
-    
-<span class="n">df</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">get_dataframe</span><span class="p">()</span>
-
-<span class="n">df</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>3 rows affected.
-</pre>
-</div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[15]:</div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>name</th>
-      <th>drink</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Drew</td>
-      <td>Mountain Dew</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Nicole</td>
-      <td>Mountain Dew</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Nicole</td>
-      <td>Coke Zero</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="NetworkX-Graphs">NetworkX Graphs<a class="anchor-link" href="#NetworkX-Graphs">¶</a></h2><p>Cypher query results can be coerced to NetworkX MultiDiGraphs, graphs that permit multiple edges between nodes, with the get_graph method</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
-<span class="o">%</span><span class="k">matplotlib</span> inline
-
-<span class="n">results</span> <span class="o">=</span> <span class="o">%</span><span class="k">cypher</span> MATCH p = (:Person)-[:LIKES]-&gt;(:Drink) RETURN p
-
-<span class="n">g</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">get_graph</span><span class="p">()</span>
-
-<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>3 rows affected.
-</pre>
-</div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-
-<div class="jp-RenderedImage jp-OutputArea-output ">
-<img src="data:image/png;base64,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%0A">
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[17]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>NodeDataView({'0': {'country': 'US', 'city': 'NY', 'name': 'Drew', 'age': 20, 'labels': ['Person']}, '2': {'name': 'Mountain Dew', 'calories': 9000, 'labels': ['Drink']}, '21': {'name': 'Nicole', 'age': 24, 'labels': ['Person']}, '3': {'name': 'Coke Zero', 'calories': 0, 'labels': ['Drink']}})</pre>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">degree</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[18]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>DiMultiDegreeView({'0': 1, '2': 2, '21': 2, '3': 1})</pre>
-</div>
-
-</div>
-
-</div>
-
 </div>
 
 </div>
