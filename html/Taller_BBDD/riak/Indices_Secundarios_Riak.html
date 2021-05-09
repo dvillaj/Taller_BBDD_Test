@@ -3,7 +3,7 @@
 <head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CRUD_Riak_Python</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>Indices_Secundarios_Riak</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 
 
@@ -14259,7 +14259,7 @@ a.anchor-link {
 
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Operaciones-CRUD-en-Riak-con-Python">Operaciones CRUD en Riak con Python<a class="anchor-link" href="#Operaciones-CRUD-en-Riak-con-Python">¶</a></h1>
+<h1 id="Indices-Secundarios-en-Riak">Indices Secundarios en Riak<a class="anchor-link" href="#Indices-Secundarios-en-Riak">¶</a></h1>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
@@ -14316,13 +14316,50 @@ a.anchor-link {
 
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Escritura-en-Riak">Escritura en Riak<a class="anchor-link" href="#Escritura-en-Riak">¶</a></h2>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Vamos a crear un dataset de datos ficticio y lo vamos a cargar un dataframe de Pandas</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>curl -s http://localhost:8098/stats  <span class="p">|</span> jq .riak_kv_version
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">faker</span> <span class="kn">import</span> <span class="n">Faker</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">faker</span> <span class="o">=</span> <span class="n">Faker</span><span class="p">()</span>
+<span class="n">Faker</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">4321</span><span class="p">)</span>
+<span class="n">profiles</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">profile</span> <span class="o">=</span> <span class="n">faker</span><span class="o">.</span><span class="n">simple_profile</span><span class="p">()</span>
+    <span class="n">profile</span><span class="p">[</span><span class="s1">'birthdate'</span><span class="p">]</span> <span class="o">=</span> <span class="n">profile</span><span class="p">[</span><span class="s1">'birthdate'</span><span class="p">]</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
+    <span class="n">profiles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">profile</span><span class="p">)</span> 
+
+<span class="n">dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">profiles</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="nb">str</span><span class="p">))</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dataframe</span>
 </pre></div>
 
      </div>
@@ -14338,13 +14375,133 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre><span class="ansi-green-fg">"2.1.7-0-gbd8e312"</span>
-</pre>
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>username</th>
+      <th>name</th>
+      <th>sex</th>
+      <th>address</th>
+      <th>mail</th>
+      <th>birthdate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>daniel02</td>
+      <td>Robert Duffy</td>
+      <td>M</td>
+      <td>6936 Griffin Extension Suite 018\nSouth Jim, S...</td>
+      <td>annahamilton@gmail.com</td>
+      <td>2020-10-02</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>emyers</td>
+      <td>David Moody</td>
+      <td>M</td>
+      <td>335 Gloria Street Suite 675\nMathisport, NJ 73764</td>
+      <td>webstermadeline@hotmail.com</td>
+      <td>1947-05-13</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>fosterroberto</td>
+      <td>Nicole Jones</td>
+      <td>F</td>
+      <td>84119 Fisher Vista\nEast Cherylton, MS 37193</td>
+      <td>amandacunningham@yahoo.com</td>
+      <td>2019-01-20</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>masonnguyen</td>
+      <td>Scott Lucas</td>
+      <td>M</td>
+      <td>6401 Jeff Ford\nAngelicashire, WV 53209</td>
+      <td>adam32@hotmail.com</td>
+      <td>1989-03-04</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>jamie41</td>
+      <td>Brittany Miller</td>
+      <td>F</td>
+      <td>2871 Mary Ways Apt. 812\nWest Coryhaven, MI 11710</td>
+      <td>nancy38@yahoo.com</td>
+      <td>2008-04-08</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>kmartin</td>
+      <td>Dwayne Miller</td>
+      <td>M</td>
+      <td>56403 Misty Knolls Suite 206\nMartinstad, ID 6...</td>
+      <td>gregory32@hotmail.com</td>
+      <td>2016-10-12</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>sarahdawson</td>
+      <td>Brandon Adams</td>
+      <td>M</td>
+      <td>873 Amber Underpass\nMartinezfurt, AK 85986</td>
+      <td>joshua01@hotmail.com</td>
+      <td>1972-05-13</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>andersoncheryl</td>
+      <td>Ryan Roberts</td>
+      <td>M</td>
+      <td>1210 Juarez Crest Suite 970\nSolisburgh, DC 38745</td>
+      <td>darrylbanks@yahoo.com</td>
+      <td>1949-06-16</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>ghardy</td>
+      <td>Mr. Gary Griffin</td>
+      <td>M</td>
+      <td>65885 Amber Locks Apt. 633\nNorth Steven, ND 0...</td>
+      <td>brenda14@yahoo.com</td>
+      <td>1981-12-26</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>jcherry</td>
+      <td>Andrew Martinez</td>
+      <td>M</td>
+      <td>14704 Jennifer Extensions Suite 115\nNorth Ant...</td>
+      <td>andrewhowell@hotmail.com</td>
+      <td>1948-03-09</td>
+    </tr>
+  </tbody>
+</table>
 </div>
+</div>
+
 </div>
 
 </div>
@@ -14354,32 +14511,16 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Insertar-valores">Insertar valores<a class="anchor-link" href="#Insertar-valores">¶</a></h2>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bucket</span> <span class="o">=</span> <span class="n">cliente</span><span class="o">.</span><span class="n">bucket</span><span class="p">(</span><span class="s2">"bucket_name"</span><span class="p">)</span>
-</pre></div>
+<p>Cada una de las filas del dataset es JSON (diccionario en Python)</p>
 
-     </div>
 </div>
-</div>
-</div>
-
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">key1</span> <span class="o">=</span> <span class="s2">"key_one"</span>
-<span class="n">val1</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">key</span> <span class="o">=</span> <span class="n">bucket</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">key1</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">val1</span><span class="p">)</span>
-<span class="n">key</span><span class="o">.</span><span class="n">store</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">profiles</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 
      </div>
@@ -14401,7 +14542,12 @@ a.anchor-link {
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;riak.riak_object.RiakObject at 0x7fd8b814eac8&gt;</pre>
+<pre>{'username': 'daniel02',
+ 'name': 'Robert Duffy',
+ 'sex': 'M',
+ 'address': '6936 Griffin Extension Suite 018\nSouth Jim, SD 34941',
+ 'mail': 'annahamilton@gmail.com',
+ 'birthdate': '2020-10-02'}</pre>
 </div>
 
 </div>
@@ -14416,163 +14562,9 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">key2</span> <span class="o">=</span> <span class="s2">"key_two"</span>
-<span class="n">val2</span> <span class="o">=</span> <span class="s2">"Dos"</span>
-<span class="n">key</span> <span class="o">=</span> <span class="n">bucket</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">key2</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">val2</span><span class="p">)</span>
-<span class="n">key</span><span class="o">.</span><span class="n">store</span><span class="p">()</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;riak.riak_object.RiakObject at 0x7fd8b814ef28&gt;</pre>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">key3</span> <span class="o">=</span> <span class="s2">"key_three"</span>
-<span class="n">val3</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"val1"</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="s2">"val2"</span> <span class="p">:</span> <span class="s2">"Dos"</span><span class="p">,</span>
-    <span class="s2">"val3"</span> <span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
-    
-<span class="p">}</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">key</span> <span class="o">=</span> <span class="n">bucket</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">key3</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">val3</span><span class="p">)</span>
-<span class="n">key</span><span class="o">.</span><span class="n">store</span><span class="p">()</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[8]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;riak.riak_object.RiakObject at 0x7fd8b853fb00&gt;</pre>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Insertando-imágenes">Insertando imágenes<a class="anchor-link" href="#Insertando-im%C3%A1genes">¶</a></h2>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">image_bucket</span> <span class="o">=</span> <span class="n">cliente</span><span class="o">.</span><span class="n">bucket</span><span class="p">(</span><span class="s1">'images'</span><span class="p">)</span>
-
-<span class="n">photo</span> <span class="o">=</span> <span class="n">image_bucket</span><span class="o">.</span><span class="n">new_from_file</span><span class="p">(</span><span class="s1">'image_key'</span><span class="p">,</span> <span class="s1">'./images/demo.image.jpg'</span><span class="p">)</span>
-<span class="n">photo</span><span class="o">.</span><span class="n">store</span><span class="p">()</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;riak.riak_object.RiakObject at 0x7fd8b80f8358&gt;</pre>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Recuperando-información">Recuperando información<a class="anchor-link" href="#Recuperando-informaci%C3%B3n">¶</a></h2>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pprintpp</span> <span class="kn">import</span> <span class="n">pprint</span> <span class="k">as</span> <span class="n">pp</span>
-<span class="n">bucket</span> <span class="o">=</span> <span class="n">cliente</span><span class="o">.</span><span class="n">bucket</span><span class="p">(</span><span class="s2">"bucket_name"</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">"key_one:"</span><span class="p">,</span> <span class="n">bucket</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"key_one"</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"key_two:"</span><span class="p">,</span> <span class="n">bucket</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"key_two"</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
-<span class="n">data3</span> <span class="o">=</span> <span class="n">bucket</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"key_three"</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">"key_three: "</span><span class="p">)</span>
-<span class="n">pp</span><span class="p">(</span><span class="n">data3</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"username:"</span><span class="p">,</span> <span class="n">profiles</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'username'</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"ser:"</span><span class="p">,</span> <span class="n">profiles</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'sex'</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"mail:"</span><span class="p">,</span> <span class="n">profiles</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'mail'</span><span class="p">])</span>
 </pre></div>
 
      </div>
@@ -14592,10 +14584,180 @@ a.anchor-link {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>key_one: 1
-key_two: Dos
-key_three: 
-{'val1': 1, 'val2': 'Dos', 'val3': [1, 2, 3, 4, 5]}
+<pre>username: daniel02
+ser: M
+mail: annahamilton@gmail.com
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Cargamos la información en Riak en un backet llamado 'profile'-</p>
+<p>Adicionalmente creamos 2 indices, uno por sexo y otro por email.</p>
+<p>Los índices secundarios en Riak permiten buscar clavés de una manerá mucho más rápida que si recorrieramos todas las claves de un bucket una tras otra de forma secuencial</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bucket</span> <span class="o">=</span> <span class="n">cliente</span><span class="o">.</span><span class="n">bucket</span><span class="p">(</span><span class="s2">"profile"</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">profile_json</span> <span class="ow">in</span> <span class="n">profiles</span><span class="p">:</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="n">profile_json</span><span class="p">[</span><span class="s1">'username'</span><span class="p">]</span>
+    <span class="n">riak_key</span> <span class="o">=</span> <span class="n">bucket</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">profile_json</span><span class="p">)</span>
+    <span class="n">riak_key</span><span class="o">.</span><span class="n">add_index</span><span class="p">(</span><span class="s1">'idx_mail_bin'</span><span class="p">,</span> <span class="n">profile_json</span><span class="p">[</span><span class="s1">'mail'</span><span class="p">])</span>
+    <span class="n">riak_key</span><span class="o">.</span><span class="n">add_index</span><span class="p">(</span><span class="s1">'idx_sex_bin'</span><span class="p">,</span> <span class="n">profile_json</span><span class="p">[</span><span class="s1">'sex'</span><span class="p">])</span>
+    <span class="n">riak_key</span><span class="o">.</span><span class="n">store</span><span class="p">()</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Inserted key: </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Inserted key: daniel02
+Inserted key: emyers
+Inserted key: fosterroberto
+Inserted key: masonnguyen
+Inserted key: jamie41
+Inserted key: kmartin
+Inserted key: sarahdawson
+Inserted key: andersoncheryl
+Inserted key: ghardy
+Inserted key: jcherry
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Lectura">Lectura<a class="anchor-link" href="#Lectura">¶</a></h2>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Podemos acceder al dato directamente a través de la clave ...</p>
+
+</div>
+</div>SELECT *
+FROM profile
+where key = 'ghardy'<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bucket</span> <span class="o">=</span> <span class="n">cliente</span><span class="o">.</span><span class="n">bucket</span><span class="p">(</span><span class="s2">"profile"</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"ghardy:"</span><span class="p">,</span> <span class="n">bucket</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"ghardy"</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>ghardy: {'username': 'ghardy', 'name': 'Mr. Gary Griffin', 'sex': 'M', 'address': '65885 Amber Locks Apt. 633\nNorth Steven, ND 09043', 'mail': 'brenda14@yahoo.com', 'birthdate': '1981-12-26'}
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Obtenemos todas los valores de la tabla y cargamos la información en Pandas.<br>
+<strong>Observa que la información recuperada no está ordenada!</strong></p>
+
+</div>
+</div>SELECT *
+FROM profile<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">bucket</span> <span class="o">=</span> <span class="n">cliente</span><span class="o">.</span><span class="n">bucket</span><span class="p">(</span><span class="s2">"profile"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">keys</span> <span class="ow">in</span> <span class="n">bucket</span><span class="o">.</span><span class="n">stream_keys</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
+        <span class="n">profile_json</span> <span class="o">=</span> <span class="n">bucket</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Key Recovered: </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">profile_json</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">rows</span><span class="p">))</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Key Recovered: jamie41
+Key Recovered: kmartin
+Key Recovered: fosterroberto
+Key Recovered: andersoncheryl
+Key Recovered: sarahdawson
+Key Recovered: ghardy
+Key Recovered: jcherry
+Key Recovered: masonnguyen
+Key Recovered: emyers
+Key Recovered: daniel02
 </pre>
 </div>
 </div>
@@ -14607,10 +14769,181 @@ key_three:
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[10]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>username</th>
+      <th>name</th>
+      <th>sex</th>
+      <th>address</th>
+      <th>mail</th>
+      <th>birthdate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>jamie41</td>
+      <td>Brittany Miller</td>
+      <td>F</td>
+      <td>2871 Mary Ways Apt. 812\nWest Coryhaven, MI 11710</td>
+      <td>nancy38@yahoo.com</td>
+      <td>2008-04-08</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>kmartin</td>
+      <td>Dwayne Miller</td>
+      <td>M</td>
+      <td>56403 Misty Knolls Suite 206\nMartinstad, ID 6...</td>
+      <td>gregory32@hotmail.com</td>
+      <td>2016-10-12</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>fosterroberto</td>
+      <td>Nicole Jones</td>
+      <td>F</td>
+      <td>84119 Fisher Vista\nEast Cherylton, MS 37193</td>
+      <td>amandacunningham@yahoo.com</td>
+      <td>2019-01-20</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>andersoncheryl</td>
+      <td>Ryan Roberts</td>
+      <td>M</td>
+      <td>1210 Juarez Crest Suite 970\nSolisburgh, DC 38745</td>
+      <td>darrylbanks@yahoo.com</td>
+      <td>1949-06-16</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>sarahdawson</td>
+      <td>Brandon Adams</td>
+      <td>M</td>
+      <td>873 Amber Underpass\nMartinezfurt, AK 85986</td>
+      <td>joshua01@hotmail.com</td>
+      <td>1972-05-13</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>ghardy</td>
+      <td>Mr. Gary Griffin</td>
+      <td>M</td>
+      <td>65885 Amber Locks Apt. 633\nNorth Steven, ND 0...</td>
+      <td>brenda14@yahoo.com</td>
+      <td>1981-12-26</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>jcherry</td>
+      <td>Andrew Martinez</td>
+      <td>M</td>
+      <td>14704 Jennifer Extensions Suite 115\nNorth Ant...</td>
+      <td>andrewhowell@hotmail.com</td>
+      <td>1948-03-09</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>masonnguyen</td>
+      <td>Scott Lucas</td>
+      <td>M</td>
+      <td>6401 Jeff Ford\nAngelicashire, WV 53209</td>
+      <td>adam32@hotmail.com</td>
+      <td>1989-03-04</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>emyers</td>
+      <td>David Moody</td>
+      <td>M</td>
+      <td>335 Gloria Street Suite 675\nMathisport, NJ 73764</td>
+      <td>webstermadeline@hotmail.com</td>
+      <td>1947-05-13</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>daniel02</td>
+      <td>Robert Duffy</td>
+      <td>M</td>
+      <td>6936 Griffin Extension Suite 018\nSouth Jim, S...</td>
+      <td>annahamilton@gmail.com</td>
+      <td>2020-10-02</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Ahora vamos a localizar las claves del sexo "M" a través del ínidice</p>
+
+</div>
+</div>SELECT *
+FROM profile
+WHERE sex = 'M'<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>curl http://localhost:8098/riak/bucket_name/key_one
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">bucket</span> <span class="o">=</span> <span class="n">cliente</span><span class="o">.</span><span class="n">bucket</span><span class="p">(</span><span class="s2">"profile"</span><span class="p">)</span>
+<span class="n">keys</span> <span class="o">=</span> <span class="n">bucket</span><span class="o">.</span><span class="n">get_index</span><span class="p">(</span><span class="s2">"idx_sex_bin"</span><span class="p">,</span> <span class="s1">'M'</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span><span class="o">.</span><span class="n">results</span><span class="p">:</span>
+    <span class="n">profile_json</span> <span class="o">=</span> <span class="n">bucket</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Key Recovered: </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">profile_json</span><span class="p">)</span>   
+       
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">rows</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -14630,7 +14963,15 @@ key_three:
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>1</pre>
+<pre>Key Recovered: daniel02
+Key Recovered: masonnguyen
+Key Recovered: kmartin
+Key Recovered: andersoncheryl
+Key Recovered: emyers
+Key Recovered: sarahdawson
+Key Recovered: jcherry
+Key Recovered: ghardy
+</pre>
 </div>
 </div>
 
@@ -14644,7 +14985,7 @@ key_three:
 <div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>curl http://localhost:8098/riak/bucket_name/key_two
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span>
 </pre></div>
 
      </div>
@@ -14660,12 +15001,115 @@ key_three:
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[12]:</div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>"Dos"</pre>
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>username</th>
+      <th>name</th>
+      <th>sex</th>
+      <th>address</th>
+      <th>mail</th>
+      <th>birthdate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>daniel02</td>
+      <td>Robert Duffy</td>
+      <td>M</td>
+      <td>6936 Griffin Extension Suite 018\nSouth Jim, S...</td>
+      <td>annahamilton@gmail.com</td>
+      <td>2020-10-02</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>masonnguyen</td>
+      <td>Scott Lucas</td>
+      <td>M</td>
+      <td>6401 Jeff Ford\nAngelicashire, WV 53209</td>
+      <td>adam32@hotmail.com</td>
+      <td>1989-03-04</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>kmartin</td>
+      <td>Dwayne Miller</td>
+      <td>M</td>
+      <td>56403 Misty Knolls Suite 206\nMartinstad, ID 6...</td>
+      <td>gregory32@hotmail.com</td>
+      <td>2016-10-12</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>andersoncheryl</td>
+      <td>Ryan Roberts</td>
+      <td>M</td>
+      <td>1210 Juarez Crest Suite 970\nSolisburgh, DC 38745</td>
+      <td>darrylbanks@yahoo.com</td>
+      <td>1949-06-16</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>emyers</td>
+      <td>David Moody</td>
+      <td>M</td>
+      <td>335 Gloria Street Suite 675\nMathisport, NJ 73764</td>
+      <td>webstermadeline@hotmail.com</td>
+      <td>1947-05-13</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>sarahdawson</td>
+      <td>Brandon Adams</td>
+      <td>M</td>
+      <td>873 Amber Underpass\nMartinezfurt, AK 85986</td>
+      <td>joshua01@hotmail.com</td>
+      <td>1972-05-13</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>jcherry</td>
+      <td>Andrew Martinez</td>
+      <td>M</td>
+      <td>14704 Jennifer Extensions Suite 115\nNorth Ant...</td>
+      <td>andrewhowell@hotmail.com</td>
+      <td>1948-03-09</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>ghardy</td>
+      <td>Mr. Gary Griffin</td>
+      <td>M</td>
+      <td>65885 Amber Locks Apt. 633\nNorth Steven, ND 0...</td>
+      <td>brenda14@yahoo.com</td>
+      <td>1981-12-26</td>
+    </tr>
+  </tbody>
+</table>
 </div>
+</div>
+
 </div>
 
 </div>
@@ -14678,7 +15122,7 @@ key_three:
 <div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>curl -s http://localhost:8098/riak/bucket_name/key_three <span class="p">|</span> jq
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> 
 </pre></div>
 
      </div>
@@ -14698,17 +15142,7 @@ key_three:
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre><span class="ansi-bold">{
-  </span><span class="ansi-blue-intense-fg ansi-bold">"val1"</span><span class="ansi-bold">: </span>1<span class="ansi-bold">,
-  </span><span class="ansi-blue-intense-fg ansi-bold">"val2"</span><span class="ansi-bold">: </span><span class="ansi-green-fg">"Dos"</span><span class="ansi-bold">,
-  </span><span class="ansi-blue-intense-fg ansi-bold">"val3"</span><span class="ansi-bold">: </span><span class="ansi-bold">[
-    </span>1<span class="ansi-bold">,
-    </span>2<span class="ansi-bold">,
-    </span>3<span class="ansi-bold">,
-    </span>4<span class="ansi-bold">,
-    </span>5<span class="ansi-bold">
-  </span><span class="ansi-bold">]</span><span class="ansi-bold">
-</span><span class="ansi-bold">}</span>
+<pre>{'username': 'daniel02', 'name': 'Robert Duffy', 'sex': 'M', 'address': '6936 Griffin Extension Suite 018\nSouth Jim, SD 34941', 'mail': 'annahamilton@gmail.com', 'birthdate': '2020-10-02'}
 </pre>
 </div>
 </div>
@@ -14720,24 +15154,26 @@ key_three:
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a href="http://localhost:8098/riak/images/image_key">http://localhost:8098/riak/images/image_key</a></p>
+<p>Ahora vamos a localizar las claves del mail "joshua01@hotmail.com" a través del ínidice</p>
 
 </div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Update">Update<a class="anchor-link" href="#Update">¶</a></h1>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div>SELECT *
+FROM profile
+WHERE mail = 'joshua01@hotmail.com'<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">key1</span> <span class="o">=</span> <span class="s2">"key_one"</span>
-<span class="n">val1</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">key</span> <span class="o">=</span> <span class="n">bucket</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">key1</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">val1</span><span class="p">)</span>
-<span class="n">key</span><span class="o">.</span><span class="n">store</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">bucket</span> <span class="o">=</span> <span class="n">cliente</span><span class="o">.</span><span class="n">bucket</span><span class="p">(</span><span class="s2">"profile"</span><span class="p">)</span>
+<span class="n">keys</span> <span class="o">=</span> <span class="n">bucket</span><span class="o">.</span><span class="n">get_index</span><span class="p">(</span><span class="s2">"idx_mail_bin"</span><span class="p">,</span> <span class="s1">'joshua01@hotmail.com'</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span><span class="o">.</span><span class="n">results</span><span class="p">:</span>
+    <span class="n">profile_json</span> <span class="o">=</span> <span class="n">bucket</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Key Recovered: </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">profile_json</span><span class="p">)</span>
+       
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">rows</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -14753,15 +15189,13 @@ key_three:
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[14]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;riak.riak_object.RiakObject at 0x7fd8b814e898&gt;</pre>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Key Recovered: sarahdawson
+</pre>
 </div>
-
 </div>
 
 </div>
@@ -14774,7 +15208,7 @@ key_three:
 <div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"key_one:"</span><span class="p">,</span> <span class="n">bucket</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"key_one"</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span>
 </pre></div>
 
      </div>
@@ -14790,251 +15224,52 @@ key_three:
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[15]:</div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>key_one: 2
-</pre>
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>username</th>
+      <th>name</th>
+      <th>sex</th>
+      <th>address</th>
+      <th>mail</th>
+      <th>birthdate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sarahdawson</td>
+      <td>Brandon Adams</td>
+      <td>M</td>
+      <td>873 Amber Underpass\nMartinezfurt, AK 85986</td>
+      <td>joshua01@hotmail.com</td>
+      <td>1972-05-13</td>
+    </tr>
+  </tbody>
+</table>
 </div>
 </div>
 
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>key1 = "key_one"
-val1 = 2
-key = bucket.new(key1, data = val1)
-key.store()</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Delete">Delete<a class="anchor-link" href="#Delete">¶</a></h1>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">key1</span> <span class="o">=</span> <span class="s2">"key_one"</span>
-<span class="n">bucket</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">key1</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[16]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;riak.riak_object.RiakObject at 0x7fd8b853fa20&gt;</pre>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"key_one:"</span><span class="p">,</span> <span class="n">bucket</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"key_one"</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>key_one: None
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Listado-de-Buckets">Listado de Buckets<a class="anchor-link" href="#Listado-de-Buckets">¶</a></h1>
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Esta operación va a permitir obtener todos los buckets de la base de datos</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">bucket</span> <span class="ow">in</span> <span class="n">cliente</span><span class="o">.</span><span class="n">get_buckets</span><span class="p">():</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">'Bucket </span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="n">bucket</span> <span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Bucket &lt;RiakBucket 'profile'&gt;
-Bucket &lt;RiakBucket 'images'&gt;
-Bucket &lt;RiakBucket 'bucket_name'&gt;
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Listado-de-valores-en-un-Bucket">Listado de valores en un Bucket<a class="anchor-link" href="#Listado-de-valores-en-un-Bucket">¶</a></h1>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bucket</span> <span class="o">=</span> <span class="n">cliente</span><span class="o">.</span><span class="n">bucket</span><span class="p">(</span><span class="s2">"bucket_name"</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">bucket</span><span class="o">.</span><span class="n">get_keys</span><span class="p">():</span>
-    <span class="n">value</span> <span class="o">=</span> <span class="n">bucket</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">'Key </span><span class="si">%s</span><span class="s1">: </span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Key key_one: None
-Key key_three: {'val1': 1, 'val2': 'Dos', 'val3': [1, 2, 3, 4, 5]}
-Key key_two: Dos
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [21]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">keys</span> <span class="ow">in</span> <span class="n">bucket</span><span class="o">.</span><span class="n">stream_keys</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"Keys: "</span><span class="p">,</span> <span class="n">keys</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
-        <span class="n">value</span> <span class="o">=</span> <span class="n">bucket</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">'Key </span><span class="si">%s</span><span class="s1">: </span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Keys:  ['key_three']
-Key key_three: {'val1': 1, 'val2': 'Dos', 'val3': [1, 2, 3, 4, 5]}
-Keys:  ['key_one']
-Key key_one: None
-Keys:  ['key_two']
-Key key_two: Dos
-</pre>
-</div>
 </div>
 
 </div>
