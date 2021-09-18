@@ -14318,13 +14318,13 @@ a.anchor-link {
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>&lt;class 'pandas.core.frame.DataFrame'&gt;
-Int64Index: 1000 entries, 374054 to 183131
+Int64Index: 1000 entries, 163007 to 289614
 Data columns (total 24 columns):
  #   Column                Non-Null Count  Dtype  
 ---  ------                --------------  -----  
  0   TIPO_INCIDENCIA_ID    1000 non-null   int64  
  1   TIPO_INCIDENCIA       1000 non-null   object 
- 2   CANAL_DE_ENTRADA_ID   175 non-null    float64
+ 2   CANAL_DE_ENTRADA_ID   187 non-null    float64
  3   CANAL_DE_ENTRADA      1000 non-null   object 
  4   FECHA_DE_RECEPCION    1000 non-null   object 
  5   HORA_DE_RECEPCION     1000 non-null   object 
@@ -14588,7 +14588,7 @@ memory usage: 195.3+ KB
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre> * postgresql://postgres:***@localhost/avisa
-3 rows affected.
+2 rows affected.
 </pre>
 </div>
 </div>
@@ -14608,19 +14608,14 @@ memory usage: 195.3+ KB
         <th>TIPO_INCIDENCIA</th>
     </tr>
     <tr>
-        <td>374054</td>
+        <td>163007</td>
         <td>0</td>
         <td>AVISO</td>
     </tr>
     <tr>
-        <td>273494</td>
+        <td>332603</td>
         <td>1</td>
         <td>Peticion</td>
-    </tr>
-    <tr>
-        <td>75549</td>
-        <td>2</td>
-        <td>No conforme con resolucion</td>
     </tr>
 </table>
 </div>
@@ -14668,7 +14663,7 @@ memory usage: 195.3+ KB
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>'[{"TIPO_INCIDENCIA_ID":0,"TIPO_INCIDENCIA":"AVISO"},{"TIPO_INCIDENCIA_ID":1,"TIPO_INCIDENCIA":"Peticion"},{"TIPO_INCIDENCIA_ID":2,"TIPO_INCIDENCIA":"No conforme con resolucion"}]'</pre>
+<pre>'[{"TIPO_INCIDENCIA_ID":0,"TIPO_INCIDENCIA":"AVISO"},{"TIPO_INCIDENCIA_ID":1,"TIPO_INCIDENCIA":"Peticion"}]'</pre>
 </div>
 
 </div>
@@ -14709,8 +14704,7 @@ memory usage: 195.3+ KB
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
 <pre>[{'TIPO_INCIDENCIA_ID': 0, 'TIPO_INCIDENCIA': 'AVISO'},
- {'TIPO_INCIDENCIA_ID': 1, 'TIPO_INCIDENCIA': 'Peticion'},
- {'TIPO_INCIDENCIA_ID': 2, 'TIPO_INCIDENCIA': 'No conforme con resolucion'}]</pre>
+ {'TIPO_INCIDENCIA_ID': 1, 'TIPO_INCIDENCIA': 'Peticion'}]</pre>
 </div>
 
 </div>
@@ -14748,7 +14742,6 @@ memory usage: 195.3+ KB
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>{'TIPO_INCIDENCIA_ID': 0, 'TIPO_INCIDENCIA': 'AVISO'}
 {'TIPO_INCIDENCIA_ID': 1, 'TIPO_INCIDENCIA': 'Peticion'}
-{'TIPO_INCIDENCIA_ID': 2, 'TIPO_INCIDENCIA': 'No conforme con resolucion'}
 </pre>
 </div>
 </div>
@@ -14821,11 +14814,6 @@ memory usage: 195.3+ KB
       <th>1</th>
       <td>1</td>
       <td>Peticion</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2</td>
-      <td>No conforme con resolucion</td>
     </tr>
   </tbody>
 </table>
@@ -14914,21 +14902,21 @@ memory usage: 195.3+ KB
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://github.com/pandas-dev/pandas/pull/40902</td>
-      <td>856192994</td>
-      <td>MDExOlB1bGxSZXF1ZXN0NjEzODExMzIx</td>
-      <td>40902</td>
-      <td>DOC: Start v1.2.5 release notes</td>
+      <td>https://github.com/pandas-dev/pandas/pull/43634</td>
+      <td>999984203</td>
+      <td>PR_kwDOAA0YD84r69Kb</td>
+      <td>43634</td>
+      <td>PERF: groupby with string dtype</td>
       <td>...</td>
       <td>{'url': 'https://api.github.com/repos/pandas-d...</td>
-      <td>0</td>
-      <td>2021-04-12 17:30:14+00:00</td>
-      <td>2021-04-12 17:30:15+00:00</td>
+      <td>3</td>
+      <td>2021-09-18 09:24:34+00:00</td>
+      <td>2021-09-18 11:15:51+00:00</td>
       <td>NaT</td>
-      <td>MEMBER</td>
+      <td>CONTRIBUTOR</td>
       <td>NaN</td>
       <td>{'url': 'https://api.github.com/repos/pandas-d...</td>
-      <td>do not merge yet. will merge to master after g...</td>
+      <td>- [x] closes #41596 \r\n- [ ] tests added / pa...</td>
       <td>NaN</td>
     </tr>
     <tr>
@@ -14938,21 +14926,21 @@ memory usage: 195.3+ KB
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://github.com/pandas-dev/pandas/pull/40901</td>
-      <td>856179777</td>
-      <td>MDExOlB1bGxSZXF1ZXN0NjEzODAwMjY4</td>
-      <td>40901</td>
-      <td>CLN: change jinja2 template name to `template_...</td>
+      <td>https://github.com/pandas-dev/pandas/pull/43633</td>
+      <td>999965857</td>
+      <td>PR_kwDOAA0YD84r66V0</td>
+      <td>43633</td>
+      <td>DOC: Update Matplotlib Colormaps documentation...</td>
       <td>...</td>
       <td>None</td>
       <td>0</td>
-      <td>2021-04-12 17:12:06+00:00</td>
-      <td>2021-04-12 17:12:22+00:00</td>
+      <td>2021-09-18 08:07:00+00:00</td>
+      <td>2021-09-18 08:08:52+00:00</td>
       <td>NaT</td>
-      <td>CONTRIBUTOR</td>
+      <td>NONE</td>
       <td>NaN</td>
       <td>{'url': 'https://api.github.com/repos/pandas-d...</td>
-      <td>prior to adding `template_latex` this changes ...</td>
+      <td>- [x] closes #43624 \r\n\r\nFixes: Fixed a cha...</td>
       <td>NaN</td>
     </tr>
     <tr>
@@ -14962,21 +14950,21 @@ memory usage: 195.3+ KB
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://github.com/pandas-dev/pandas/pull/40900</td>
-      <td>856143248</td>
-      <td>MDExOlB1bGxSZXF1ZXN0NjEzNzY5NjQ0</td>
-      <td>40900</td>
-      <td>DOC: whats new `other` section reduced</td>
+      <td>https://github.com/pandas-dev/pandas/pull/43632</td>
+      <td>999891786</td>
+      <td>PR_kwDOAA0YD84r6t40</td>
+      <td>43632</td>
+      <td>REF: implement mask_setitem_value</td>
       <td>...</td>
       <td>None</td>
       <td>0</td>
-      <td>2021-04-12 16:23:37+00:00</td>
-      <td>2021-04-12 16:23:37+00:00</td>
+      <td>2021-09-18 03:36:51+00:00</td>
+      <td>2021-09-18 03:36:51+00:00</td>
       <td>NaT</td>
-      <td>CONTRIBUTOR</td>
+      <td>MEMBER</td>
       <td>NaN</td>
       <td>{'url': 'https://api.github.com/repos/pandas-d...</td>
-      <td>- [x] closes #40897 \r\n</td>
+      <td>- [ ] closes #xxxx\r\n- [ ] tests added / pass...</td>
       <td>NaN</td>
     </tr>
     <tr>
@@ -14986,21 +14974,21 @@ memory usage: 195.3+ KB
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://github.com/pandas-dev/pandas/pull/40898</td>
-      <td>856130563</td>
-      <td>MDExOlB1bGxSZXF1ZXN0NjEzNzU5MDI0</td>
-      <td>40898</td>
-      <td>CLN: refactor `Styler._translate` into composi...</td>
+      <td>https://github.com/pandas-dev/pandas/issues/43631</td>
+      <td>999844118</td>
+      <td>I_kwDOAA0YD847mGkW</td>
+      <td>43631</td>
+      <td>BUG: a categorical series from `pd.cut()` is n...</td>
       <td>...</td>
       <td>None</td>
-      <td>2</td>
-      <td>2021-04-12 16:08:10+00:00</td>
-      <td>2021-04-12 16:31:02+00:00</td>
+      <td>1</td>
+      <td>2021-09-18 02:54:08+00:00</td>
+      <td>2021-09-18 08:17:25+00:00</td>
       <td>NaT</td>
-      <td>CONTRIBUTOR</td>
+      <td>NONE</td>
       <td>NaN</td>
-      <td>{'url': 'https://api.github.com/repos/pandas-d...</td>
-      <td>This composites `Styler._translate()` into:\r\...</td>
+      <td>NaN</td>
+      <td>### \r\n\r\n- [X] I have checked that this iss...</td>
       <td>NaN</td>
     </tr>
     <tr>
@@ -15010,21 +14998,21 @@ memory usage: 195.3+ KB
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://github.com/pandas-dev/pandas/issues/40897</td>
-      <td>856111108</td>
-      <td>MDU6SXNzdWU4NTYxMTExMDg=</td>
-      <td>40897</td>
-      <td>DOC: move *most* of Other Bug Fix section</td>
+      <td>https://github.com/pandas-dev/pandas/pull/43630</td>
+      <td>999833594</td>
+      <td>PR_kwDOAA0YD84r6g49</td>
+      <td>43630</td>
+      <td>Backport PR #43467 on branch 1.3.x (Make group...</td>
       <td>...</td>
       <td>{'url': 'https://api.github.com/repos/pandas-d...</td>
       <td>1</td>
-      <td>2021-04-12 15:47:25+00:00</td>
-      <td>2021-04-12 15:47:31+00:00</td>
+      <td>2021-09-18 02:32:19+00:00</td>
+      <td>2021-09-18 10:25:40+00:00</td>
       <td>NaT</td>
-      <td>CONTRIBUTOR</td>
+      <td>NONE</td>
       <td>NaN</td>
-      <td>NaN</td>
-      <td>https://pandas.pydata.org/pandas-docs/dev/what...</td>
+      <td>{'url': 'https://api.github.com/repos/pandas-d...</td>
+      <td>Backport PR #43467: Make group_mean compatible...</td>
       <td>NaN</td>
     </tr>
   </tbody>
