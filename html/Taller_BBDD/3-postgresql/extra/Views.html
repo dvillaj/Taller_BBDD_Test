@@ -3,7 +3,7 @@
 <head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Counters</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>Views</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 
 
@@ -14579,7 +14579,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Data-Types:-Counters">Data Types: Counters<a class="anchor-link" href="#Data-Types:-Counters">¶</a></h1>
+<h1 id="Carga-de-datos-en-la-base-de-datos">Carga de datos en la base de datos<a class="anchor-link" href="#Carga-de-datos-en-la-base-de-datos">¶</a></h1>
 </div>
 </div>
 </div>
@@ -14591,9 +14591,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">riak</span>
-
-<span class="n">client</span> <span class="o">=</span> <span class="n">riak</span><span class="o">.</span><span class="n">RiakClient</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> sql
 </pre></div>
 
      </div>
@@ -14601,7 +14599,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14609,7 +14607,10 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">is_alive</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">alias</span> dropdb docker exec -i postgres_container dropdb -U postgres 
+<span class="o">%</span><span class="k">alias</span> createdb docker exec -i postgres_container createdb -U postgres 
+<span class="o">%</span><span class="k">alias</span> pg_restore docker exec -i postgres_container pg_restore -U postgres 
+<span class="o">%</span><span class="k">alias</span> psql docker exec -i postgres_container psql -U postgres 
 </pre></div>
 
      </div>
@@ -14617,78 +14618,6 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 </div>
 
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[2]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>True</pre>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a href="http://docs.basho.com/riak/kv/2.2.3/developing/data-types/">http://docs.basho.com/riak/kv/2.2.3/developing/data-types/</a></p>
-
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a href="http://docs.basho.com/riak/kv/2.2.3/developing/data-types/counters/#create-a-counter">http://docs.basho.com/riak/kv/2.2.3/developing/data-types/counters/#create-a-counter</a></p>
-
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Create-a-counter">Create a counter<a class="anchor-link" href="#Create-a-counter">¶</a></h2>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>To create a counter, you need to specify a bucket/key pair to hold that counter. Here is the general syntax for doing so:</p>
-
-</div>
-</div>
-</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -14697,7 +14626,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bucket</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">bucket_type</span><span class="p">(</span><span class="s1">'counters'</span><span class="p">)</span><span class="o">.</span><span class="n">bucket</span><span class="p">(</span><span class="s1">'traffic_tickets'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dropdb</span> <span class="n">tajetasblackv</span>
 </pre></div>
 
      </div>
@@ -14705,18 +14634,6 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 </div>
 
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Let’s say that we want to create a counter called traffic_tickets in our counters bucket to keep track of our legal misbehavior. We can create this counter and ensure that the counters bucket will use our counters bucket type like this:</p>
-
-</div>
-</div>
-</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -14725,7 +14642,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">counter</span> <span class="o">=</span> <span class="n">bucket</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">'traffic_tickets'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">createdb</span> <span class="n">tajetasblackv</span>
 </pre></div>
 
      </div>
@@ -14733,29 +14650,6 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 </div>
 
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Increment-a-counter">Increment a counter<a class="anchor-link" href="#Increment-a-counter">¶</a></h2>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Now that our client knows which bucket/key pairing to use for our counter, traffic_tickets will start out at 0 by default. If we happen to get a ticket that afternoon, we can increment the counter:</p>
-
-</div>
-</div>
-</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -14764,146 +14658,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">counter</span><span class="o">.</span><span class="n">increment</span><span class="p">()</span>
-
-<span class="c1"># Updates are staged locally and have to be explicitly sent to Riak</span>
-<span class="c1"># using the store() method.</span>
-<span class="n">counter</span><span class="o">.</span><span class="n">store</span><span class="p">()</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[5]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;riak.datatypes.counter.Counter at 0x7fdb142289d0&gt;</pre>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Increment-a-counter-with-more-that-one">Increment a counter with more that one<a class="anchor-link" href="#Increment-a-counter-with-more-that-one">¶</a></h2>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>The default value of an increment operation is 1, but you can increment by more than 1 (but always by an integer).</p>
-<p>Continuing with our traffic_tickets example, let’s say we receive 5 tickets in a single day:</p>
-
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">counter</span><span class="o">.</span><span class="n">increment</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">counter</span><span class="o">.</span><span class="n">store</span><span class="p">()</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;riak.datatypes.counter.Counter at 0x7fdb142289d0&gt;</pre>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Retrieve-a-counter-value">Retrieve a counter value<a class="anchor-link" href="#Retrieve-a-counter-value">¶</a></h2>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>We can retrieve the value of the counter and view how many tickets have accumulated:</p>
-
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># To fetch the value stored on the server, use the call below. Note</span>
-<span class="c1"># that this will clear any changes to the counter that have not yet been</span>
-<span class="c1"># sent to Riak</span>
-<span class="n">counter</span><span class="o">.</span><span class="n">reload</span><span class="p">()</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Value:"</span><span class="p">,</span> <span class="n">counter</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">psql</span> <span class="n">tajetasblackv</span> <span class="o">&lt;</span> <span class="n">data</span><span class="o">/</span><span class="n">tarjetasblack_dump</span><span class="o">.</span><span class="n">sql</span> <span class="o">&gt;/</span><span class="n">dev</span><span class="o">/</span><span class="n">null</span>
 </pre></div>
 
      </div>
@@ -14925,7 +14680,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Value: 6
+<pre>/bin/bash: data/tarjetasblack_dump.sql: No such file or directory
 </pre>
 </div>
 </div>
@@ -14941,36 +14696,19 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Decrement-a-counter-value">Decrement a counter value<a class="anchor-link" href="#Decrement-a-counter-value">¶</a></h2>
+<h1 id="Conexi%C3%B3n-a-la-base-de-datos">Conexión a la base de datos<a class="anchor-link" href="#Conexi%C3%B3n-a-la-base-de-datos">¶</a></h1>
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Counters enable you to decrement values in addition to incrementing them as seen above.</p>
-<p>For example, let’s say we hire an expert lawyer who gets one of the traffic tickets stricken from our record:</p>
-
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">counter</span><span class="o">.</span><span class="n">decrement</span><span class="p">()</span>
-
-<span class="c1"># Just like incrementing, you can also decrement by more than one, e.g.:</span>
-<span class="n">counter</span><span class="o">.</span><span class="n">decrement</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">counter</span><span class="o">.</span><span class="n">store</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">sql</span> postgresql://postgres:postgres@localhost/tajetasblackv
 </pre></div>
 
      </div>
@@ -14978,31 +14716,6 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 </div>
 
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[8]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;riak.datatypes.counter.Counter at 0x7fdb142289d0&gt;</pre>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
 </div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
@@ -15010,7 +14723,19 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Retrieve-a-counter-value-with-curl">Retrieve a counter value with curl<a class="anchor-link" href="#Retrieve-a-counter-value-with-curl">¶</a></h2>
+<h1 id="Views">Views<a class="anchor-link" href="#Views">¶</a></h1>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>CREATE VIEW view_top_2_consejero# Views</p>
+
 </div>
 </div>
 </div>
@@ -15019,10 +14744,12 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>curl http://localhost:8098/types/counters/buckets/traffic_tickets/datatypes/traffic_tickets
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">sql</span><span class="w"> </span>
+
+<span class="k">DROP</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">view_comercio_actividad</span><span class="w"></span>
 </pre></div>
 
      </div>
@@ -15044,39 +14771,17 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>{"type":"counter","value":2}</pre>
+<pre> * postgresql://postgres:***@localhost/tajetasblackv
+(psycopg2.errors.UndefinedTable) view "view_comercio_actividad" does not exist
+
+[SQL: DROP VIEW view_comercio_actividad]
+(Background on this error at: https://sqlalche.me/e/14/f405)
+</pre>
 </div>
 </div>
 
 </div>
 
-</div>
-
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Retrieve-a-counter-with-Python">Retrieve a counter with Python<a class="anchor-link" href="#Retrieve-a-counter-with-Python">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bucket_counter</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">bucket_type</span><span class="p">(</span><span class="s1">'counters'</span><span class="p">)</span><span class="o">.</span><span class="n">bucket</span><span class="p">(</span><span class="s1">'traffic_tickets'</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
 </div>
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -15084,10 +14789,20 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bucket_counter</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'traffic_tickets'</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">sql</span><span class="w"> </span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">view_comercio_actividad</span><span class="w"></span>
+<span class="k">AS</span><span class="w"></span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">id_comercio</span><span class="p">,</span><span class="w"></span>
+<span class="w">           </span><span class="k">c</span><span class="p">.</span><span class="n">comercio</span><span class="p">,</span><span class="w"> </span>
+<span class="w">           </span><span class="k">c</span><span class="p">.</span><span class="n">actividad_completa</span><span class="p">,</span><span class="w"></span>
+<span class="w">           </span><span class="n">a</span><span class="p">.</span><span class="n">actividad</span><span class="w"></span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">comercio</span><span class="w"> </span><span class="k">c</span><span class="w"></span>
+<span class="w">    </span><span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">actividad</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="p">(</span><span class="k">c</span><span class="p">.</span><span class="n">id_actividad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">id_actividad</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id_comercio</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">10</span><span class="w"></span>
 </pre></div>
 
      </div>
@@ -15105,15 +14820,73 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre> * postgresql://postgres:***@localhost/tajetasblackv
+(psycopg2.errors.UndefinedTable) relation "comercio" does not exist
+LINE 6:     FROM comercio c
+                 ^
 
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>2</pre>
+[SQL: CREATE VIEW view_comercio_actividad AS
+    SELECT c.id_comercio,
+           c.comercio, 
+           c.actividad_completa,
+           a.actividad
+    FROM comercio c
+    INNER JOIN actividad a ON (c.id_actividad = a.id_actividad)
+    WHERE id_comercio &lt;= 10]
+(Background on this error at: https://sqlalche.me/e/14/f405)
+</pre>
+</div>
 </div>
 
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">sql</span><span class="w"></span>
+
+<span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">view_comercio_actividad</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre> * postgresql://postgres:***@localhost/tajetasblackv
+(psycopg2.errors.UndefinedTable) relation "view_comercio_actividad" does not exist
+LINE 1: select * from view_comercio_actividad;
+                      ^
+
+[SQL: select * from view_comercio_actividad;]
+(Background on this error at: https://sqlalche.me/e/14/f405)
+</pre>
+</div>
 </div>
 
 </div>
