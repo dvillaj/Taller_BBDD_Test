@@ -14643,7 +14643,7 @@ DROP KEYSPACE black;
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>"Cannot drop non existing keyspace 'black'."</pre>
+<pre>'No results.'</pre>
 </div>
 
 </div>
@@ -15286,7 +15286,9 @@ memory usage: 714.8+ KB
 <div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">'importe'</span><span class="p">,</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> \
+    <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">'importe'</span><span class="p">,</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15632,7 +15634,10 @@ memory usage: 714.8+ KB
 <div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">importe</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">importe</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">'importe'</span><span class="p">,</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> \
+    <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">importe</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">importe</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">'importe'</span><span class="p">,</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15757,7 +15762,7 @@ memory usage: 714.8+ KB
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Esta consulta se pueder resolver mediante la vista materializa que hemos creado ad-hoc para resolver esta consulta</p>
+<p>Esta consulta se pueder resolver mediante la vista materializada que hemos creado ad-hoc para resolver esta consulta</p>
 
 </div>
 </div>
