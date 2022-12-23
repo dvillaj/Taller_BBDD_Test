@@ -36,6 +36,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .m { color: var(--jp-mirror-editor-number-color) } /* Literal.Number */
 .highlight .s { color: var(--jp-mirror-editor-string-color) } /* Literal.String */
 .highlight .ow { color: var(--jp-mirror-editor-operator-color); font-weight: bold } /* Operator.Word */
+.highlight .pm { color: var(--jp-mirror-editor-punctuation-color) } /* Punctuation.Marker */
 .highlight .w { color: var(--jp-mirror-editor-variable-color) } /* Text.Whitespace */
 .highlight .mb { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Bin */
 .highlight .mf { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Float */
@@ -14464,10 +14465,6 @@ a.anchor-link {
   display: none;
 }
 
-.highlight  {
-  margin: 0.4em;
-}
-
 /* Input area styling */
 .jp-InputArea {
   overflow: hidden;
@@ -14477,9 +14474,26 @@ a.anchor-link {
   overflow: hidden;
 }
 
-.CodeMirror pre {
+.CodeMirror.cm-s-jupyter .highlight pre {
+/* weird, but --jp-code-padding defined to be 5px but 4px horizontal padding is hardcoded for pre.CodeMirror-line */
+  padding: var(--jp-code-padding) 4px;
   margin: 0;
-  padding: 0;
+
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+
+}
+
+.jp-OutputArea-output pre {
+  line-height: inherit;
+  font-family: inherit;
+}
+
+.jp-RenderedText pre {
+  color: var(--jp-content-font-color1);
+  font-size: var(--jp-code-font-size);
 }
 
 /* Using table instead of flexbox so that we can use break-inside property */
@@ -14523,6 +14537,10 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 /* Hiding the collapser by default */
 .jp-Collapser {
   display: none;
+}
+
+@page {
+    margin: 0.5in; /* Margin for each printed piece of paper */
 }
 
 @media print {
@@ -14666,22 +14684,20 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>&lt;class 'pandas.core.frame.DataFrame'&gt;
-Int64Index: 1000 entries, 170629 to 497077
+Int64Index: 1000 entries, 380170 to 212127
 Data columns (total 24 columns):
  #   Column                Non-Null Count  Dtype  
 ---  ------                --------------  -----  
  0   TIPO_INCIDENCIA_ID    1000 non-null   int64  
  1   TIPO_INCIDENCIA       1000 non-null   object 
- 2   CANAL_DE_ENTRADA_ID   163 non-null    float64
+ 2   CANAL_DE_ENTRADA_ID   158 non-null    float64
  3   CANAL_DE_ENTRADA      1000 non-null   object 
  4   FECHA_DE_RECEPCION    1000 non-null   object 
  5   HORA_DE_RECEPCION     1000 non-null   object 
@@ -14757,7 +14773,7 @@ memory usage: 195.3+ KB
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14771,6 +14787,27 @@ memory usage: 195.3+ KB
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>dropdb: error: database removal failed: ERROR:  database "avisa" does not exist
+</pre>
+</div>
+</div>
+
+</div>
+
 </div>
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14855,9 +14892,7 @@ memory usage: 195.3+ KB
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
 
@@ -14898,9 +14933,7 @@ memory usage: 195.3+ KB
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -14911,9 +14944,7 @@ memory usage: 195.3+ KB
 </pre>
 </div>
 </div>
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[10]:</div>
 
@@ -14958,9 +14989,7 @@ memory usage: 195.3+ KB
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
 
@@ -14968,7 +14997,7 @@ memory usage: 195.3+ KB
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>3</pre>
+<pre>2</pre>
 </div>
 
 </div>
@@ -15001,22 +15030,18 @@ memory usage: 195.3+ KB
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre> * postgresql://postgres:***@localhost/avisa
-3 rows affected.
+2 rows affected.
 </pre>
 </div>
 </div>
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[12]:</div>
 
@@ -15030,19 +15055,14 @@ memory usage: 195.3+ KB
         <th>TIPO_INCIDENCIA</th>
     </tr>
     <tr>
-        <td>170629</td>
+        <td>380170</td>
         <td>0</td>
         <td>AVISO</td>
     </tr>
     <tr>
-        <td>22642</td>
+        <td>349617</td>
         <td>1</td>
         <td>Peticion</td>
-    </tr>
-    <tr>
-        <td>314541</td>
-        <td>2</td>
-        <td>No conforme con resolucion</td>
     </tr>
 </table>
 </div>
@@ -15090,9 +15110,7 @@ memory usage: 195.3+ KB
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[13]:</div>
 
@@ -15100,7 +15118,7 @@ memory usage: 195.3+ KB
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>'[{"TIPO_INCIDENCIA_ID":0,"TIPO_INCIDENCIA":"AVISO"},{"TIPO_INCIDENCIA_ID":1,"TIPO_INCIDENCIA":"Peticion"},{"TIPO_INCIDENCIA_ID":2,"TIPO_INCIDENCIA":"No conforme con resolucion"}]'</pre>
+<pre>'[{"TIPO_INCIDENCIA_ID":0,"TIPO_INCIDENCIA":"AVISO"},{"TIPO_INCIDENCIA_ID":1,"TIPO_INCIDENCIA":"Peticion"}]'</pre>
 </div>
 
 </div>
@@ -15134,9 +15152,7 @@ memory usage: 195.3+ KB
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[14]:</div>
 
@@ -15145,8 +15161,7 @@ memory usage: 195.3+ KB
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
 <pre>[{'TIPO_INCIDENCIA_ID': 0, 'TIPO_INCIDENCIA': 'AVISO'},
- {'TIPO_INCIDENCIA_ID': 1, 'TIPO_INCIDENCIA': 'Peticion'},
- {'TIPO_INCIDENCIA_ID': 2, 'TIPO_INCIDENCIA': 'No conforme con resolucion'}]</pre>
+ {'TIPO_INCIDENCIA_ID': 1, 'TIPO_INCIDENCIA': 'Peticion'}]</pre>
 </div>
 
 </div>
@@ -15178,9 +15193,7 @@ memory usage: 195.3+ KB
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15188,7 +15201,6 @@ memory usage: 195.3+ KB
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>{'TIPO_INCIDENCIA_ID': 0, 'TIPO_INCIDENCIA': 'AVISO'}
 {'TIPO_INCIDENCIA_ID': 1, 'TIPO_INCIDENCIA': 'Peticion'}
-{'TIPO_INCIDENCIA_ID': 2, 'TIPO_INCIDENCIA': 'No conforme con resolucion'}
 </pre>
 </div>
 </div>
@@ -15230,9 +15242,7 @@ memory usage: 195.3+ KB
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[16]:</div>
 
@@ -15272,11 +15282,6 @@ memory usage: 195.3+ KB
       <td>1</td>
       <td>Peticion</td>
     </tr>
-    <tr>
-      <th>2</th>
-      <td>2</td>
-      <td>No conforme con resolucion</td>
-    </tr>
   </tbody>
 </table>
 </div>
@@ -15310,9 +15315,7 @@ memory usage: 195.3+ KB
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[17]:</div>
 
@@ -15351,13 +15354,13 @@ memory usage: 195.3+ KB
       <th>closed_at</th>
       <th>author_association</th>
       <th>active_lock_reason</th>
-      <th>draft</th>
-      <th>pull_request</th>
       <th>body</th>
       <th>reactions</th>
       <th>timeline_url</th>
       <th>performed_via_github_app</th>
       <th>state_reason</th>
+      <th>draft</th>
+      <th>pull_request</th>
     </tr>
   </thead>
   <tbody>
@@ -15368,20 +15371,20 @@ memory usage: 195.3+ KB
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://github.com/pandas-dev/pandas/pull/47237</td>
-      <td>1260912310</td>
-      <td>PR_kwDOAA0YD845HqcT</td>
-      <td>47237</td>
-      <td>Fix inconsistent uses of row-wise and column-w...</td>
+      <td>https://github.com/pandas-dev/pandas/issues/50407</td>
+      <td>1508891678</td>
+      <td>I_kwDOAA0YD85Z79we</td>
+      <td>50407</td>
+      <td>DEPR: Unnecessary kwargs in groupby ops</td>
       <td>...</td>
       <td>NaT</td>
-      <td>CONTRIBUTOR</td>
+      <td>MEMBER</td>
       <td>NaN</td>
-      <td>False</td>
-      <td>{'url': 'https://api.github.com/repos/pandas-d...</td>
-      <td>- [x] closes #43128 \r\n- [ ] All [code checks...</td>
+      <td>Some groupby ops have args and/or kwargs unnec...</td>
       <td>{'url': 'https://api.github.com/repos/pandas-d...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
     </tr>
@@ -15392,20 +15395,20 @@ memory usage: 195.3+ KB
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://github.com/pandas-dev/pandas/pull/47236</td>
-      <td>1260898373</td>
-      <td>PR_kwDOAA0YD845Hn4a</td>
-      <td>47236</td>
-      <td>Create eval test</td>
+      <td>https://github.com/pandas-dev/pandas/issues/50406</td>
+      <td>1508887523</td>
+      <td>I_kwDOAA0YD85Z78vj</td>
+      <td>50406</td>
+      <td>ENH: Use explicit arguments in DataFrameGroupB...</td>
       <td>...</td>
       <td>NaT</td>
-      <td>CONTRIBUTOR</td>
+      <td>MEMBER</td>
       <td>NaN</td>
-      <td>False</td>
-      <td>{'url': 'https://api.github.com/repos/pandas-d...</td>
-      <td>I added an additional unit test for `pandas.ev...</td>
+      <td>Currently DataFrameGroupBy.describe uses `**kw...</td>
       <td>{'url': 'https://api.github.com/repos/pandas-d...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
     </tr>
@@ -15416,20 +15419,20 @@ memory usage: 195.3+ KB
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://github.com/pandas-dev/pandas/pull/47235</td>
-      <td>1260897831</td>
-      <td>PR_kwDOAA0YD845Hnx-</td>
-      <td>47235</td>
-      <td>docs: Fix typo</td>
+      <td>https://github.com/pandas-dev/pandas/issues/50405</td>
+      <td>1508864485</td>
+      <td>I_kwDOAA0YD85Z73Hl</td>
+      <td>50405</td>
+      <td>DEPR: axis argument in groupby ops</td>
       <td>...</td>
       <td>NaT</td>
-      <td>CONTRIBUTOR</td>
+      <td>MEMBER</td>
       <td>NaN</td>
-      <td>False</td>
-      <td>{'url': 'https://api.github.com/repos/pandas-d...</td>
-      <td>Remove repeated "more general". Removing the f...</td>
+      <td>Some groupby methods have an `axis` argument i...</td>
       <td>{'url': 'https://api.github.com/repos/pandas-d...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
     </tr>
@@ -15440,22 +15443,22 @@ memory usage: 195.3+ KB
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://github.com/pandas-dev/pandas/pull/47234</td>
-      <td>1260868740</td>
-      <td>PR_kwDOAA0YD845HiWv</td>
-      <td>47234</td>
-      <td>PERF: groupby.apply on a non-unique, unsorted ...</td>
+      <td>https://github.com/pandas-dev/pandas/pull/50404</td>
+      <td>1508813866</td>
+      <td>PR_kwDOAA0YD85GF5So</td>
+      <td>50404</td>
+      <td>TST: Consolidate tests that raise in groupby</td>
       <td>...</td>
       <td>NaT</td>
       <td>MEMBER</td>
       <td>NaN</td>
-      <td>False</td>
-      <td>{'url': 'https://api.github.com/repos/pandas-d...</td>
-      <td>- [x] closes #46527\r\n- [x] [Tests added and ...</td>
+      <td>- [ ] closes #xxxx (Replace xxxx with the GitH...</td>
       <td>{'url': 'https://api.github.com/repos/pandas-d...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>0.0</td>
+      <td>{'url': 'https://api.github.com/repos/pandas-d...</td>
     </tr>
     <tr>
       <th>4</th>
@@ -15464,22 +15467,22 @@ memory usage: 195.3+ KB
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://github.com/pandas-dev/pandas/pull/47233</td>
-      <td>1260859533</td>
-      <td>PR_kwDOAA0YD845Hgm3</td>
-      <td>47233</td>
-      <td>Remove Sequence[str] as type used in DataFrame...</td>
+      <td>https://github.com/pandas-dev/pandas/pull/50403</td>
+      <td>1508604874</td>
+      <td>PR_kwDOAA0YD85GFLtZ</td>
+      <td>50403</td>
+      <td>CLN: Remove unused rewrite warning</td>
       <td>...</td>
       <td>NaT</td>
-      <td>CONTRIBUTOR</td>
+      <td>MEMBER</td>
       <td>NaN</td>
-      <td>False</td>
-      <td>{'url': 'https://api.github.com/repos/pandas-d...</td>
-      <td>See discussion in #47232 .\r\n\r\nThis is a fo...</td>
+      <td>- [ ] closes #xxxx (Replace xxxx with the GitH...</td>
       <td>{'url': 'https://api.github.com/repos/pandas-d...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
       <td>NaN</td>
       <td>NaN</td>
+      <td>0.0</td>
+      <td>{'url': 'https://api.github.com/repos/pandas-d...</td>
     </tr>
   </tbody>
 </table>

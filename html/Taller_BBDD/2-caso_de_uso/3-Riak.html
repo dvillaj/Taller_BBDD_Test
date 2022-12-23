@@ -36,6 +36,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .m { color: var(--jp-mirror-editor-number-color) } /* Literal.Number */
 .highlight .s { color: var(--jp-mirror-editor-string-color) } /* Literal.String */
 .highlight .ow { color: var(--jp-mirror-editor-operator-color); font-weight: bold } /* Operator.Word */
+.highlight .pm { color: var(--jp-mirror-editor-punctuation-color) } /* Punctuation.Marker */
 .highlight .w { color: var(--jp-mirror-editor-variable-color) } /* Text.Whitespace */
 .highlight .mb { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Bin */
 .highlight .mf { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Float */
@@ -14464,10 +14465,6 @@ a.anchor-link {
   display: none;
 }
 
-.highlight  {
-  margin: 0.4em;
-}
-
 /* Input area styling */
 .jp-InputArea {
   overflow: hidden;
@@ -14477,9 +14474,26 @@ a.anchor-link {
   overflow: hidden;
 }
 
-.CodeMirror pre {
+.CodeMirror.cm-s-jupyter .highlight pre {
+/* weird, but --jp-code-padding defined to be 5px but 4px horizontal padding is hardcoded for pre.CodeMirror-line */
+  padding: var(--jp-code-padding) 4px;
   margin: 0;
-  padding: 0;
+
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+
+}
+
+.jp-OutputArea-output pre {
+  line-height: inherit;
+  font-family: inherit;
+}
+
+.jp-RenderedText pre {
+  color: var(--jp-content-font-color1);
+  font-size: var(--jp-code-font-size);
 }
 
 /* Using table instead of flexbox so that we can use break-inside property */
@@ -14523,6 +14537,10 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 /* Hiding the collapser by default */
 .jp-Collapser {
   display: none;
+}
+
+@page {
+    margin: 0.5in; /* Margin for each printed piece of paper */
 }
 
 @media print {
@@ -14653,9 +14671,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -14709,9 +14725,7 @@ memory usage: 714.8+ KB
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[3]:</div>
 
@@ -14918,9 +14932,7 @@ memory usage: 714.8+ KB
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[5]:</div>
 
@@ -15034,9 +15046,7 @@ memory usage: 714.8+ KB
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15073,9 +15083,7 @@ memory usage: 714.8+ KB
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15112,9 +15120,7 @@ memory usage: 714.8+ KB
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15164,9 +15170,7 @@ memory usage: 714.8+ KB
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[10]:</div>
 
@@ -15374,9 +15378,7 @@ memory usage: 714.8+ KB
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15413,9 +15415,7 @@ memory usage: 714.8+ KB
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15516,9 +15516,7 @@ memory usage: 714.8+ KB
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15591,9 +15589,7 @@ memory usage: 714.8+ KB
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[20]:</div>
 
@@ -15634,45 +15630,45 @@ memory usage: 714.8+ KB
   <tbody>
     <tr>
       <th>0</th>
-      <td>9</td>
-      <td>2003-07-17</td>
-      <td>23</td>
-      <td>40</td>
-      <td>294.36</td>
-      <td>MONTENMEDIO NORTE CASA C</td>
-      <td>RESTAURANTES DE 4 Y 5 TENEDORES</td>
-      <td>RESTAURANTE</td>
-      <td>Carlos María Martínez Martínez</td>
-      <td>directivo</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>4</td>
-      <td>2005-08-16</td>
-      <td>16</td>
-      <td>18</td>
-      <td>81.90</td>
-      <td>FARMACIA MERINERO</td>
-      <td>FARMACIAS</td>
-      <td>SALUD</td>
-      <td>Antonio Cámara Eguinoa</td>
+      <td>29</td>
+      <td>2007-08-23</td>
+      <td>19</td>
+      <td>48</td>
+      <td>156.25</td>
+      <td>GIGANTE SUPERMERCADOS</td>
+      <td>HIPERMERCADOS (TECNOLOGIA ELECTRONICA)</td>
+      <td>SUPERMERCADO</td>
+      <td>Javier de Miguel Sánchez</td>
       <td>concejal</td>
       <td>Partido Popular</td>
     </tr>
     <tr>
-      <th>2</th>
-      <td>49</td>
-      <td>2010-10-06</td>
-      <td>16</td>
-      <td>47</td>
-      <td>156.60</td>
-      <td>TABERNA MAYRIT</td>
-      <td>CLUBS,SALAS FIESTA,PUBS,DISCOTECAS,BARES</td>
-      <td>SALIDAS</td>
-      <td>Juan José Azcona Olondriz</td>
+      <th>1</th>
+      <td>73</td>
+      <td>2006-07-12</td>
+      <td>17</td>
+      <td>2</td>
+      <td>1.23</td>
+      <td>ACESA</td>
+      <td>ACESA</td>
+      <td>COCHE</td>
+      <td>Ramón Espinar Gallego</td>
       <td>concejal</td>
-      <td>CC OO</td>
+      <td>PSOE</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>72</td>
+      <td>2011-01-06</td>
+      <td>15</td>
+      <td>26</td>
+      <td>50.00</td>
+      <td>None</td>
+      <td>SERV.ORG.PUBL.Y GRANDES EMPRESAS</td>
+      <td>BUSINESS</td>
+      <td>Rafael Spottorno Díaz Caro</td>
+      <td>directivo</td>
+      <td>None</td>
     </tr>
   </tbody>
 </table>
@@ -15725,17 +15721,15 @@ memory usage: 714.8+ KB
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>c2810667a120cd3cd23d9b238074f7ee -&gt; {('importe', 'counter'): 401108, ('nombre', 'register'): 'Domingo Navalmoral Sánchez'}
-2845a97aadfae29c255551995b10b5dd -&gt; {('importe', 'counter'): 707709, ('nombre', 'register'): 'José María Buenaventura Zabala'}
+<pre>3cbc841a44235abe8646871c429d2950 -&gt; {('importe', 'counter'): 118312, ('nombre', 'register'): 'Rafael Pradillo Moreno de la Santa'}
 15b7d507a68b1b7cd3b3910920c5f126 -&gt; {('importe', 'counter'): 2267749, ('nombre', 'register'): 'Rubén Cruz Orive'}
+d51e4e145b8fb8b841381c565704890e -&gt; {('importe', 'counter'): 3155645, ('nombre', 'register'): 'Carmen Contreras Gómez'}
 </pre>
 </div>
 </div>
@@ -15826,9 +15820,7 @@ memory usage: 714.8+ KB
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[23]:</div>
 
@@ -15869,73 +15861,73 @@ memory usage: 714.8+ KB
   <tbody>
     <tr>
       <th>0</th>
-      <td>66</td>
-      <td>2009-03-29</td>
-      <td>17</td>
-      <td>0</td>
-      <td>69.8</td>
-      <td>O CONXURO</td>
-      <td>RESTAURANTES RESTO</td>
-      <td>RESTAURANTE</td>
-      <td>Pablo Abejas Juárez</td>
+      <td>30</td>
+      <td>2011-06-15</td>
+      <td>19</td>
+      <td>15</td>
+      <td>18.95</td>
+      <td>JUTECO</td>
+      <td>BODYBELL JUTECO</td>
+      <td>ESTETICA</td>
+      <td>Jesús Pedroche Nieto</td>
       <td>concejal</td>
       <td>Partido Popular</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>60</td>
-      <td>2008-01-29</td>
-      <td>15</td>
-      <td>32</td>
-      <td>6.3</td>
-      <td>TAXI DE MADRID 01113</td>
-      <td>TAXIS</td>
+      <td>78</td>
+      <td>2006-05-31</td>
+      <td>20</td>
+      <td>6</td>
+      <td>32.00</td>
+      <td>SANTOYO HNOS S L IZDO</td>
+      <td>GASOLINERAS</td>
       <td>COCHE</td>
-      <td>Mercedes Rojo Izquierdo</td>
+      <td>Rodolfo Benito Valenciano</td>
       <td>concejal</td>
-      <td>Partido Popular</td>
+      <td>CC OO</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>29</td>
-      <td>2009-05-11</td>
-      <td>0</td>
-      <td>50</td>
-      <td>242.8</td>
-      <td>SUPERCOR EL ESCORIAL</td>
-      <td>HIPERCOR SUPERMERCADOS EL CORTE INGLES</td>
-      <td>SUPERMERCADO</td>
-      <td>Javier de Miguel Sánchez</td>
+      <td>80</td>
+      <td>2007-10-11</td>
+      <td>16</td>
+      <td>10</td>
+      <td>50.15</td>
+      <td>CAFETERIA LASO</td>
+      <td>CAFETERIAS,SNACKS</td>
+      <td>RESTAURANTE</td>
+      <td>Rubén Cruz Orive</td>
       <td>concejal</td>
-      <td>Partido Popular</td>
+      <td>Izquierda Unida</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>19</td>
-      <td>2003-05-06</td>
-      <td>15</td>
-      <td>34</td>
-      <td>48.7</td>
-      <td>NISA (H 24) ASERVITUR  SL</td>
+      <td>73</td>
+      <td>2009-12-17</td>
+      <td>18</td>
+      <td>49</td>
+      <td>55.00</td>
+      <td>ESTACION DE SERVICIO ALCA</td>
       <td>GASOLINERAS</td>
       <td>COCHE</td>
-      <td>Francisco José Moure Bourio</td>
+      <td>Ramón Espinar Gallego</td>
       <td>concejal</td>
-      <td>Partido Popular</td>
+      <td>PSOE</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>44</td>
-      <td>2010-08-08</td>
-      <td>13</td>
-      <td>34</td>
-      <td>65.0</td>
-      <td>E.S. GESOIL EL ALBIR</td>
-      <td>GASOLINERAS</td>
+      <td>15</td>
+      <td>2006-10-30</td>
+      <td>16</td>
+      <td>41</td>
+      <td>3.79</td>
+      <td>APARCAMIENTO MONTALBAN</td>
+      <td>GARAJES,RESTO DE APARCAMIENTOS</td>
       <td>COCHE</td>
-      <td>José María de la Riva Amez</td>
+      <td>Estanislao Rodríguez-Ponga Salamanca</td>
       <td>concejal</td>
-      <td>PSOE</td>
+      <td>Partido Popular</td>
     </tr>
   </tbody>
 </table>
@@ -15996,9 +15988,7 @@ memory usage: 714.8+ KB
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[24]:</div>
 
@@ -16031,70 +16021,70 @@ memory usage: 714.8+ KB
   </thead>
   <tbody>
     <tr>
-      <th>2600</th>
+      <th>5697</th>
       <td>Enrique de la Torre Martínez</td>
       <td>2007-11-28</td>
       <td>AGENCIAS BANCARIAS(ANTICIPO VENTANILLA)</td>
       <td>12000.00</td>
     </tr>
     <tr>
-      <th>1952</th>
+      <th>1789</th>
       <td>Ramón Ferraz Ricarte</td>
       <td>2007-12-19</td>
       <td>AGENCIAS BANCARIAS(ANTICIPO VENTANILLA)</td>
       <td>9424.08</td>
     </tr>
     <tr>
-      <th>836</th>
+      <th>4722</th>
       <td>Enrique de la Torre Martínez</td>
       <td>2008-10-23</td>
       <td>AGENCIAS BANCARIAS(ANTICIPO VENTANILLA)</td>
       <td>9000.00</td>
     </tr>
     <tr>
-      <th>5276</th>
+      <th>4717</th>
       <td>Enrique de la Torre Martínez</td>
       <td>2006-11-29</td>
       <td>AGENCIAS BANCARIAS(ANTICIPO VENTANILLA)</td>
       <td>8000.00</td>
     </tr>
     <tr>
-      <th>4076</th>
+      <th>7258</th>
       <td>Miguel Blesa de la Parra</td>
       <td>2006-12-26</td>
       <td>EL CORTE INGLES</td>
       <td>6397.31</td>
     </tr>
     <tr>
-      <th>5323</th>
+      <th>1716</th>
       <td>Rafael Spottorno Díaz Caro</td>
       <td>2007-11-30</td>
       <td>CONFECCION TEXTIL EN GENERAL</td>
       <td>6375.00</td>
     </tr>
     <tr>
-      <th>4979</th>
+      <th>5937</th>
       <td>Carmen Contreras Gómez</td>
       <td>2006-08-13</td>
       <td>HOTELES 4 Y 5 ESTRELLAS,BALNEARIOS,CAMPI</td>
       <td>6198.02</td>
     </tr>
     <tr>
-      <th>7615</th>
+      <th>4220</th>
       <td>Matías Amat Roca</td>
       <td>2006-08-13</td>
       <td>BRITISH AIRWAYS - BRITISH A</td>
       <td>5763.10</td>
     </tr>
     <tr>
-      <th>4783</th>
+      <th>2263</th>
       <td>Juan Manuel Astorqui Portera</td>
       <td>2005-07-31</td>
       <td>AUTOM.Y MOTOCICLETAS ( VENTAS Y REPARAC)</td>
       <td>5403.97</td>
     </tr>
     <tr>
-      <th>1908</th>
+      <th>1446</th>
       <td>Enrique de la Torre Martínez</td>
       <td>2004-12-06</td>
       <td>AGENCIAS BANCARIAS(ANTICIPO VENTANILLA)</td>
@@ -16181,9 +16171,7 @@ memory usage: 714.8+ KB
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[26]:</div>
 
@@ -16216,70 +16204,70 @@ memory usage: 714.8+ KB
   </thead>
   <tbody>
     <tr>
-      <th>7</th>
+      <th>170</th>
       <td>Ildefonso José Sánchez Barcoj</td>
       <td>2009-05-04</td>
       <td>AGENCIAS BANCARIAS(ANTICIPO VENTANILLA)</td>
       <td>1500.00</td>
     </tr>
     <tr>
-      <th>26</th>
+      <th>43</th>
       <td>Ildefonso José Sánchez Barcoj</td>
       <td>2010-07-07</td>
       <td>EL CORTE INGLES</td>
       <td>1478.07</td>
     </tr>
     <tr>
-      <th>110</th>
+      <th>39</th>
       <td>Ildefonso José Sánchez Barcoj</td>
       <td>2008-03-21</td>
       <td>HOTELES 4 Y 5 ESTRELLAS,BALNEARIOS,CAMPI</td>
       <td>1392.79</td>
     </tr>
     <tr>
-      <th>219</th>
+      <th>75</th>
       <td>Ildefonso José Sánchez Barcoj</td>
       <td>2005-10-28</td>
       <td>LOUIS VUITTON/LOEWE</td>
       <td>1375.00</td>
     </tr>
     <tr>
-      <th>151</th>
+      <th>103</th>
       <td>Ildefonso José Sánchez Barcoj</td>
       <td>2009-09-28</td>
       <td>AGENCIAS BANCARIAS(ANTICIPO VENTANILLA)</td>
       <td>1000.00</td>
     </tr>
     <tr>
-      <th>48</th>
+      <th>142</th>
       <td>Ildefonso José Sánchez Barcoj</td>
       <td>2012-03-15</td>
       <td>IBERIA</td>
       <td>940.00</td>
     </tr>
     <tr>
-      <th>95</th>
+      <th>242</th>
       <td>Ildefonso José Sánchez Barcoj</td>
       <td>2010-02-05</td>
       <td>CONFECCION TEXTIL EN GENERAL</td>
       <td>930.00</td>
     </tr>
     <tr>
-      <th>142</th>
+      <th>218</th>
       <td>Ildefonso José Sánchez Barcoj</td>
       <td>2005-12-19</td>
       <td>EL CORTE INGLES</td>
       <td>731.00</td>
     </tr>
     <tr>
-      <th>141</th>
+      <th>99</th>
       <td>Ildefonso José Sánchez Barcoj</td>
       <td>2009-03-20</td>
       <td>PARADORES NACIONALES</td>
       <td>708.11</td>
     </tr>
     <tr>
-      <th>53</th>
+      <th>133</th>
       <td>Ildefonso José Sánchez Barcoj</td>
       <td>2009-12-07</td>
       <td>HOTELES 4 Y 5 ESTRELLAS,BALNEARIOS,CAMPI</td>
@@ -16381,9 +16369,7 @@ memory usage: 714.8+ KB
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[28]:</div>
 
@@ -16414,52 +16400,52 @@ memory usage: 714.8+ KB
   </thead>
   <tbody>
     <tr>
-      <th>13</th>
+      <th>20</th>
       <td>Enrique de la Torre Martínez</td>
       <td>58826.28</td>
     </tr>
     <tr>
-      <th>20</th>
+      <th>30</th>
       <td>José Antonio Moral Santín</td>
       <td>52447.07</td>
     </tr>
     <tr>
-      <th>78</th>
+      <th>11</th>
       <td>Ramón Ferraz Ricarte</td>
       <td>45371.52</td>
     </tr>
     <tr>
-      <th>74</th>
+      <th>34</th>
       <td>Miguel Blesa de la Parra</td>
       <td>40298.84</td>
     </tr>
     <tr>
-      <th>46</th>
+      <th>43</th>
       <td>Ildefonso José Sánchez Barcoj</td>
       <td>39437.99</td>
     </tr>
     <tr>
-      <th>79</th>
+      <th>12</th>
       <td>Juan Manuel Astorqui Portera</td>
       <td>36627.89</td>
     </tr>
     <tr>
-      <th>80</th>
+      <th>72</th>
       <td>Francisco Baquero Noriega</td>
       <td>35256.67</td>
     </tr>
     <tr>
-      <th>11</th>
+      <th>49</th>
       <td>Matías Amat Roca</td>
       <td>33434.74</td>
     </tr>
     <tr>
-      <th>40</th>
+      <th>2</th>
       <td>Carmen Contreras Gómez</td>
       <td>31556.45</td>
     </tr>
     <tr>
-      <th>36</th>
+      <th>5</th>
       <td>Estanislao Rodríguez-Ponga Salamanca</td>
       <td>29350.65</td>
     </tr>

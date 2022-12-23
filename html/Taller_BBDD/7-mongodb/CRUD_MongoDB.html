@@ -36,6 +36,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .m { color: var(--jp-mirror-editor-number-color) } /* Literal.Number */
 .highlight .s { color: var(--jp-mirror-editor-string-color) } /* Literal.String */
 .highlight .ow { color: var(--jp-mirror-editor-operator-color); font-weight: bold } /* Operator.Word */
+.highlight .pm { color: var(--jp-mirror-editor-punctuation-color) } /* Punctuation.Marker */
 .highlight .w { color: var(--jp-mirror-editor-variable-color) } /* Text.Whitespace */
 .highlight .mb { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Bin */
 .highlight .mf { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Float */
@@ -14464,10 +14465,6 @@ a.anchor-link {
   display: none;
 }
 
-.highlight  {
-  margin: 0.4em;
-}
-
 /* Input area styling */
 .jp-InputArea {
   overflow: hidden;
@@ -14477,9 +14474,26 @@ a.anchor-link {
   overflow: hidden;
 }
 
-.CodeMirror pre {
+.CodeMirror.cm-s-jupyter .highlight pre {
+/* weird, but --jp-code-padding defined to be 5px but 4px horizontal padding is hardcoded for pre.CodeMirror-line */
+  padding: var(--jp-code-padding) 4px;
   margin: 0;
-  padding: 0;
+
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+
+}
+
+.jp-OutputArea-output pre {
+  line-height: inherit;
+  font-family: inherit;
+}
+
+.jp-RenderedText pre {
+  color: var(--jp-content-font-color1);
+  font-size: var(--jp-code-font-size);
 }
 
 /* Using table instead of flexbox so that we can use break-inside property */
@@ -14523,6 +14537,10 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 /* Hiding the collapser by default */
 .jp-Collapser {
   display: none;
+}
+
+@page {
+    margin: 0.5in; /* Margin for each printed piece of paper */
 }
 
 @media print {
@@ -14590,7 +14608,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMTEyLjYxIDMwMCI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiMxMGFhNTA7fS5jbHMtMntmaWxsOiNiOGM0YzI7fS5jbHMtM3tmaWxsOiMxMjkyNGY7fS5jbHMtNHtmaWxsOiMyMTMxM2M7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5Nb25nb0RCX0xvZ29fRnVsbENvbG9yQmxhY2tfUkdCPC90aXRsZT48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0xMzQuNDQsMTIwLjM0QzExOS4xMyw1Mi44LDg3LjIyLDM0LjgyLDc5LjA4LDIyLjExYTE0NC41NywxNDQuNTcsMCwwLDEtOC45LTE3LjQyYy0uNDMsNi0xLjIyLDkuNzgtNi4zMiwxNC4zM0M1My42MiwyOC4xNSwxMC4xMyw2My41OSw2LjQ3LDE0MC4zM2MtMy40MSw3MS41NSw1Mi42LDExNS42Nyw2MCwxMjAuMjMsNS42OSwyLjgsMTIuNjIuMDYsMTYtMi41MSwyNy0xOC41Myw2My44OS02Ny45Myw1Mi0xMzcuNzEiLz48cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik03Mi41LDIyMi40NmMtMS40MSwxNy43MS0yLjQyLDI4LTYsMzguMTIsMCwwLDIuMzUsMTYuODYsNCwzNC43Mmg1Ljg0YTMyNC43MywzMjQuNzMsMCwwLDEsNi4zNy0zNy4zOUM3NS4xNSwyNTQuMTksNzIuNzksMjM4LDcyLjUsMjIyLjQ2WiIvPjxwYXRoIGNsYXNzPSJjbHMtMyIgZD0iTTgyLjcsMjU3LjkyaDBjLTcuNjQtMy41My05Ljg1LTIwLjA2LTEwLjE5LTM1LjQ2YTcyNS44Myw3MjUuODMsMCwwLDAsMS42NS03Ni4zNWMtLjQtMTMuMzYuMTktMTIzLjc0LTMuMjktMTM5LjlBMTM0LjI5LDEzNC4yOSwwLDAsMCw3OS4wOCwyMi4xYzguMTQsMTIuNzIsNDAuMDYsMzAuNyw1NS4zNiw5OC4yNEMxNDYuMzYsMTkwLDEwOS42NywyMzkuMjcsODIuNywyNTcuOTJaIi8+PHBhdGggY2xhc3M9ImNscy00IiBkPSJNMTA4OS43LDIzMy41YTE2LjU5LDE2LjU5LDAsMSwxLDE2LjU5LTE2LjgyLDE2LjM4LDE2LjM4LDAsMCwxLTE2LjU5LDE2LjgybTAtMzEuNjhhMTUuMSwxNS4xLDAsMSwwLDE1LDE1LjE0LDE0Ljg1LDE0Ljg1LDAsMCwwLTE1LTE1LjE0bTQsMjUuNTgtNC4yOC05LjIzaC0zLjQ1djkuMjNoLTIuNTF2LTIxaDYuMTljNC42MSwwLDYuNTMsMiw2LjUzLDUuODcsMCwzLjA4LTEuNDUsNS00LjE1LDUuNTlsNC40Miw5LjUxWk0xMDg2LjA3LDIxNmgzLjYzYzIuOTQsMCw0LjA2LTEsNC4wNi0zLjY4cy0xLjA3LTMuNTktNC4zOC0zLjU5aC0zLjMxWiIvPjxwYXRoIGNsYXNzPSJjbHMtNCIgZD0iTTg0Mi43OSwyMTguMzhjNC40OSwzLjU5LDEzLjQ2LDUuMDcsMjEuMzcsNS4wNywxMC4yNSwwLDIwLjMtMS45LDMwLjEyLTEwLjc3LDEwLTkuMDksMTYuODgtMjMsMTYuODgtNDUuMjEsMC0yMS4zNC04LjEyLTM4LjY2LTI0Ljc4LTQ4LjgtOS40LTUuOTEtMjEuNTgtOC4yNC0zNS40Ny04LjI0LTQsMC04LjEyLjIxLTEwLjQ2LDEuMjdhNS40OSw1LjQ5LDAsMCwwLTEuOTMsM2MtLjQyLDMuOC0uNDIsMzIuNzQtLjQyLDQ5Ljg1LDAsMTcuNTQsMCw0MiwuNDIsNDUsLjIyLDIuNTQsMS41LDcsNC4yNyw4Ljg3TTgwMC4xNSwxMDAuOTNjMy42MywwLDE3LjQzLjYzLDIzLjg1LjYzLDEyLDAsMjAuMjktLjYzLDQyLjcyLS42MywxOC44LDAsMzQuNjIsNS4wNyw0NS45MywxNC43OCwxMy42OCwxMS44NCwyMSwyOC4zMSwyMSw0OC4zOCwwLDI4LjUyLTEzLDQ1LTI2LjA3LDU0LjI5LTEzLDkuNzItMjkuOTEsMTUuMjEtNTQsMTUuMjEtMTIuODIsMC0zNC44My0uNDItNTMuMi0uNjNIODAwYy0uODYtMS42OSwxLjU3LTguMjgsMy4wNy04LjQ1LDUtLjU2LDYuMzItLjc2LDguNjItMS43MSwzLjg4LTEuNTksNC43OS0zLjU3LDUuMjItMTAuNTQuNjQtMTMuMS40My0yOC43My40My00Ni40OCwwLTEyLjY3LjIxLTM3LjM5LS4yMS00NS4yMS0uNjUtNi41NC0zLjQxLTguMjMtOS05LjVhMTE2LjI0LDExNi4yNCwwLDAsMC0xMi0xLjljLS40Mi0xLjI3LDIuODYtNywzLjkzLTguMjQiLz48cGF0aCBjbGFzcz0iY2xzLTQiIGQ9Ik05ODYuNiwxMTEuNjVjLS44NS4yMS0xLjkyLDIuMzMtMS45MiwzLjM4LS4yMiw3LjYxLS40MywyNy40Ni0uNDMsNDEuMTlhMS4zNiwxLjM2LDAsMCwwLDEuMDcsMS4wNmMyLjc3LjIxLDkuNjEuNDMsMTUuMzguNDMsOC4xMiwwLDEyLjgyLTEuMDYsMTUuMzgtMi4zMyw2Ljg0LTMuMzgsMTAtMTAuNzgsMTAtMTguOCwwLTE4LjM4LTEyLjgyLTI1LjM1LTMxLjgzLTI1LjM1YTU3LjM1LDU3LjM1LDAsMCwwLTcuNjkuNDJtNDguNSw4NC41YzAtMTguNTktMTMuNjgtMjkuMTUtMzguNjgtMjkuMTUtMS4wNiwwLTktLjIxLTEwLjg5LjIxLS42NC4yMS0xLjI4LjYzLTEuMjgsMS4wNiwwLDEzLjMxLS4yMiwzNC42NC40Myw0My4wOS40MywzLjU5LDMsOC42Niw2LjE5LDEwLjE0LDMuNDIsMS45LDExLjExLDIuMzIsMTYuNDUsMi4zMiwxNC43NCwwLDI3Ljc4LTguMjMsMjcuNzgtMjcuNjdNOTQ4LDEwMS4zYzEuOTMsMCw3LjYxLjYzLDIyLjE0LjYzLDEzLjY3LDAsMjQuNzgtLjQyLDM4LS40MiwxNi40NSwwLDM5LjA5LDUuOTIsMzkuMDksMzAuNDIsMCwxMi04LjU0LDIxLjc2LTE5LjY1LDI2LjQxLS42NC4yMS0uNjQuNjMsMCwuODQsMTUuODEsNCwyOS42OSwxMy43MywyOS42OSwzMi4zMiwwLDE4LjE3LTExLjMyLDI5LjU4LTI3Ljc3LDM2Ljc2LTEwLDQuNDQtMjIuNDMsNS45MS0zNSw1LjkxLTkuNjEsMC0zNS4zNy0xLTQ5LjY5LS44NC0xLjUtLjYzLDEuMzctNy40LDIuNjUtOC40NWEzOS4zOCwzOS4zOCwwLDAsMCw5LjY5LTEuNTJjNS4xMi0xLjI2LDUuNzMtMi45MSw2LjM3LTEwLjUyLjQzLTYuNTUuNDMtMzAsLjQzLTQ2LjY5LDAtMjIuODIuMjItMzguMjMsMC00NS44NC0uMjEtNS45MS0yLjM1LTcuODItNi40MS04Ljg3LTMuMi0uNjQtOC41NC0xLjI3LTEyLjgxLTEuOS0xLjA3LTEuMDYsMi4yMi03LjQsMy4yOC04LjI0Ii8+PHBhdGggY2xhc3M9ImNscy00IiBkPSJNMTgxLjc1LDIzMy41YTkuMjYsOS4yNiwwLDAsMS0uNjUtNC4yNyw1LjQzLDUuNDMsMCwwLDEsLjY1LTIuODUsNzIuNTgsNzIuNTgsMCwwLDAsOC4yLTEuNjdjMy43OC0uOTQsNS4yLTMsNS40Mi03LjgyLjYyLTExLjM5LjY2LTMyLjc2LjQ0LTQ3Ljc4di0uNDRjMC0xLjYyLDAtMy44Mi0yLTUuMzdhNDIuOTQsNDIuOTQsMCwwLDAtMTEuMzMtNWMtMS43OS0uNTMtMi43OC0xLjQ3LTIuNzMtMi41N3MxLjE4LTIuNCwzLjUxLTIuODZjNi4xOS0uNjMsMjIuNDEtNC41LDI4Ljc4LTcuNDRhNC4yMiw0LjIyLDAsMCwxLC44NSwzYzAsLjY2LS4xLDEuMzYtLjE3LDIuMDgtLjE4LDIuMTItLjM4LDQuNTMtLjM4LDYuOTNhMS41OCwxLjU4LDAsMCwwLDIuNjguOTFjMTIuMTMtOS41MSwyMy0xMi45LDI4LjU3LTEyLjksOS4xNywwLDE2LjMxLDQuMzgsMjEuODQsMTMuNGExLjQ3LDEuNDcsMCwwLDAsMS4yNC43MywxLjQyLDEuNDIsMCwwLDAsMS4xNi0uNjJjMTEuMTUtOC40NiwyMi4yLTEzLjUxLDI5LjYtMTMuNTEsMTcuNDgsMCwyNy45MywxMy4wOSwyNy45MywzNSwwLDYuMy0uMDYsMTQuMjktLjEyLDIxLjc0LS4wNSw2LjU0LS4xLDEyLjY3LS4xLDE2LjkxLDAsMSwxLjM4LDMuODgsMy40NSw0LjQ1LDIuNTYsMS4yNSw2LjI1LDEuODksMTAuOTIsMi42OWwuMTgsMGMuMzUsMS4yNi0uMzksNi4xNS0xLjEsNy4xNS0xLjE2LDAtMi43Ni0uMS00Ljc2LS4yLTMuNjMtLjE4LTguNjEtLjQzLTE0LjQtLjQzLTExLjYyLDAtMTcuNjkuMjItMjMuNDkuNi0uNDQtMS40NS0uNTktNi4xMy0uMDYtNy4xMUE2MS41NSw2MS41NSwwLDAsMCwzMDMsMjI0LjdjMy43LTEuMjIsNC43Ny0yLjksNS03LjgxLjA5LTMuNDkuNzYtMzQuMjQtLjQzLTQxLjU0LTEuMS03LjU3LTYuOC0xNi40My0xOS4yNy0xNi40My00LjYzLDAtMTIuMSwxLjkzLTE5LjIyLDcuMzNhMi44LDIuOCwwLDAsMC0uNywxLjgxdi4xNWMuODQsMy45NC44NCw4LjU0Ljg0LDE1LjQ5LDAsNCwwLDguMTctLjA1LDEyLjM0LS4wNSw4LjQ4LS4wOSwxNi40OC4wNSwyMi41MywwLDQuMTIsMi40OSw1LjExLDQuNSw1LjksMS4wOS4yNCwxLjk1LjQ1LDIuODIuNjUsMS42Ny40MSwzLjQxLjgzLDYsMS4yNGExMS40OSwxMS40OSwwLDAsMS0uMSw1LjMyLDQuMjYsNC4yNiwwLDAsMS0uNzUsMS44MWMtNi40Ni0uMjItMTMuMDktLjQxLTIyLjY2LS40MS0yLjksMC03LjYzLjEyLTExLjgxLjIzLTMuMzkuMDktNi41OS4xOC04LjQxLjE5YTguMjQsOC4yNCwwLDAsMS0uNjQtMy42OCw2LjM4LDYuMzgsMCwwLDEsLjY3LTMuNDRsMi41Ny0uNDdjMi4yNC0uNCw0LjE4LS43NCw2LTEuMiwzLjE2LTEsNC4zNS0yLjcyLDQuNTgtNi43NS42Mi05LjQsMS4xLTM2LjQ5LS4yMy00My4yNy0yLjI2LTEwLjg4LTguNDUtMTYuNC0xOC40MS0xNi40LTUuODMsMC0xMy4yLDIuODEtMTkuMjIsNy4zMmE1Ljg2LDUuODYsMCwwLDAtMS43Nyw0LjM1YzAsMy4yMywwLDcuMDcsMCwxMS4xOSwwLDEzLjYtLjA5LDMwLjUzLjI0LDM3Ljg1LjIsMi4yNiwxLDQuOTQsNS4yMyw1LjkyLjkzLjI3LDIuNTMuNTMsNC4zOS44NCwxLjA3LjE4LDIuMjQuMzcsMy40NS41OWExNS4xNiwxNS4xNiwwLDAsMS0uNTcsNy4xNWMtMS44NiwwLTQuMTUtLjEyLTYuNzctLjIzLTQtLjE4LTktLjQtMTQuNjUtLjQtNi42OCwwLTExLjMzLjIyLTE1LjA2LjQtMi41MS4xMi00LjY4LjIyLTYuODUuMjMiLz48cGF0aCBjbGFzcz0iY2xzLTQiIGQ9Ik0zOTYuMiwxNTQuNDlBMTguMjIsMTguMjIsMCwwLDAsMzg2LDE1Ny4zNmMtNy40Miw0LjUxLTExLjIsMTMuNTItMTEuMiwyNi43NiwwLDI0Ljc4LDEyLjQxLDQyLjA5LDMwLjE4LDQyLjA5QTE5LDE5LDAsMCwwLDQxOCwyMjEuNmM1LjQ2LTQuNDUsOC4zNi0xMy41NSw4LjM2LTI2LjI5LDAtMjQuNDEtMTIuMTMtNDAuODItMzAuMTgtNDAuODJtMy40Miw4MC45MWMtMzIuMSwwLTQzLjUzLTIzLjU1LTQzLjUzLTQ1LjU4LDAtMTUuMzksNi4yOS0yNy40MiwxOC43LTM1Ljc3YTU3LjExLDU3LjExLDAsMCwxLDI4Ljg5LTguNTRjMjQuNDksMCw0MS42LDE3LjYxLDQxLjYsNDIuODQsMCwxNy4xNC02LjgzLDMwLjY4LTE5Ljc2LDM5LjE0LTYuMjEsMy44LTE3LDcuOTEtMjUuOSw3LjkxIi8+PHBhdGggY2xhc3M9ImNscy00IiBkPSJNNzIzLDE1NC40OWExOC4xNywxOC4xNywwLDAsMC0xMC4yMiwyLjg3Yy03LjQyLDQuNTEtMTEuMiwxMy41Mi0xMS4yLDI2Ljc2LDAsMjQuNzgsMTIuNDEsNDIuMDksMzAuMTgsNDIuMDlhMTksMTksMCwwLDAsMTMuMDYtNC42MWM1LjQ2LTQuNDUsOC4zNS0xMy41NSw4LjM1LTI2LjI5LDAtMjQuNDEtMTIuMTItNDAuODItMzAuMTctNDAuODJtMy40Miw4MC45MWMtMzIuMSwwLTQzLjUzLTIzLjU1LTQzLjUzLTQ1LjU3LDAtMTUuNDEsNi4yOS0yNy40MywxOC43MS0zNS43OGE1Nyw1NywwLDAsMSwyOC44OC04LjU0YzI0LjQ5LDAsNDEuNiwxNy42Miw0MS42LDQyLjgzLDAsMTcuMTYtNi44MywzMC42OS0xOS43NiwzOS4xNC02LjIxLDMuODEtMTcsNy45Mi0yNS45LDcuOTIiLz48cGF0aCBjbGFzcz0iY2xzLTQiIGQ9Ik02MTQuOTIsMTUzLjY1Yy05Ljg5LDAtMTYuMjksNy44MS0xNi4yOSwxOS45czUuNTEsMjYuNDYsMjEsMjYuNDZjMi42NiwwLDcuNDgtMS4xOCw5Ljg3LTMuODEsMy42LTMuMzEsNi0xMC4xNSw2LTE3LjM3LDAtMTUuNzctNy42OC0yNS4xOC0yMC41My0yNS4xOG0tMS4yOCw4My40NGExNi4yOSwxNi4yOSwwLDAsMC04LDJjLTcuODMsNS0xMS40NiwxMC0xMS40NiwxNS44MSwwLDUuNDQsMi4xMSw5Ljc3LDYuNjUsMTMuNjEsNS41LDQuNjYsMTIuOTIsNi45MywyMi42Nyw2LjkzLDE5LjE5LDAsMjcuNzktMTAuMzIsMjcuNzktMjAuNTQsMC03LjEyLTMuNTctMTEuODktMTAuOTItMTQuNTktNS42Ni0yLjA3LTE1LjEyLTMuMjEtMjYuNy0zLjIxbTEuMjgsNDljLTExLjUyLDAtMTkuODItMi40My0yNi45MS03Ljg5LTYuOS01LjMyLTEwLTEzLjIyLTEwLTE4LjY4YTE0LjYxLDE0LjYxLDAsMCwxLDMuNzgtOS41YzItMi4yOCw2LjY1LTYuNTUsMTcuNC0xMy45NGEuOTIuOTIsMCwwLDAsLjU2LS44NS44OS44OSwwLDAsMC0uNjgtLjg4Yy04Ljg1LTMuMzktMTEuNTItOS0xMi4zMy0xMiwwLS4xMSwwLS4yOC0uMDktLjQ3LS4yNS0xLjE4LS40OS0yLjMsMS4xMi0zLjQ1LDEuMjQtLjg4LDMuMjItMi4wNiw1LjM0LTMuMzFhNzEuODksNzEuODksMCwwLDAsOC41OS01LjU5LDEuNDEsMS40MSwwLDAsMC0uMzYtMi4yYy0xMy4xLTQuNC0xOS43LTE0LjEzLTE5LjctMjlhMjguODMsMjguODMsMCwwLDEsMTIuMS0yMy43M2M1LjI3LTQuMTcsMTguNS05LjE4LDI3LjA3LTkuMThoLjVjOC44MS4yMSwxMy43OCwyLjA2LDIwLjY2LDQuNmEzMi44NCwzMi44NCwwLDAsMCwxMi4yMiwxLjk0YzcuMjksMCwxMC40OC0yLjMxLDEzLjIyLTVhMTEuNDcsMTEuNDcsMCwwLDEsLjcsMy43OCwxNC4yMiwxNC4yMiwwLDAsMS0yLjM4LDguNjhjLTEuNDksMi4wNy01LDMuNTctOC4yMSwzLjU3LS4zMywwLS42NSwwLTEtLjA1YTI2Ljk0LDI2Ljk0LDAsMCwxLTUtLjgzbC0uODIuMjljLS4yNi4zOC0uMDkuOC4xMiwxLjM0YTEuNywxLjcsMCwwLDEsLjEyLjMzLDU4LjUyLDU4LjUyLDAsMCwxLDEuMTksOC4xYzAsMTUuNTUtNi4xMywyMi4zMi0xMi43NiwyNy4zNGE0My41Niw0My41NiwwLDAsMS0yMiw4LjUyaDBjLS4xNywwLTEsLjA3LTIuNTYuMjEtMSwuMDktMi4zLjIxLTIuNDkuMjFsLS4xOSwwYy0xLjQ0LjQtNS4yLDIuMTktNS4yLDUuNTIsMCwyLjc2LDEuNyw2LjE5LDkuODMsNi44MWw1LjI2LjM3YzEwLjcyLjc1LDI0LjExLDEuNjgsMzAuNDEsMy44MWEyMS4wNiwyMS4wNiwwLDAsMSwxNC4wNywyMC4yN2MwLDEzLjk1LTkuOTIsMjcuMDctMjYuNTMsMzUuMDlhNTcuNjYsNTcuNjYsMCwwLDEtMjUuMDksNS42MyIvPjxwYXRoIGNsYXNzPSJjbHMtNCIgZD0iTTU2NS44NiwyMjYuMDZjLTQuNy0uNjMtOC4xMy0xLjI3LTEyLjE4LTMuMTdhNS42LDUuNiwwLDAsMS0xLjUtM2MtLjQzLTYuNTUtLjQzLTI1LjU2LS40My0zOCwwLTEwLjE1LTEuNy0xOS02LTI1LjM1LTUuMTMtNy4xOS0xMi4zOS0xMS40MS0yMS43OS0xMS40MS04LjMzLDAtMTkuNDQsNS43LTI4LjYyLDEzLjUyLS4yMi4yMS0xLjYzLDEuNTUtMS42LS41M3MuMzUtNi4zLjU1LTlhNC42Myw0LjYzLDAsMCwwLTEuNC0zLjkyYy02LDMtMjIuODMsNy0yOS4wNiw3LjYxLTQuNTQuODgtNS42OSw1LjI1LS44NCw2Ljc2bC4wNywwYTQxLjQ2LDQxLjQ2LDAsMCwxLDExLDQuODRjMS45MiwxLjQ4LDEuNzEsMy41OSwxLjcxLDUuMjguMjEsMTQuMTUuMjEsMzUuOTEtLjQzLDQ3Ljc0LS4yMSw0LjY1LTEuNSw2LjM0LTQuOTIsNy4xOWwuMzItLjExYTY2LjQ2LDY2LjQ2LDAsMCwxLTcuOTEsMS40OGMtMS4wNywxLjA1LTEuMDcsNy4xOCwwLDguNDUsMi4xNCwwLDEzLS42MywyMi0uNjMsMTIuMzgsMCwxOC43OS42MywyMiwuNjMsMS4yOS0xLjQ4LDEuNzEtNy4xOC44Ni04LjQ1YTQ1LDQ1LDAsMCwxLTguNzctMS4yN2MtMy40MS0uODQtNC4yNy0yLjU0LTQuNDgtNi4zMy0uNDItOS45NC0uNDItMzEuMDYtLjQyLTQ1LjQzLDAtNCwxLjA2LTUuOTEsMi4zNC03LDQuMjctMy44LDExLjMzLTYuMzMsMTcuNTItNi4zMyw2LDAsMTAsMS45LDEzLDQuNDNBMTguMSwxOC4xLDAsMCwxLDUzMywxNzZjLjg1LDgsLjYzLDI0LjA5LjYzLDM4LDAsNy42MS0uNjMsOS41Mi0zLjQxLDEwLjM2LTEuMjguNjMtNC43LDEuMjctOC43NiwxLjY5LTEuMjgsMS4yNy0uODYsNy4xOCwwLDguNDUsNS41NSwwLDEyLS42MywyMS4zNi0uNjMsMTEuNzUsMCwxOS4yMy42MywyMi4yMi42MywxLjI4LTEuNDgsMS43MS03LC44Ni04LjQ1Ii8+PC9zdmc+" width="1000" height="150"></p>
+<img src="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMTEyLjYxIDMwMCI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiMxMGFhNTA7fS5jbHMtMntmaWxsOiNiOGM0YzI7fS5jbHMtM3tmaWxsOiMxMjkyNGY7fS5jbHMtNHtmaWxsOiMyMTMxM2M7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5Nb25nb0RCX0xvZ29fRnVsbENvbG9yQmxhY2tfUkdCPC90aXRsZT48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0xMzQuNDQsMTIwLjM0QzExOS4xMyw1Mi44LDg3LjIyLDM0LjgyLDc5LjA4LDIyLjExYTE0NC41NywxNDQuNTcsMCwwLDEtOC45LTE3LjQyYy0uNDMsNi0xLjIyLDkuNzgtNi4zMiwxNC4zM0M1My42MiwyOC4xNSwxMC4xMyw2My41OSw2LjQ3LDE0MC4zM2MtMy40MSw3MS41NSw1Mi42LDExNS42Nyw2MCwxMjAuMjMsNS42OSwyLjgsMTIuNjIuMDYsMTYtMi41MSwyNy0xOC41Myw2My44OS02Ny45Myw1Mi0xMzcuNzEiLz48cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik03Mi41LDIyMi40NmMtMS40MSwxNy43MS0yLjQyLDI4LTYsMzguMTIsMCwwLDIuMzUsMTYuODYsNCwzNC43Mmg1Ljg0YTMyNC43MywzMjQuNzMsMCwwLDEsNi4zNy0zNy4zOUM3NS4xNSwyNTQuMTksNzIuNzksMjM4LDcyLjUsMjIyLjQ2WiIvPjxwYXRoIGNsYXNzPSJjbHMtMyIgZD0iTTgyLjcsMjU3LjkyaDBjLTcuNjQtMy41My05Ljg1LTIwLjA2LTEwLjE5LTM1LjQ2YTcyNS44Myw3MjUuODMsMCwwLDAsMS42NS03Ni4zNWMtLjQtMTMuMzYuMTktMTIzLjc0LTMuMjktMTM5LjlBMTM0LjI5LDEzNC4yOSwwLDAsMCw3OS4wOCwyMi4xYzguMTQsMTIuNzIsNDAuMDYsMzAuNyw1NS4zNiw5OC4yNEMxNDYuMzYsMTkwLDEwOS42NywyMzkuMjcsODIuNywyNTcuOTJaIi8+PHBhdGggY2xhc3M9ImNscy00IiBkPSJNMTA4OS43LDIzMy41YTE2LjU5LDE2LjU5LDAsMSwxLDE2LjU5LTE2LjgyLDE2LjM4LDE2LjM4LDAsMCwxLTE2LjU5LDE2LjgybTAtMzEuNjhhMTUuMSwxNS4xLDAsMSwwLDE1LDE1LjE0LDE0Ljg1LDE0Ljg1LDAsMCwwLTE1LTE1LjE0bTQsMjUuNTgtNC4yOC05LjIzaC0zLjQ1djkuMjNoLTIuNTF2LTIxaDYuMTljNC42MSwwLDYuNTMsMiw2LjUzLDUuODcsMCwzLjA4LTEuNDUsNS00LjE1LDUuNTlsNC40Miw5LjUxWk0xMDg2LjA3LDIxNmgzLjYzYzIuOTQsMCw0LjA2LTEsNC4wNi0zLjY4cy0xLjA3LTMuNTktNC4zOC0zLjU5aC0zLjMxWiIvPjxwYXRoIGNsYXNzPSJjbHMtNCIgZD0iTTg0Mi43OSwyMTguMzhjNC40OSwzLjU5LDEzLjQ2LDUuMDcsMjEuMzcsNS4wNywxMC4yNSwwLDIwLjMtMS45LDMwLjEyLTEwLjc3LDEwLTkuMDksMTYuODgtMjMsMTYuODgtNDUuMjEsMC0yMS4zNC04LjEyLTM4LjY2LTI0Ljc4LTQ4LjgtOS40LTUuOTEtMjEuNTgtOC4yNC0zNS40Ny04LjI0LTQsMC04LjEyLjIxLTEwLjQ2LDEuMjdhNS40OSw1LjQ5LDAsMCwwLTEuOTMsM2MtLjQyLDMuOC0uNDIsMzIuNzQtLjQyLDQ5Ljg1LDAsMTcuNTQsMCw0MiwuNDIsNDUsLjIyLDIuNTQsMS41LDcsNC4yNyw4Ljg3TTgwMC4xNSwxMDAuOTNjMy42MywwLDE3LjQzLjYzLDIzLjg1LjYzLDEyLDAsMjAuMjktLjYzLDQyLjcyLS42MywxOC44LDAsMzQuNjIsNS4wNyw0NS45MywxNC43OCwxMy42OCwxMS44NCwyMSwyOC4zMSwyMSw0OC4zOCwwLDI4LjUyLTEzLDQ1LTI2LjA3LDU0LjI5LTEzLDkuNzItMjkuOTEsMTUuMjEtNTQsMTUuMjEtMTIuODIsMC0zNC44My0uNDItNTMuMi0uNjNIODAwYy0uODYtMS42OSwxLjU3LTguMjgsMy4wNy04LjQ1LDUtLjU2LDYuMzItLjc2LDguNjItMS43MSwzLjg4LTEuNTksNC43OS0zLjU3LDUuMjItMTAuNTQuNjQtMTMuMS40My0yOC43My40My00Ni40OCwwLTEyLjY3LjIxLTM3LjM5LS4yMS00NS4yMS0uNjUtNi41NC0zLjQxLTguMjMtOS05LjVhMTE2LjI0LDExNi4yNCwwLDAsMC0xMi0xLjljLS40Mi0xLjI3LDIuODYtNywzLjkzLTguMjQiLz48cGF0aCBjbGFzcz0iY2xzLTQiIGQ9Ik05ODYuNiwxMTEuNjVjLS44NS4yMS0xLjkyLDIuMzMtMS45MiwzLjM4LS4yMiw3LjYxLS40MywyNy40Ni0uNDMsNDEuMTlhMS4zNiwxLjM2LDAsMCwwLDEuMDcsMS4wNmMyLjc3LjIxLDkuNjEuNDMsMTUuMzguNDMsOC4xMiwwLDEyLjgyLTEuMDYsMTUuMzgtMi4zMyw2Ljg0LTMuMzgsMTAtMTAuNzgsMTAtMTguOCwwLTE4LjM4LTEyLjgyLTI1LjM1LTMxLjgzLTI1LjM1YTU3LjM1LDU3LjM1LDAsMCwwLTcuNjkuNDJtNDguNSw4NC41YzAtMTguNTktMTMuNjgtMjkuMTUtMzguNjgtMjkuMTUtMS4wNiwwLTktLjIxLTEwLjg5LjIxLS42NC4yMS0xLjI4LjYzLTEuMjgsMS4wNiwwLDEzLjMxLS4yMiwzNC42NC40Myw0My4wOS40MywzLjU5LDMsOC42Niw2LjE5LDEwLjE0LDMuNDIsMS45LDExLjExLDIuMzIsMTYuNDUsMi4zMiwxNC43NCwwLDI3Ljc4LTguMjMsMjcuNzgtMjcuNjdNOTQ4LDEwMS4zYzEuOTMsMCw3LjYxLjYzLDIyLjE0LjYzLDEzLjY3LDAsMjQuNzgtLjQyLDM4LS40MiwxNi40NSwwLDM5LjA5LDUuOTIsMzkuMDksMzAuNDIsMCwxMi04LjU0LDIxLjc2LTE5LjY1LDI2LjQxLS42NC4yMS0uNjQuNjMsMCwuODQsMTUuODEsNCwyOS42OSwxMy43MywyOS42OSwzMi4zMiwwLDE4LjE3LTExLjMyLDI5LjU4LTI3Ljc3LDM2Ljc2LTEwLDQuNDQtMjIuNDMsNS45MS0zNSw1LjkxLTkuNjEsMC0zNS4zNy0xLTQ5LjY5LS44NC0xLjUtLjYzLDEuMzctNy40LDIuNjUtOC40NWEzOS4zOCwzOS4zOCwwLDAsMCw5LjY5LTEuNTJjNS4xMi0xLjI2LDUuNzMtMi45MSw2LjM3LTEwLjUyLjQzLTYuNTUuNDMtMzAsLjQzLTQ2LjY5LDAtMjIuODIuMjItMzguMjMsMC00NS44NC0uMjEtNS45MS0yLjM1LTcuODItNi40MS04Ljg3LTMuMi0uNjQtOC41NC0xLjI3LTEyLjgxLTEuOS0xLjA3LTEuMDYsMi4yMi03LjQsMy4yOC04LjI0Ii8+PHBhdGggY2xhc3M9ImNscy00IiBkPSJNMTgxLjc1LDIzMy41YTkuMjYsOS4yNiwwLDAsMS0uNjUtNC4yNyw1LjQzLDUuNDMsMCwwLDEsLjY1LTIuODUsNzIuNTgsNzIuNTgsMCwwLDAsOC4yLTEuNjdjMy43OC0uOTQsNS4yLTMsNS40Mi03LjgyLjYyLTExLjM5LjY2LTMyLjc2LjQ0LTQ3Ljc4di0uNDRjMC0xLjYyLDAtMy44Mi0yLTUuMzdhNDIuOTQsNDIuOTQsMCwwLDAtMTEuMzMtNWMtMS43OS0uNTMtMi43OC0xLjQ3LTIuNzMtMi41N3MxLjE4LTIuNCwzLjUxLTIuODZjNi4xOS0uNjMsMjIuNDEtNC41LDI4Ljc4LTcuNDRhNC4yMiw0LjIyLDAsMCwxLC44NSwzYzAsLjY2LS4xLDEuMzYtLjE3LDIuMDgtLjE4LDIuMTItLjM4LDQuNTMtLjM4LDYuOTNhMS41OCwxLjU4LDAsMCwwLDIuNjguOTFjMTIuMTMtOS41MSwyMy0xMi45LDI4LjU3LTEyLjksOS4xNywwLDE2LjMxLDQuMzgsMjEuODQsMTMuNGExLjQ3LDEuNDcsMCwwLDAsMS4yNC43MywxLjQyLDEuNDIsMCwwLDAsMS4xNi0uNjJjMTEuMTUtOC40NiwyMi4yLTEzLjUxLDI5LjYtMTMuNTEsMTcuNDgsMCwyNy45MywxMy4wOSwyNy45MywzNSwwLDYuMy0uMDYsMTQuMjktLjEyLDIxLjc0LS4wNSw2LjU0LS4xLDEyLjY3LS4xLDE2LjkxLDAsMSwxLjM4LDMuODgsMy40NSw0LjQ1LDIuNTYsMS4yNSw2LjI1LDEuODksMTAuOTIsMi42OWwuMTgsMGMuMzUsMS4yNi0uMzksNi4xNS0xLjEsNy4xNS0xLjE2LDAtMi43Ni0uMS00Ljc2LS4yLTMuNjMtLjE4LTguNjEtLjQzLTE0LjQtLjQzLTExLjYyLDAtMTcuNjkuMjItMjMuNDkuNi0uNDQtMS40NS0uNTktNi4xMy0uMDYtNy4xMUE2MS41NSw2MS41NSwwLDAsMCwzMDMsMjI0LjdjMy43LTEuMjIsNC43Ny0yLjksNS03LjgxLjA5LTMuNDkuNzYtMzQuMjQtLjQzLTQxLjU0LTEuMS03LjU3LTYuOC0xNi40My0xOS4yNy0xNi40My00LjYzLDAtMTIuMSwxLjkzLTE5LjIyLDcuMzNhMi44LDIuOCwwLDAsMC0uNywxLjgxdi4xNWMuODQsMy45NC44NCw4LjU0Ljg0LDE1LjQ5LDAsNCwwLDguMTctLjA1LDEyLjM0LS4wNSw4LjQ4LS4wOSwxNi40OC4wNSwyMi41MywwLDQuMTIsMi40OSw1LjExLDQuNSw1LjksMS4wOS4yNCwxLjk1LjQ1LDIuODIuNjUsMS42Ny40MSwzLjQxLjgzLDYsMS4yNGExMS40OSwxMS40OSwwLDAsMS0uMSw1LjMyLDQuMjYsNC4yNiwwLDAsMS0uNzUsMS44MWMtNi40Ni0uMjItMTMuMDktLjQxLTIyLjY2LS40MS0yLjksMC03LjYzLjEyLTExLjgxLjIzLTMuMzkuMDktNi41OS4xOC04LjQxLjE5YTguMjQsOC4yNCwwLDAsMS0uNjQtMy42OCw2LjM4LDYuMzgsMCwwLDEsLjY3LTMuNDRsMi41Ny0uNDdjMi4yNC0uNCw0LjE4LS43NCw2LTEuMiwzLjE2LTEsNC4zNS0yLjcyLDQuNTgtNi43NS42Mi05LjQsMS4xLTM2LjQ5LS4yMy00My4yNy0yLjI2LTEwLjg4LTguNDUtMTYuNC0xOC40MS0xNi40LTUuODMsMC0xMy4yLDIuODEtMTkuMjIsNy4zMmE1Ljg2LDUuODYsMCwwLDAtMS43Nyw0LjM1YzAsMy4yMywwLDcuMDcsMCwxMS4xOSwwLDEzLjYtLjA5LDMwLjUzLjI0LDM3Ljg1LjIsMi4yNiwxLDQuOTQsNS4yMyw1LjkyLjkzLjI3LDIuNTMuNTMsNC4zOS44NCwxLjA3LjE4LDIuMjQuMzcsMy40NS41OWExNS4xNiwxNS4xNiwwLDAsMS0uNTcsNy4xNWMtMS44NiwwLTQuMTUtLjEyLTYuNzctLjIzLTQtLjE4LTktLjQtMTQuNjUtLjQtNi42OCwwLTExLjMzLjIyLTE1LjA2LjQtMi41MS4xMi00LjY4LjIyLTYuODUuMjMiLz48cGF0aCBjbGFzcz0iY2xzLTQiIGQ9Ik0zOTYuMiwxNTQuNDlBMTguMjIsMTguMjIsMCwwLDAsMzg2LDE1Ny4zNmMtNy40Miw0LjUxLTExLjIsMTMuNTItMTEuMiwyNi43NiwwLDI0Ljc4LDEyLjQxLDQyLjA5LDMwLjE4LDQyLjA5QTE5LDE5LDAsMCwwLDQxOCwyMjEuNmM1LjQ2LTQuNDUsOC4zNi0xMy41NSw4LjM2LTI2LjI5LDAtMjQuNDEtMTIuMTMtNDAuODItMzAuMTgtNDAuODJtMy40Miw4MC45MWMtMzIuMSwwLTQzLjUzLTIzLjU1LTQzLjUzLTQ1LjU4LDAtMTUuMzksNi4yOS0yNy40MiwxOC43LTM1Ljc3YTU3LjExLDU3LjExLDAsMCwxLDI4Ljg5LTguNTRjMjQuNDksMCw0MS42LDE3LjYxLDQxLjYsNDIuODQsMCwxNy4xNC02LjgzLDMwLjY4LTE5Ljc2LDM5LjE0LTYuMjEsMy44LTE3LDcuOTEtMjUuOSw3LjkxIi8+PHBhdGggY2xhc3M9ImNscy00IiBkPSJNNzIzLDE1NC40OWExOC4xNywxOC4xNywwLDAsMC0xMC4yMiwyLjg3Yy03LjQyLDQuNTEtMTEuMiwxMy41Mi0xMS4yLDI2Ljc2LDAsMjQuNzgsMTIuNDEsNDIuMDksMzAuMTgsNDIuMDlhMTksMTksMCwwLDAsMTMuMDYtNC42MWM1LjQ2LTQuNDUsOC4zNS0xMy41NSw4LjM1LTI2LjI5LDAtMjQuNDEtMTIuMTItNDAuODItMzAuMTctNDAuODJtMy40Miw4MC45MWMtMzIuMSwwLTQzLjUzLTIzLjU1LTQzLjUzLTQ1LjU3LDAtMTUuNDEsNi4yOS0yNy40MywxOC43MS0zNS43OGE1Nyw1NywwLDAsMSwyOC44OC04LjU0YzI0LjQ5LDAsNDEuNiwxNy42Miw0MS42LDQyLjgzLDAsMTcuMTYtNi44MywzMC42OS0xOS43NiwzOS4xNC02LjIxLDMuODEtMTcsNy45Mi0yNS45LDcuOTIiLz48cGF0aCBjbGFzcz0iY2xzLTQiIGQ9Ik02MTQuOTIsMTUzLjY1Yy05Ljg5LDAtMTYuMjksNy44MS0xNi4yOSwxOS45czUuNTEsMjYuNDYsMjEsMjYuNDZjMi42NiwwLDcuNDgtMS4xOCw5Ljg3LTMuODEsMy42LTMuMzEsNi0xMC4xNSw2LTE3LjM3LDAtMTUuNzctNy42OC0yNS4xOC0yMC41My0yNS4xOG0tMS4yOCw4My40NGExNi4yOSwxNi4yOSwwLDAsMC04LDJjLTcuODMsNS0xMS40NiwxMC0xMS40NiwxNS44MSwwLDUuNDQsMi4xMSw5Ljc3LDYuNjUsMTMuNjEsNS41LDQuNjYsMTIuOTIsNi45MywyMi42Nyw2LjkzLDE5LjE5LDAsMjcuNzktMTAuMzIsMjcuNzktMjAuNTQsMC03LjEyLTMuNTctMTEuODktMTAuOTItMTQuNTktNS42Ni0yLjA3LTE1LjEyLTMuMjEtMjYuNy0zLjIxbTEuMjgsNDljLTExLjUyLDAtMTkuODItMi40My0yNi45MS03Ljg5LTYuOS01LjMyLTEwLTEzLjIyLTEwLTE4LjY4YTE0LjYxLDE0LjYxLDAsMCwxLDMuNzgtOS41YzItMi4yOCw2LjY1LTYuNTUsMTcuNC0xMy45NGEuOTIuOTIsMCwwLDAsLjU2LS44NS44OS44OSwwLDAsMC0uNjgtLjg4Yy04Ljg1LTMuMzktMTEuNTItOS0xMi4zMy0xMiwwLS4xMSwwLS4yOC0uMDktLjQ3LS4yNS0xLjE4LS40OS0yLjMsMS4xMi0zLjQ1LDEuMjQtLjg4LDMuMjItMi4wNiw1LjM0LTMuMzFhNzEuODksNzEuODksMCwwLDAsOC41OS01LjU5LDEuNDEsMS40MSwwLDAsMC0uMzYtMi4yYy0xMy4xLTQuNC0xOS43LTE0LjEzLTE5LjctMjlhMjguODMsMjguODMsMCwwLDEsMTIuMS0yMy43M2M1LjI3LTQuMTcsMTguNS05LjE4LDI3LjA3LTkuMThoLjVjOC44MS4yMSwxMy43OCwyLjA2LDIwLjY2LDQuNmEzMi44NCwzMi44NCwwLDAsMCwxMi4yMiwxLjk0YzcuMjksMCwxMC40OC0yLjMxLDEzLjIyLTVhMTEuNDcsMTEuNDcsMCwwLDEsLjcsMy43OCwxNC4yMiwxNC4yMiwwLDAsMS0yLjM4LDguNjhjLTEuNDksMi4wNy01LDMuNTctOC4yMSwzLjU3LS4zMywwLS42NSwwLTEtLjA1YTI2Ljk0LDI2Ljk0LDAsMCwxLTUtLjgzbC0uODIuMjljLS4yNi4zOC0uMDkuOC4xMiwxLjM0YTEuNywxLjcsMCwwLDEsLjEyLjMzLDU4LjUyLDU4LjUyLDAsMCwxLDEuMTksOC4xYzAsMTUuNTUtNi4xMywyMi4zMi0xMi43NiwyNy4zNGE0My41Niw0My41NiwwLDAsMS0yMiw4LjUyaDBjLS4xNywwLTEsLjA3LTIuNTYuMjEtMSwuMDktMi4zLjIxLTIuNDkuMjFsLS4xOSwwYy0xLjQ0LjQtNS4yLDIuMTktNS4yLDUuNTIsMCwyLjc2LDEuNyw2LjE5LDkuODMsNi44MWw1LjI2LjM3YzEwLjcyLjc1LDI0LjExLDEuNjgsMzAuNDEsMy44MWEyMS4wNiwyMS4wNiwwLDAsMSwxNC4wNywyMC4yN2MwLDEzLjk1LTkuOTIsMjcuMDctMjYuNTMsMzUuMDlhNTcuNjYsNTcuNjYsMCwwLDEtMjUuMDksNS42MyIvPjxwYXRoIGNsYXNzPSJjbHMtNCIgZD0iTTU2NS44NiwyMjYuMDZjLTQuNy0uNjMtOC4xMy0xLjI3LTEyLjE4LTMuMTdhNS42LDUuNiwwLDAsMS0xLjUtM2MtLjQzLTYuNTUtLjQzLTI1LjU2LS40My0zOCwwLTEwLjE1LTEuNy0xOS02LTI1LjM1LTUuMTMtNy4xOS0xMi4zOS0xMS40MS0yMS43OS0xMS40MS04LjMzLDAtMTkuNDQsNS43LTI4LjYyLDEzLjUyLS4yMi4yMS0xLjYzLDEuNTUtMS42LS41M3MuMzUtNi4zLjU1LTlhNC42Myw0LjYzLDAsMCwwLTEuNC0zLjkyYy02LDMtMjIuODMsNy0yOS4wNiw3LjYxLTQuNTQuODgtNS42OSw1LjI1LS44NCw2Ljc2bC4wNywwYTQxLjQ2LDQxLjQ2LDAsMCwxLDExLDQuODRjMS45MiwxLjQ4LDEuNzEsMy41OSwxLjcxLDUuMjguMjEsMTQuMTUuMjEsMzUuOTEtLjQzLDQ3Ljc0LS4yMSw0LjY1LTEuNSw2LjM0LTQuOTIsNy4xOWwuMzItLjExYTY2LjQ2LDY2LjQ2LDAsMCwxLTcuOTEsMS40OGMtMS4wNywxLjA1LTEuMDcsNy4xOCwwLDguNDUsMi4xNCwwLDEzLS42MywyMi0uNjMsMTIuMzgsMCwxOC43OS42MywyMiwuNjMsMS4yOS0xLjQ4LDEuNzEtNy4xOC44Ni04LjQ1YTQ1LDQ1LDAsMCwxLTguNzctMS4yN2MtMy40MS0uODQtNC4yNy0yLjU0LTQuNDgtNi4zMy0uNDItOS45NC0uNDItMzEuMDYtLjQyLTQ1LjQzLDAtNCwxLjA2LTUuOTEsMi4zNC03LDQuMjctMy44LDExLjMzLTYuMzMsMTcuNTItNi4zMyw2LDAsMTAsMS45LDEzLDQuNDNBMTguMSwxOC4xLDAsMCwxLDUzMywxNzZjLjg1LDgsLjYzLDI0LjA5LjYzLDM4LDAsNy42MS0uNjMsOS41Mi0zLjQxLDEwLjM2LTEuMjguNjMtNC43LDEuMjctOC43NiwxLjY5LTEuMjgsMS4yNy0uODYsNy4xOCwwLDguNDUsNS41NSwwLDEyLS42MywyMS4zNi0uNjMsMTEuNzUsMCwxOS4yMy42MywyMi4yMi42MywxLjI4LTEuNDgsMS43MS03LC44Ni04LjQ1Ii8+PC9zdmc+" width="1000" height="150">
 
 </div>
 </div>
@@ -14723,9 +14741,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[5]:</div>
 
@@ -14733,7 +14749,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;pymongo.results.InsertOneResult at 0x7f3d04d0bfc0&gt;</pre>
+<pre>&lt;pymongo.results.InsertOneResult at 0x7fa7f9c8c400&gt;</pre>
 </div>
 
 </div>
@@ -14779,9 +14795,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -14823,9 +14837,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[7]:</div>
 
@@ -14833,7 +14845,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;pymongo.results.InsertOneResult at 0x7f3d1403a080&gt;</pre>
+<pre>&lt;pymongo.results.InsertOneResult at 0x7fa7f9c9a540&gt;</pre>
 </div>
 
 </div>
@@ -14869,9 +14881,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[8]:</div>
 
@@ -14879,7 +14889,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;pymongo.results.InsertOneResult at 0x7f3d04d0bf40&gt;</pre>
+<pre>&lt;pymongo.results.InsertOneResult at 0x7fa7f9c9ab00&gt;</pre>
 </div>
 
 </div>
@@ -14921,9 +14931,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
 
@@ -14935,7 +14943,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
  'author': 'Mike',
  'text': 'My first blog post!',
  'tags': ['mongodb', 'python', 'pymongo'],
- 'date': datetime.datetime(2022, 6, 5, 12, 8, 39, 255000)}</pre>
+ 'date': datetime.datetime(2022, 12, 23, 6, 4, 20, 302000)}</pre>
 </div>
 
 </div>
@@ -14969,17 +14977,15 @@ FROM posts<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>{'_id': 1, 'author': 'Mike', 'text': 'My first blog post!', 'tags': ['mongodb', 'python', 'pymongo'], 'date': datetime.datetime(2022, 6, 5, 12, 8, 39, 255000)}
-{'_id': ObjectId('629c9cc77d5c4e67f476128d'), 'author': 'Mike', 'text': 'My first blog post!', 'tags': ['mongodb', 'python', 'pymongo'], 'date': datetime.datetime(2022, 6, 5, 12, 8, 39, 318000)}
-{'_id': ObjectId('629c9cc77d5c4e67f476128e'), 'author': 'Arthur', 'text': 'I love MongoDB!', 'tags': ['mongodb'], 'date': datetime.datetime(2022, 6, 5, 12, 8, 39, 326000)}
+<pre>{'_id': 1, 'author': 'Mike', 'text': 'My first blog post!', 'tags': ['mongodb', 'python', 'pymongo'], 'date': datetime.datetime(2022, 12, 23, 6, 4, 20, 302000)}
+{'_id': ObjectId('63a544e40368a2d5c26f321f'), 'author': 'Mike', 'text': 'My first blog post!', 'tags': ['mongodb', 'python', 'pymongo'], 'date': datetime.datetime(2022, 12, 23, 6, 4, 20, 415000)}
+{'_id': ObjectId('63a544e40368a2d5c26f3220'), 'author': 'Arthur', 'text': 'I love MongoDB!', 'tags': ['mongodb'], 'date': datetime.datetime(2022, 12, 23, 6, 4, 20, 429000)}
 </pre>
 </div>
 </div>
@@ -15014,15 +15020,13 @@ WHERE author = 'Arthur'<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>{'_id': ObjectId('629c9cc77d5c4e67f476128e'), 'author': 'Arthur', 'text': 'I love MongoDB!', 'tags': ['mongodb'], 'date': datetime.datetime(2022, 6, 5, 12, 8, 39, 326000)}
+<pre>{'_id': ObjectId('63a544e40368a2d5c26f3220'), 'author': 'Arthur', 'text': 'I love MongoDB!', 'tags': ['mongodb'], 'date': datetime.datetime(2022, 12, 23, 6, 4, 20, 429000)}
 </pre>
 </div>
 </div>
@@ -15055,15 +15059,13 @@ WHERE author = 'Arthur'<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>{'author': 'Arthur', 'text': 'I love MongoDB!', 'tags': ['mongodb'], 'date': datetime.datetime(2022, 6, 5, 12, 8, 39, 326000)}
+<pre>{'author': 'Arthur', 'text': 'I love MongoDB!', 'tags': ['mongodb'], 'date': datetime.datetime(2022, 12, 23, 6, 4, 20, 429000)}
 </pre>
 </div>
 </div>
@@ -15098,15 +15100,13 @@ WHERE author = 'Arthur'<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>{'_id': ObjectId('629c9cc77d5c4e67f476128e'), 'author': 'Arthur', 'text': 'I love MongoDB!'}
+<pre>{'_id': ObjectId('63a544e40368a2d5c26f3220'), 'author': 'Arthur', 'text': 'I love MongoDB!'}
 </pre>
 </div>
 </div>
@@ -15142,16 +15142,14 @@ ORDER BY date DESC<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>{'author': 'Mike', 'text': 'My first blog post!', 'tags': ['mongodb', 'python', 'pymongo'], 'date': datetime.datetime(2022, 6, 5, 12, 8, 39, 318000)}
-{'author': 'Mike', 'text': 'My first blog post!', 'tags': ['mongodb', 'python', 'pymongo'], 'date': datetime.datetime(2022, 6, 5, 12, 8, 39, 255000)}
+<pre>{'author': 'Mike', 'text': 'My first blog post!', 'tags': ['mongodb', 'python', 'pymongo'], 'date': datetime.datetime(2022, 12, 23, 6, 4, 20, 415000)}
+{'author': 'Mike', 'text': 'My first blog post!', 'tags': ['mongodb', 'python', 'pymongo'], 'date': datetime.datetime(2022, 12, 23, 6, 4, 20, 302000)}
 </pre>
 </div>
 </div>
@@ -15212,9 +15210,7 @@ GROUP BY author<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15261,9 +15257,7 @@ HAVING author = 'Arthur'<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15311,9 +15305,7 @@ HAVING author = 'Arthur'<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[17]:</div>
 
@@ -15321,7 +15313,7 @@ HAVING author = 'Arthur'<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;pymongo.results.UpdateResult at 0x7f3d044a7140&gt;</pre>
+<pre>&lt;pymongo.results.UpdateResult at 0x7fa7f9c96780&gt;</pre>
 </div>
 
 </div>
@@ -15352,9 +15344,7 @@ HAVING author = 'Arthur'<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[18]:</div>
 
@@ -15366,7 +15356,7 @@ HAVING author = 'Arthur'<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
  'author': 'Mike',
  'text': 'My first blog post!',
  'tags': ['mongodb', 'python', 'pymongo'],
- 'date': datetime.datetime(2022, 6, 5, 12, 8, 39, 255000),
+ 'date': datetime.datetime(2022, 12, 23, 6, 4, 20, 302000),
  'new_field': 1}</pre>
 </div>
 
@@ -15421,9 +15411,7 @@ HAVING author = 'Arthur'<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[19]:</div>
 
@@ -15431,7 +15419,7 @@ HAVING author = 'Arthur'<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;pymongo.results.DeleteResult at 0x7f3d0449b880&gt;</pre>
+<pre>&lt;pymongo.results.DeleteResult at 0x7fa7f9ca9a40&gt;</pre>
 </div>
 
 </div>
