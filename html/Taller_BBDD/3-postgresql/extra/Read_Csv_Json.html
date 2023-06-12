@@ -14539,10 +14539,6 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
   display: none;
 }
 
-@page {
-    margin: 0.5in; /* Margin for each printed piece of paper */
-}
-
 @media print {
   .jp-Cell-inputWrapper,
   .jp-Cell-outputWrapper {
@@ -14631,7 +14627,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a href="http://bit.ly/2mEQRxE">http://bit.ly/2mEQRxE</a></p>
+<p>Enlace <a href="https://datos.madrid.es/portal/site/egob/menuitem.c05c1f754a33a9fbe4b2e4b284f1a5a0/?vgnextoid=fd6112695c6bb410VgnVCM1000000b205a0aRCRD&amp;vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD&amp;vgnextfmt=default">Avisos ciudadanos</a></p>
 
 </div>
 </div>
@@ -14691,13 +14687,13 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>&lt;class 'pandas.core.frame.DataFrame'&gt;
-Int64Index: 1000 entries, 380170 to 212127
+Int64Index: 1000 entries, 197843 to 26147
 Data columns (total 24 columns):
  #   Column                Non-Null Count  Dtype  
 ---  ------                --------------  -----  
  0   TIPO_INCIDENCIA_ID    1000 non-null   int64  
  1   TIPO_INCIDENCIA       1000 non-null   object 
- 2   CANAL_DE_ENTRADA_ID   158 non-null    float64
+ 2   CANAL_DE_ENTRADA_ID   181 non-null    float64
  3   CANAL_DE_ENTRADA      1000 non-null   object 
  4   FECHA_DE_RECEPCION    1000 non-null   object 
  5   HORA_DE_RECEPCION     1000 non-null   object 
@@ -14773,7 +14769,7 @@ memory usage: 195.3+ KB
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14787,27 +14783,6 @@ memory usage: 195.3+ KB
      </div>
 </div>
 </div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>dropdb: error: database removal failed: ERROR:  database "avisa" does not exist
-</pre>
-</div>
-</div>
-
-</div>
-
 </div>
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14997,7 +14972,7 @@ memory usage: 195.3+ KB
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>2</pre>
+<pre>3</pre>
 </div>
 
 </div>
@@ -15037,7 +15012,7 @@ memory usage: 195.3+ KB
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre> * postgresql://postgres:***@localhost/avisa
-2 rows affected.
+3 rows affected.
 </pre>
 </div>
 </div>
@@ -15055,14 +15030,19 @@ memory usage: 195.3+ KB
         <th>TIPO_INCIDENCIA</th>
     </tr>
     <tr>
-        <td>380170</td>
+        <td>197843</td>
         <td>0</td>
         <td>AVISO</td>
     </tr>
     <tr>
-        <td>349617</td>
+        <td>79482</td>
         <td>1</td>
         <td>Peticion</td>
+    </tr>
+    <tr>
+        <td>182949</td>
+        <td>2</td>
+        <td>No conforme con resolucion</td>
     </tr>
 </table>
 </div>
@@ -15118,7 +15098,7 @@ memory usage: 195.3+ KB
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>'[{"TIPO_INCIDENCIA_ID":0,"TIPO_INCIDENCIA":"AVISO"},{"TIPO_INCIDENCIA_ID":1,"TIPO_INCIDENCIA":"Peticion"}]'</pre>
+<pre>'[{"TIPO_INCIDENCIA_ID":0,"TIPO_INCIDENCIA":"AVISO"},{"TIPO_INCIDENCIA_ID":1,"TIPO_INCIDENCIA":"Peticion"},{"TIPO_INCIDENCIA_ID":2,"TIPO_INCIDENCIA":"No conforme con resolucion"}]'</pre>
 </div>
 
 </div>
@@ -15161,7 +15141,8 @@ memory usage: 195.3+ KB
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
 <pre>[{'TIPO_INCIDENCIA_ID': 0, 'TIPO_INCIDENCIA': 'AVISO'},
- {'TIPO_INCIDENCIA_ID': 1, 'TIPO_INCIDENCIA': 'Peticion'}]</pre>
+ {'TIPO_INCIDENCIA_ID': 1, 'TIPO_INCIDENCIA': 'Peticion'},
+ {'TIPO_INCIDENCIA_ID': 2, 'TIPO_INCIDENCIA': 'No conforme con resolucion'}]</pre>
 </div>
 
 </div>
@@ -15201,6 +15182,7 @@ memory usage: 195.3+ KB
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>{'TIPO_INCIDENCIA_ID': 0, 'TIPO_INCIDENCIA': 'AVISO'}
 {'TIPO_INCIDENCIA_ID': 1, 'TIPO_INCIDENCIA': 'Peticion'}
+{'TIPO_INCIDENCIA_ID': 2, 'TIPO_INCIDENCIA': 'No conforme con resolucion'}
 </pre>
 </div>
 </div>
@@ -15281,6 +15263,11 @@ memory usage: 195.3+ KB
       <th>1</th>
       <td>1</td>
       <td>Peticion</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>No conforme con resolucion</td>
     </tr>
   </tbody>
 </table>
@@ -15371,16 +15358,16 @@ memory usage: 195.3+ KB
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://github.com/pandas-dev/pandas/issues/50407</td>
-      <td>1508891678</td>
-      <td>I_kwDOAA0YD85Z79we</td>
-      <td>50407</td>
-      <td>DEPR: Unnecessary kwargs in groupby ops</td>
+      <td>https://github.com/pandas-dev/pandas/issues/53612</td>
+      <td>1751948989</td>
+      <td>I_kwDOAA0YD85obJ69</td>
+      <td>53612</td>
+      <td>BUG: resample with freq W-Mon and first data p...</td>
       <td>...</td>
       <td>NaT</td>
       <td>MEMBER</td>
       <td>NaN</td>
-      <td>Some groupby ops have args and/or kwargs unnec...</td>
+      <td>### Pandas version checks\n\n- [X] I have chec...</td>
       <td>{'url': 'https://api.github.com/repos/pandas-d...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
       <td>NaN</td>
@@ -15395,22 +15382,22 @@ memory usage: 195.3+ KB
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://github.com/pandas-dev/pandas/issues/50406</td>
-      <td>1508887523</td>
-      <td>I_kwDOAA0YD85Z78vj</td>
-      <td>50406</td>
-      <td>ENH: Use explicit arguments in DataFrameGroupB...</td>
+      <td>https://github.com/pandas-dev/pandas/pull/53611</td>
+      <td>1751775739</td>
+      <td>PR_kwDOAA0YD85SuJo6</td>
+      <td>53611</td>
+      <td>DOC: pd.Period and pd.period_range should docu...</td>
       <td>...</td>
       <td>NaT</td>
-      <td>MEMBER</td>
+      <td>NONE</td>
       <td>NaN</td>
-      <td>Currently DataFrameGroupBy.describe uses `**kw...</td>
+      <td>- [x] closes #53038 (Replace xxxx with the Git...</td>
       <td>{'url': 'https://api.github.com/repos/pandas-d...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>0.0</td>
+      <td>{'url': 'https://api.github.com/repos/pandas-d...</td>
     </tr>
     <tr>
       <th>2</th>
@@ -15419,22 +15406,22 @@ memory usage: 195.3+ KB
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://github.com/pandas-dev/pandas/issues/50405</td>
-      <td>1508864485</td>
-      <td>I_kwDOAA0YD85Z73Hl</td>
-      <td>50405</td>
-      <td>DEPR: axis argument in groupby ops</td>
+      <td>https://github.com/pandas-dev/pandas/pull/53610</td>
+      <td>1751773134</td>
+      <td>PR_kwDOAA0YD85SuJFj</td>
+      <td>53610</td>
+      <td>TST: Refactor slow test</td>
       <td>...</td>
       <td>NaT</td>
       <td>MEMBER</td>
       <td>NaN</td>
-      <td>Some groupby methods have an `axis` argument i...</td>
+      <td>Went from 2s to 0.05s locally</td>
       <td>{'url': 'https://api.github.com/repos/pandas-d...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>0.0</td>
+      <td>{'url': 'https://api.github.com/repos/pandas-d...</td>
     </tr>
     <tr>
       <th>3</th>
@@ -15443,16 +15430,16 @@ memory usage: 195.3+ KB
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://github.com/pandas-dev/pandas/pull/50404</td>
-      <td>1508813866</td>
-      <td>PR_kwDOAA0YD85GF5So</td>
-      <td>50404</td>
-      <td>TST: Consolidate tests that raise in groupby</td>
+      <td>https://github.com/pandas-dev/pandas/pull/53609</td>
+      <td>1751753766</td>
+      <td>PR_kwDOAA0YD85SuFCs</td>
+      <td>53609</td>
+      <td>Add new `df.select()` method, plus tests and docs</td>
       <td>...</td>
       <td>NaT</td>
-      <td>MEMBER</td>
+      <td>NONE</td>
       <td>NaN</td>
-      <td>- [ ] closes #xxxx (Replace xxxx with the GitH...</td>
+      <td>- [x] No issues to close\r\n- [x] [Tests added...</td>
       <td>{'url': 'https://api.github.com/repos/pandas-d...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
       <td>NaN</td>
@@ -15467,11 +15454,11 @@ memory usage: 195.3+ KB
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
       <td>https://api.github.com/repos/pandas-dev/pandas...</td>
-      <td>https://github.com/pandas-dev/pandas/pull/50403</td>
-      <td>1508604874</td>
-      <td>PR_kwDOAA0YD85GFLtZ</td>
-      <td>50403</td>
-      <td>CLN: Remove unused rewrite warning</td>
+      <td>https://github.com/pandas-dev/pandas/pull/53608</td>
+      <td>1751740575</td>
+      <td>PR_kwDOAA0YD85SuCdr</td>
+      <td>53608</td>
+      <td>TST: Mark numba &amp; threading tests as single cpu</td>
       <td>...</td>
       <td>NaT</td>
       <td>MEMBER</td>
